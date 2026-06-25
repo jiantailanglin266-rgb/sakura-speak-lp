@@ -77,7 +77,7 @@ export default function Pricing() {
               </p>
 
               <CTAButton
-                href="#"
+                href="/subscribe"
                 size="md"
                 variant={p.featured ? "ghost" : "primary"}
                 className="mt-6 w-full"

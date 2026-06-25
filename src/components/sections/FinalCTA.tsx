@@ -22,7 +22,7 @@ export default function FinalCTA() {
               Meemi is waiting for you.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <CTAButton href="#pricing" variant="ghost">
+              <CTAButton href="/auth" variant="ghost">
                 Start your free trial
               </CTAButton>
               <CTAButton href="#features" variant="blue">

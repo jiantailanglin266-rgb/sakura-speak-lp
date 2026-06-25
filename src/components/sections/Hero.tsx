@@ -35,7 +35,7 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start">
-            <CTAButton href="#pricing">Start your free trial</CTAButton>
+            <CTAButton href="/auth">Start your free trial</CTAButton>
             <CTAButton href="#features" variant="ghost">
               See what's inside
             </CTAButton>

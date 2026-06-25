@@ -56,7 +56,7 @@ export default function SideNav() {
           Unlock unlimited learning.
         </p>
         <Link
-          href="/#pricing"
+          href="/subscribe"
           className="mt-3 block rounded-full bg-white py-2 text-center text-xs font-bold text-pink-deep shadow-soft hover:bg-cream"
         >
           Upgrade

@@ -49,12 +49,12 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="#pricing"
+            href="/auth"
             className="hidden rounded-full px-4 py-2 text-sm font-bold text-pink-ink hover:text-pink-deep sm:inline-flex"
           >
             Sign in
           </Link>
-          <CTAButton href="#pricing" size="md" className="hidden sm:inline-flex">
+          <CTAButton href="/auth" size="md" className="hidden sm:inline-flex">
             Start free
           </CTAButton>
           <MobileMenu />

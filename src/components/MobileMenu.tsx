@@ -59,7 +59,7 @@ export default function MobileMenu() {
               </Link>
             ))}
             <Link
-              href="#pricing"
+              href="/auth"
               onClick={() => setOpen(false)}
               className="mt-3 rounded-full bg-gradient-to-r from-pink-deep to-pink px-6 py-4 text-center text-base font-bold text-white shadow-pop"
             >
