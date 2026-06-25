@@ -42,7 +42,7 @@ export default function EventsCard() {
       </ul>
 
       <Link
-        href="#"
+        href="/dashboard/community"
         className="mt-4 flex items-center justify-center gap-1 rounded-full bg-pink-soft/50 py-2.5 text-sm font-bold text-pink-ink hover:bg-pink-soft"
       >
         See all events

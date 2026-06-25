@@ -28,6 +28,8 @@ export default function SideNav() {
                 ? "/dashboard/games"
                 : n.key === "vocab"
                 ? "/dashboard/vocab"
+                : n.key === "chat" || n.key === "voice"
+                ? "/dashboard/community"
                 : n.key === "profile"
                 ? "/dashboard/profile"
                 : "#"
