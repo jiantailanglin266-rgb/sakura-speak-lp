@@ -76,6 +76,9 @@ export default function Footer() {
             <Link href="#" className="hover:text-white/70">
               Terms
             </Link>
+            <Link href="/admin" className="hover:text-white/70">
+              Admin
+            </Link>
           </p>
         </div>
       </div>
