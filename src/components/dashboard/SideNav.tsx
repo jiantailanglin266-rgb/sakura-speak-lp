@@ -15,7 +15,7 @@ export default function SideNav() {
         </span>
       </Link>
 
-      <nav className="mt-8 flex flex-1 flex-col gap-1">
+      <nav data-tour="nav" className="mt-8 flex flex-1 flex-col gap-1">
         {navItems.map((n) => (
           <Link
             key={n.key}

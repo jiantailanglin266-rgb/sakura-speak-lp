@@ -48,12 +48,14 @@ export default function TopBar() {
       </label>
 
       <div className="flex flex-1 items-center justify-end gap-2 sm:flex-none">
-        <Stat
-          icon="fire"
-          value={`${learner.streak}`}
-          label="Day streak"
-          cls="bg-[#fff0e0] text-[#ef7d2e]"
-        />
+        <span data-tour="streak">
+          <Stat
+            icon="fire"
+            value={`${learner.streak}`}
+            label="Day streak"
+            cls="bg-[#fff0e0] text-[#ef7d2e]"
+          />
+        </span>
         <Stat
           icon="coin"
           value={learner.coins.toLocaleString()}

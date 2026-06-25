@@ -9,6 +9,7 @@ import Achievements from "@/components/dashboard/Achievements";
 import EventsCard from "@/components/dashboard/EventsCard";
 import FriendsCard from "@/components/dashboard/FriendsCard";
 import NewsCard from "@/components/dashboard/NewsCard";
+import Onboarding from "@/components/onboarding/Onboarding";
 
 export default function DashboardPage() {
   return (
@@ -53,6 +54,8 @@ export default function DashboardPage() {
 
         <MobileNav />
       </div>
+
+      <Onboarding />
     </div>
   );
 }

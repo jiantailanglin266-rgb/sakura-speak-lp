@@ -13,7 +13,7 @@ const accent: Record<string, { tile: string; chip: string }> = {
 
 export default function PortalGrid() {
   return (
-    <section>
+    <section data-tour="portals">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-display text-xl font-extrabold text-ink">
           Your learning space

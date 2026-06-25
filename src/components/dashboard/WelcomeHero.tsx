@@ -2,14 +2,22 @@ import Link from "next/link";
 import Meemi from "../Meemi";
 import Icon from "../ui/Icon";
 import ProgressRing from "./ProgressRing";
+import TourButton from "../onboarding/TourButton";
 import { learner, progress } from "@/lib/dashboard";
 
 export default function WelcomeHero() {
   return (
-    <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-pink-deep via-pink to-blue-deep p-6 text-white shadow-pop sm:p-8">
+    <section
+      data-tour="hero"
+      className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-pink-deep via-pink to-blue-deep p-6 text-white shadow-pop sm:p-8"
+    >
       {/* soft glow blobs */}
       <div className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-white/20 blur-2xl" />
       <div className="pointer-events-none absolute -bottom-20 left-1/3 h-44 w-44 rounded-full bg-blue/30 blur-2xl" />
+
+      <div className="absolute right-4 top-4 z-10">
+        <TourButton />
+      </div>
 
       <div className="relative grid items-center gap-6 md:grid-cols-[1fr_auto]">
         <div>
@@ -52,7 +60,10 @@ export default function WelcomeHero() {
         </div>
 
         {/* overall progress ring */}
-        <div className="flex flex-col items-center gap-2 justify-self-center rounded-2xl bg-white/15 px-6 py-5 backdrop-blur-sm">
+        <div
+          data-tour="progress"
+          className="flex flex-col items-center gap-2 justify-self-center rounded-2xl bg-white/15 px-6 py-5 backdrop-blur-sm"
+        >
           <ProgressRing value={progress.overall} trackClass="text-white/25">
             <span className="font-display text-3xl font-extrabold">
               {progress.overall}

@@ -11,7 +11,7 @@ const items = [
 
 export default function MobileNav() {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-pink-soft/50 bg-white/90 backdrop-blur-md lg:hidden">
+    <nav data-tour="nav" className="fixed inset-x-0 bottom-0 z-40 border-t border-pink-soft/50 bg-white/90 backdrop-blur-md lg:hidden">
       <ul className="mx-auto flex max-w-md items-stretch justify-between px-2 py-1.5">
         {items.map((n) => (
           <li key={n.key} className="flex-1">
