@@ -29,7 +29,7 @@ export default function SideNav() {
                 : n.key === "vocab"
                 ? "/dashboard/vocab"
                 : n.key === "profile"
-                ? "/dashboard/avatar"
+                ? "/dashboard/profile"
                 : "#"
             }
             aria-current={n.active ? "page" : undefined}

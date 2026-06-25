@@ -29,7 +29,7 @@ export default function PortalGrid() {
               <Link
                 href={
                   p.key === "profile"
-                    ? "/dashboard/avatar"
+                    ? "/dashboard/profile"
                     : p.key === "lessons"
                     ? "/dashboard/lessons"
                     : p.key === "games"

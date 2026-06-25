@@ -24,7 +24,7 @@ export default function MobileNav() {
                   : n.key === "games"
                   ? "/dashboard/games"
                   : n.key === "profile"
-                  ? "/dashboard/avatar"
+                  ? "/dashboard/profile"
                   : "#"
               }
               aria-current={n.active ? "page" : undefined}
