@@ -6,9 +6,12 @@ import { site } from "@/lib/site";
 import Meemi from "./Meemi";
 import MobileMenu from "./MobileMenu";
 import CTAButton from "./ui/CTAButton";
+import LanguageToggle from "./i18n/LanguageToggle";
+import { useT } from "./i18n/LanguageProvider";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const t = useT();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -36,27 +39,30 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {site.nav.map((n) => (
+          {site.nav.map((n, i) => (
             <Link
               key={n.href}
               href={n.href}
               className="rounded-full px-4 py-2 text-sm font-semibold text-ink-soft transition-colors hover:bg-pink-soft/50 hover:text-pink-ink"
             >
-              {n.label}
+              {t.nav[i]}
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/auth"
-            className="hidden rounded-full px-4 py-2 text-sm font-bold text-pink-ink hover:text-pink-deep sm:inline-flex"
-          >
-            Sign in
-          </Link>
-          <CTAButton href="/auth" size="md" className="hidden sm:inline-flex">
-            Start free
-          </CTAButton>
+          <LanguageToggle />
+          <div className="hidden items-center gap-2 sm:flex">
+            <Link
+              href="/auth"
+              className="rounded-full px-4 py-2 text-sm font-bold text-pink-ink hover:text-pink-deep"
+            >
+              {t.header.signIn}
+            </Link>
+            <CTAButton href="/auth" size="md">
+              {t.header.startFree}
+            </CTAButton>
+          </div>
           <MobileMenu />
         </div>
       </div>

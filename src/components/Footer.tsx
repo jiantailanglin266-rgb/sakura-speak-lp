@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { site } from "@/lib/site";
 import Meemi from "./Meemi";
+import { useT } from "./i18n/LanguageProvider";
 
 export default function Footer() {
+  const t = useT();
   return (
     <footer className="relative overflow-hidden bg-ink text-white/80">
       <div className="mx-auto max-w-6xl px-6 py-14">
@@ -17,23 +21,19 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-              {site.tagline} A long-term, structured home for becoming fluent in
-              Japanese.
+              {t.footer.tagline}
             </p>
           </div>
 
           <div>
             <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">
-              Explore
+              {t.footer.explore}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
-              {site.nav.map((n) => (
+              {site.nav.map((n, i) => (
                 <li key={n.href}>
-                  <Link
-                    href={n.href}
-                    className="text-white/70 transition-colors hover:text-pink"
-                  >
-                    {n.label}
+                  <Link href={n.href} className="text-white/70 transition-colors hover:text-pink">
+                    {t.nav[i]}
                   </Link>
                 </li>
               ))}
@@ -42,24 +42,21 @@ export default function Footer() {
 
           <div>
             <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">
-              Get started
+              {t.footer.getStarted}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <Link href="#pricing" className="text-white/70 hover:text-pink">
-                  Pricing & plans
+                  {t.footer.pricingPlans}
                 </Link>
               </li>
               <li>
                 <Link href="/auth" className="text-white/70 hover:text-pink">
-                  Start free trial
+                  {t.footer.startTrial}
                 </Link>
               </li>
               <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="text-white/70 hover:text-pink"
-                >
+                <a href={`mailto:${site.email}`} className="text-white/70 hover:text-pink">
                   {site.email}
                 </a>
               </li>
@@ -68,20 +65,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
-          <p>© {new Date().getFullYear()} Sakura Speak. All rights reserved.</p>
-          <p className="flex items-center gap-4">
-            <Link href="/privacy" className="hover:text-white/70">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-white/70">
-              Terms
-            </Link>
-            <Link href="/admin" className="hover:text-white/70">
-              Admin
-            </Link>
-            <Link href="/dashboard" className="hover:text-white/70">
-              Dashboard (demo)
-            </Link>
+          <p>© {new Date().getFullYear()} Sakura Speak. {t.footer.rights}</p>
+          <p className="flex flex-wrap items-center justify-center gap-4">
+            <Link href="/privacy" className="hover:text-white/70">{t.footer.privacy}</Link>
+            <Link href="/terms" className="hover:text-white/70">{t.footer.terms}</Link>
+            <Link href="/admin" className="hover:text-white/70">Admin</Link>
+            <Link href="/dashboard" className="hover:text-white/70">Dashboard (demo)</Link>
           </p>
         </div>
       </div>

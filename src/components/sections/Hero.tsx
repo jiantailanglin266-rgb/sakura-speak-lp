@@ -1,10 +1,13 @@
+"use client";
+
 import Meemi from "../Meemi";
 import Petals from "../Petals";
 import CTAButton from "../ui/CTAButton";
 import { site } from "@/lib/site";
-import { stats } from "@/lib/content";
+import { useT } from "../i18n/LanguageProvider";
 
 export default function Hero() {
+  const t = useT();
   return (
     <section
       id="top"
@@ -17,33 +20,31 @@ export default function Hero() {
         <div className="text-center lg:text-left">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-bold text-pink-ink shadow-soft ring-1 ring-white">
             <span aria-hidden>🌸</span>
-            3-day free trial · cancel anytime
+            {t.hero.badge}
           </span>
 
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] text-ink sm:text-5xl md:text-6xl">
-            Speak Japanese,
+            {t.hero.title1}
             <br />
-            <span className="text-gradient">beautifully.</span>
+            <span className="text-gradient">{t.hero.accent}</span>
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg lg:mx-0">
-            Sakura Speak is a long-term, structured platform for real Japanese
-            fluency — 80 lessons, vocabulary by situation, mini-games,
-            achievements and a warm community. Your companion{" "}
-            <span className="font-bold text-pink-ink">Meemi</span> is with you
-            every step.
+            {t.hero.body1}
+            <span className="font-bold text-pink-ink">Meemi</span>
+            {t.hero.body2}
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start">
-            <CTAButton href="/auth">Start your free trial</CTAButton>
+            <CTAButton href="/auth">{t.hero.ctaStart}</CTAButton>
             <CTAButton href="#features" variant="ghost">
-              See what's inside
+              {t.hero.ctaSee}
             </CTAButton>
           </div>
 
           {/* stats */}
           <dl className="mt-10 grid max-w-md grid-cols-4 gap-2 lg:mx-0">
-            {stats.map((s) => (
+            {t.hero.stats.map((s) => (
               <div
                 key={s.label}
                 className="rounded-2xl bg-white/70 px-2 py-3 text-center shadow-card ring-1 ring-white"

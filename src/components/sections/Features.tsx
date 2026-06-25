@@ -1,7 +1,10 @@
+"use client";
+
 import SectionHeading from "../ui/SectionHeading";
 import Reveal from "../ui/Reveal";
 import Icon from "../ui/Icon";
 import { features } from "@/lib/content";
+import { useT } from "../i18n/LanguageProvider";
 
 const accentMap: Record<string, string> = {
   pink: "from-pink-soft to-pink/40 text-pink-ink",
@@ -12,6 +15,7 @@ const accentMap: Record<string, string> = {
 };
 
 export default function Features() {
+  const t = useT();
   return (
     <section
       id="features"
@@ -19,19 +23,20 @@ export default function Features() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Inside the member area"
+          eyebrow={t.features.eyebrow}
           title={
             <>
-              A learning <span className="text-gradient">command center</span>
+              {t.features.title}
+              <span className="text-gradient">{t.features.accent}</span>
             </>
           }
-          subtitle="After you sign in, the Student Dashboard is your home base — a portal to everything, designed to feel exciting even when there's a lot to do."
+          subtitle={t.features.subtitle}
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <Reveal
-              key={f.title}
+              key={f.icon}
               delay={(i % 3) * 80}
               className="group relative overflow-hidden rounded-[1.75rem] bg-white p-7 shadow-card ring-1 ring-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-pop"
             >
@@ -41,11 +46,11 @@ export default function Features() {
                 <Icon name={f.icon} className="h-7 w-7" />
               </span>
               <p className="mt-5 font-display text-xs font-bold uppercase tracking-wider text-ink-mute">
-                {f.jp}
+                {t.features.items[i].jp}
               </p>
-              <h3 className="mt-1 text-xl font-bold text-ink">{f.title}</h3>
+              <h3 className="mt-1 text-xl font-bold text-ink">{t.features.items[i].title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">
-                {f.desc}
+                {t.features.items[i].desc}
               </p>
             </Reveal>
           ))}

@@ -1,19 +1,14 @@
+"use client";
+
 import Meemi from "../Meemi";
 import Reveal from "../ui/Reveal";
 import SectionHeading from "../ui/SectionHeading";
-
-const customizations = [
-  "Fur color",
-  "Eye color",
-  "Eyelashes",
-  "Cheek blush",
-  "Tops & bottoms",
-  "Socks & shoes",
-];
+import { useT } from "../i18n/LanguageProvider";
 
 const moods = ["happy", "wink", "love", "wave"] as const;
 
 export default function MeemiSection() {
+  const t = useT();
   return (
     <section
       id="meemi"
@@ -21,14 +16,14 @@ export default function MeemiSection() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Meet Meemi"
+          eyebrow={t.meemi.eyebrow}
           title={
             <>
-              Your companion,{" "}
-              <span className="text-gradient">made your way</span>
+              {t.meemi.title}
+              <span className="text-gradient">{t.meemi.accent}</span>
             </>
           }
-          subtitle="Everyone starts with the classic white-fur, blue-eyed Meemi. Customize the look for free, then pick from a set of avatar portraits to use as your profile picture."
+          subtitle={t.meemi.subtitle}
         />
 
         <div className="mt-14 grid items-center gap-12 lg:grid-cols-2">
@@ -41,16 +36,11 @@ export default function MeemiSection() {
                   className="group grid aspect-square place-items-center rounded-[1.75rem] bg-white p-5 shadow-card ring-1 ring-pink-soft/50 transition-transform duration-300 hover:-translate-y-1.5"
                   style={{ animationDelay: `${i * 0.3}s` }}
                 >
-                  <Meemi
-                    className="w-28 transition-transform duration-300 group-hover:scale-110"
-                    mood={m}
-                  />
+                  <Meemi className="w-28 transition-transform duration-300 group-hover:scale-110" mood={m} />
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-center text-sm text-ink-soft">
-              5–10 expressive avatar portraits — no need for a real photo.
-            </p>
+            <p className="mt-4 text-center text-sm text-ink-soft">{t.meemi.variations}</p>
           </Reveal>
 
           {/* Story + customization chips */}
@@ -61,17 +51,13 @@ export default function MeemiSection() {
                   <Meemi className="h-14 w-14" />
                 </span>
                 <div>
-                  <h3 className="text-xl font-bold text-ink">
-                    Free from day one
-                  </h3>
-                  <p className="text-sm text-ink-soft">
-                    No coins needed to express yourself.
-                  </p>
+                  <h3 className="text-xl font-bold text-ink">{t.meemi.freeTitle}</h3>
+                  <p className="text-sm text-ink-soft">{t.meemi.freeDesc}</p>
                 </div>
               </div>
 
               <ul className="mt-6 grid grid-cols-2 gap-2.5">
-                {customizations.map((c) => (
+                {t.meemi.free.map((c) => (
                   <li
                     key={c}
                     className="flex items-center gap-2 rounded-full bg-pink-soft/40 px-3.5 py-2 text-sm font-semibold text-pink-ink"
@@ -84,11 +70,8 @@ export default function MeemiSection() {
 
               <div className="mt-6 rounded-2xl bg-gradient-to-r from-gold/20 to-pink-soft/40 p-4">
                 <p className="flex items-center gap-2 text-sm font-semibold text-ink">
-                  <span className="text-lg" aria-hidden>
-                    🪙
-                  </span>
-                  Unlock more with coins — outfits, hairstyles, frames,
-                  animations, seasonal & achievement-only items.
+                  <span className="text-lg" aria-hidden>🪙</span>
+                  {t.meemi.coinNote}
                 </p>
               </div>
             </div>
