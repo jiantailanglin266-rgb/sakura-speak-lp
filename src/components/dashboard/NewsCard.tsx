@@ -14,7 +14,7 @@ export default function NewsCard() {
         {news.map((n) => (
           <li key={n.title}>
             <Link
-              href="#"
+              href="/dashboard/news"
               className="group flex items-start gap-3 rounded-2xl p-2 hover:bg-cream"
             >
               <span className="mt-0.5 shrink-0 rounded-full bg-blue-soft/70 px-2.5 py-1 text-[0.6rem] font-extrabold uppercase tracking-wide text-blue-deep">
