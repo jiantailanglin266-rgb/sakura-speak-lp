@@ -21,6 +21,8 @@ export default function MobileNav() {
                   ? "/dashboard"
                   : n.key === "lessons"
                   ? "/dashboard/lessons"
+                  : n.key === "games"
+                  ? "/dashboard/games"
                   : n.key === "profile"
                   ? "/dashboard/avatar"
                   : "#"

@@ -24,6 +24,8 @@ export default function SideNav() {
                 ? "/dashboard"
                 : n.key === "lessons"
                 ? "/dashboard/lessons"
+                : n.key === "games"
+                ? "/dashboard/games"
                 : n.key === "profile"
                 ? "/dashboard/avatar"
                 : "#"
