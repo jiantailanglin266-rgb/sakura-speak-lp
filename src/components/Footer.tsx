@@ -51,7 +51,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="text-white/70 hover:text-pink">
+                <Link href="/auth" className="text-white/70 hover:text-pink">
                   Start free trial
                 </Link>
               </li>
@@ -70,10 +70,10 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
           <p>© {new Date().getFullYear()} Sakura Speak. All rights reserved.</p>
           <p className="flex items-center gap-4">
-            <Link href="#" className="hover:text-white/70">
+            <Link href="/privacy" className="hover:text-white/70">
               Privacy
             </Link>
-            <Link href="#" className="hover:text-white/70">
+            <Link href="/terms" className="hover:text-white/70">
               Terms
             </Link>
             <Link href="/admin" className="hover:text-white/70">

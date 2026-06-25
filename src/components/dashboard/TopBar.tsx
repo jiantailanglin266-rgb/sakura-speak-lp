@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Meemi from "../Meemi";
 import Icon from "../ui/Icon";
 import { learner } from "@/lib/dashboard";
@@ -72,9 +73,10 @@ export default function TopBar() {
           <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-pink-deep ring-2 ring-white" />
         </button>
 
-        <button
-          type="button"
-          className="flex items-center gap-2 rounded-full bg-white py-1 pl-1 pr-3 shadow-card ring-1 ring-pink-soft/50"
+        <Link
+          href="/dashboard/profile"
+          aria-label="Your profile"
+          className="flex items-center gap-2 rounded-full bg-white py-1 pl-1 pr-3 shadow-card ring-1 ring-pink-soft/50 hover:ring-pink"
         >
           <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-pink-soft to-blue-soft">
             <Meemi className="h-7 w-7" mood="happy" />
@@ -82,7 +84,7 @@ export default function TopBar() {
           <span className="hidden text-sm font-bold text-ink sm:block">
             {learner.displayName}
           </span>
-        </button>
+        </Link>
       </div>
     </header>
   );

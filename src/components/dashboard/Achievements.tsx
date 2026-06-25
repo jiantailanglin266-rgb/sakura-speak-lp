@@ -16,7 +16,7 @@ export default function Achievements() {
         <h3 className="font-display text-base font-extrabold text-ink">
           Recent achievements
         </h3>
-        <Link href="#" className="text-xs font-bold text-pink-deep hover:underline">
+        <Link href="/dashboard/profile" className="text-xs font-bold text-pink-deep hover:underline">
           View all
         </Link>
       </div>
