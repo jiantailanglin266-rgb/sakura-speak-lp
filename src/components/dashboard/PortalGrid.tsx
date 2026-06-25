@@ -34,6 +34,8 @@ export default function PortalGrid() {
                     ? "/dashboard/lessons"
                     : p.key === "games"
                     ? "/dashboard/games"
+                    : p.key === "vocab"
+                    ? "/dashboard/vocab"
                     : "#"
                 }
                 className={`group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-gradient-to-br ${a.tile} p-4 shadow-card ring-1 ring-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-pop`}

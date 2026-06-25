@@ -1,29 +1,13 @@
-/* Mini-game shared data: word pool, game list, difficulty configs. Mock. */
+/* Mini-game shared data: game list, difficulty configs.
+   The word pool is sourced from the shared Vocabulary content (src/lib/vocab.ts),
+   so adding vocabulary there automatically enriches every game. */
 
-export type Word = { jp: string; romaji: string; en: string };
+import { allWords, type Word } from "./vocab";
 
-export const wordPool: Word[] = [
-  { jp: "みず", romaji: "mizu", en: "Water" },
-  { jp: "メニュー", romaji: "menyū", en: "Menu" },
-  { jp: "おすすめ", romaji: "osusume", en: "Recommendation" },
-  { jp: "ありがとう", romaji: "arigatō", en: "Thank you" },
-  { jp: "すみません", romaji: "sumimasen", en: "Excuse me" },
-  { jp: "ねこ", romaji: "neko", en: "Cat" },
-  { jp: "いぬ", romaji: "inu", en: "Dog" },
-  { jp: "がっこう", romaji: "gakkō", en: "School" },
-  { jp: "でんしゃ", romaji: "densha", en: "Train" },
-  { jp: "ほん", romaji: "hon", en: "Book" },
-  { jp: "みせ", romaji: "mise", en: "Shop" },
-  { jp: "たべもの", romaji: "tabemono", en: "Food" },
-  { jp: "のみもの", romaji: "nomimono", en: "Drink" },
-  { jp: "あさ", romaji: "asa", en: "Morning" },
-  { jp: "よる", romaji: "yoru", en: "Night" },
-  { jp: "やま", romaji: "yama", en: "Mountain" },
-  { jp: "うみ", romaji: "umi", en: "Sea" },
-  { jp: "かぞく", romaji: "kazoku", en: "Family" },
-  { jp: "ともだち", romaji: "tomodachi", en: "Friend" },
-  { jp: "せんせい", romaji: "sensei", en: "Teacher" },
-];
+export type { Word };
+
+// The full shared vocabulary pool that games draw from.
+export const wordPool: Word[] = allWords;
 
 export type GameMeta = {
   id: string;

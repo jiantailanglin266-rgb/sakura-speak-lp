@@ -76,7 +76,7 @@ export const portals: Portal[] = [
     title: "Vocabulary Sheets",
     jp: "単語シート",
     blurb: "Words grouped by situation — Kitchen, Travel, Doctor…",
-    meta: "32 categories",
+    meta: "8 categories",
     accent: "blue",
   },
   {
