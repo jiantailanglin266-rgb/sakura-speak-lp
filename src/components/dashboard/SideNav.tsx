@@ -19,7 +19,15 @@ export default function SideNav() {
         {navItems.map((n) => (
           <Link
             key={n.key}
-            href={n.key === "home" ? "/dashboard" : "#"}
+            href={
+              n.key === "home"
+                ? "/dashboard"
+                : n.key === "lessons"
+                ? "/dashboard/lessons"
+                : n.key === "profile"
+                ? "/dashboard/avatar"
+                : "#"
+            }
             aria-current={n.active ? "page" : undefined}
             className={`group flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-bold transition-all ${
               n.active

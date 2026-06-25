@@ -16,7 +16,15 @@ export default function MobileNav() {
         {items.map((n) => (
           <li key={n.key} className="flex-1">
             <Link
-              href={n.key === "home" ? "/dashboard" : "#"}
+              href={
+                n.key === "home"
+                  ? "/dashboard"
+                  : n.key === "lessons"
+                  ? "/dashboard/lessons"
+                  : n.key === "profile"
+                  ? "/dashboard/avatar"
+                  : "#"
+              }
               aria-current={n.active ? "page" : undefined}
               className={`flex flex-col items-center gap-0.5 rounded-2xl py-2 text-[0.65rem] font-bold transition-colors ${
                 n.active ? "text-pink-deep" : "text-ink-mute"

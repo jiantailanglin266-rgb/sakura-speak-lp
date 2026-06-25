@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Meemi from "../Meemi";
 import Icon from "../ui/Icon";
 import ProgressRing from "./ProgressRing";
@@ -40,10 +41,13 @@ export default function WelcomeHero() {
                 </p>
               </div>
             </div>
-            <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-pink-deep shadow-soft transition-transform hover:scale-105 active:scale-95">
+            <Link
+              href="/dashboard/lesson"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-pink-deep shadow-soft transition-transform hover:scale-105 active:scale-95"
+            >
               <Icon name="play" className="h-4 w-4 fill-current" />
               Continue
-            </button>
+            </Link>
           </div>
         </div>
 
