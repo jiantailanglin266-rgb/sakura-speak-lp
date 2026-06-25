@@ -27,7 +27,7 @@ export default function PortalGrid() {
           return (
             <Reveal key={p.key} delay={(i % 4) * 60}>
               <Link
-                href="#"
+                href={p.key === "profile" ? "/dashboard/avatar" : "#"}
                 className={`group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-gradient-to-br ${a.tile} p-4 shadow-card ring-1 ring-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-pop`}
               >
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/80 shadow-soft transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
