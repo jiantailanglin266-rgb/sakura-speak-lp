@@ -79,6 +79,9 @@ export default function Footer() {
             <Link href="/admin" className="hover:text-white/70">
               Admin
             </Link>
+            <Link href="/dashboard" className="hover:text-white/70">
+              Dashboard (demo)
+            </Link>
           </p>
         </div>
       </div>
