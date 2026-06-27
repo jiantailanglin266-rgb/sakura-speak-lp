@@ -5,7 +5,7 @@ import TopBar from "@/components/dashboard/TopBar";
 import MobileNav from "@/components/dashboard/MobileNav";
 import Icon from "@/components/ui/Icon";
 import VocabBrowser from "@/components/vocab/VocabBrowser";
-import { vocabCategories, totalWords } from "@/lib/vocab";
+import { vocabCategories, totalSubjects, readySubjects } from "@/lib/vocab";
 
 export const metadata: Metadata = {
   title: "Vocabulary Sheets",
@@ -33,8 +33,8 @@ export default function VocabPage() {
                 Vocabulary Sheets 📖
               </h1>
               <p className="text-sm text-ink-soft">
-                {totalWords} words across {vocabCategories.length} situations — tap any
-                card to hear it.
+                {totalSubjects} subjects across {vocabCategories.length} categories ·{" "}
+                {readySubjects} ready now — tap any card to hear it.
               </p>
             </div>
           </div>
