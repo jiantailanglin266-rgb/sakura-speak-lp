@@ -285,4 +285,284 @@ export const classBLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- B-26 Asking directions ---------------- */
+  {
+    id: "b-26",
+    cls: "B",
+    number: 26,
+    title: "Asking directions",
+    jpTitle: "道案内",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Asking directions",
+        objectives: ["Use landmarks (corner, light)", "Say near / far", "Follow walking directions"],
+      },
+      { type: "teach", jp: "しんごう", romaji: "shingō", en: "traffic light" },
+      { type: "teach", jp: "かど", romaji: "kado", en: "corner" },
+      { type: "teach", jp: "こうさてん", romaji: "kōsaten", en: "intersection" },
+      { type: "teach", label: "Phrase", jp: "つぎのかどをみぎ", romaji: "tsugi no kado o migi", en: "right at the next corner" },
+      {
+        type: "choice",
+        prompt: "Which means “corner”?",
+        options: [{ label: "かど", correct: true }, { label: "しんごう" }, { label: "こうさてん" }],
+      },
+      { type: "teach", jp: "ちかい", romaji: "chikai", en: "near / close", note: "とおい = far." },
+      { type: "teach", label: "Phrase", jp: "あるいてごふん", romaji: "aruite go-fun", en: "5 minutes on foot", note: "あるいて = on foot / walking." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Turn left at the traffic light.",
+        tiles: ["しんごう", "を", "ひだりに", "まがって", "ください"],
+        answer: ["しんごう", "を", "ひだりに", "まがって", "ください"],
+      },
+      {
+        type: "listen",
+        audio: "つぎのかどをみぎ",
+        prompt: "What did you hear?",
+        options: [{ label: "つぎのかどをみぎ (right at the next corner)", correct: true }, { label: "しんごうをひだり" }, { label: "あるいてごふん" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "しんごう", en: "traffic light" },
+          { jp: "かど", en: "corner" },
+          { jp: "ちかい", en: "near" },
+          { jp: "とおい", en: "far" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“It's 5 minutes on foot” = あるいて ___",
+        options: [{ label: "ごふん", correct: true }, { label: "とおい" }, { label: "かど" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-27 At a convenience store ---------------- */
+  {
+    id: "b-27",
+    cls: "B",
+    number: 27,
+    title: "At a convenience store",
+    jpTitle: "コンビニで",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "At a convenience store",
+        objectives: ["Understand shop greetings", "Answer the cashier's questions", "Ask for a bag / heating"],
+      },
+      { type: "teach", jp: "コンビニ", romaji: "konbini", en: "convenience store" },
+      { type: "teach", label: "Phrase", jp: "いらっしゃいませ", romaji: "irasshaimase", en: "Welcome! (shop greeting)" },
+      { type: "teach", jp: "ふくろ", romaji: "fukuro", en: "bag", note: "レジぶくろ = plastic shopping bag." },
+      { type: "teach", label: "Phrase", jp: "ふくろはいりますか", romaji: "fukuro wa irimasu ka", en: "Do you need a bag?" },
+      { type: "teach", label: "Phrase", jp: "おねがいします", romaji: "onegaishimasu", en: "Yes, please." },
+      {
+        type: "choice",
+        prompt: "Shop staff greet you with…",
+        options: [{ label: "いらっしゃいませ", correct: true }, { label: "おねがいします" }, { label: "ふくろ" }],
+      },
+      { type: "teach", label: "Phrase", jp: "あたためますか", romaji: "atatamemasu ka", en: "Shall I heat it up?", note: "Common at konbini for bentō." },
+      {
+        type: "listen",
+        audio: "ふくろはいりますか",
+        prompt: "What did you hear?",
+        options: [{ label: "ふくろはいりますか (Do you need a bag?)", correct: true }, { label: "あたためますか" }, { label: "いらっしゃいませ" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "コンビニ", en: "convenience store" },
+          { jp: "ふくろ", en: "bag" },
+          { jp: "いらっしゃいませ", en: "Welcome!" },
+          { jp: "おねがいします", en: "Yes, please" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "The clerk asks “Need a bag?” — you want one. Say…",
+        options: [{ label: "おねがいします", correct: true }, { label: "いらっしゃいませ" }, { label: "あたためますか" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-28 Ordering at a restaurant ---------------- */
+  {
+    id: "b-28",
+    cls: "B",
+    number: 28,
+    title: "Ordering at a restaurant",
+    jpTitle: "レストランで注文する",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Ordering at a restaurant",
+        objectives: ["Get the server's attention", "Ask for the menu & water", "Ask what's recommended"],
+      },
+      { type: "teach", label: "Phrase", jp: "すみません", romaji: "sumimasen", en: "Excuse me", note: "Use this to call the server." },
+      { type: "teach", jp: "メニュー", romaji: "menyū", en: "menu" },
+      { type: "teach", label: "Phrase", jp: "メニューをください", romaji: "menyū o kudasai", en: "The menu, please." },
+      { type: "teach", jp: "みず", romaji: "mizu", en: "water" },
+      {
+        type: "choice",
+        prompt: "How do you get the server's attention?",
+        options: [{ label: "すみません", correct: true }, { label: "おいしい" }, { label: "メニュー" }],
+      },
+      { type: "teach", jp: "おすすめ", romaji: "osusume", en: "recommendation" },
+      { type: "teach", label: "Phrase", jp: "おすすめはなんですか", romaji: "osusume wa nan desu ka", en: "What do you recommend?" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Water, please.",
+        tiles: ["みず", "を", "ください"],
+        answer: ["みず", "を", "ください"],
+      },
+      { type: "teach", label: "Phrase", jp: "おかいけいおねがいします", romaji: "okaikei onegaishimasu", en: "The check, please." },
+      {
+        type: "listen",
+        audio: "おすすめはなんですか",
+        prompt: "What did you hear?",
+        options: [{ label: "おすすめはなんですか (What do you recommend?)", correct: true }, { label: "メニューをください" }, { label: "おかいけいおねがいします" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "すみません", en: "Excuse me" },
+          { jp: "メニュー", en: "menu" },
+          { jp: "おすすめ", en: "recommendation" },
+          { jp: "おかいけい", en: "the check" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask “What do you recommend?”",
+        options: [{ label: "おすすめはなんですか", correct: true }, { label: "おかいけいおねがいします" }, { label: "メニューをください" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-29 Talking about food ---------------- */
+  {
+    id: "b-29",
+    cls: "B",
+    number: 29,
+    title: "Talking about food",
+    jpTitle: "食べ物の話",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Talking about food",
+        objectives: ["Describe taste", "Use この + noun", "Say what you're not a fan of"],
+      },
+      { type: "teach", jp: "おいしい", romaji: "oishii", en: "delicious" },
+      { type: "teach", jp: "あまい", romaji: "amai", en: "sweet" },
+      { type: "teach", jp: "からい", romaji: "karai", en: "spicy / salty" },
+      { type: "teach", jp: "まずい", romaji: "mazui", en: "bad-tasting", note: "Blunt — soften with あまり…ない in polite talk." },
+      {
+        type: "choice",
+        prompt: "Which means “delicious”?",
+        options: [{ label: "おいしい", correct: true }, { label: "からい" }, { label: "まずい" }, { label: "あまい" }],
+      },
+      { type: "teach", label: "Grammar", jp: "このすしはおいしいです", romaji: "kono sushi wa oishii desu", en: "This sushi is delicious.", note: "この + noun = “this ~”." },
+      { type: "teach", jp: "にがて", romaji: "nigate", en: "not a fan of (food)", note: "なっとうは にがてです = I'm not a fan of nattō." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "This ramen is spicy.",
+        tiles: ["この", "ラーメン", "は", "からい", "です"],
+        answer: ["この", "ラーメン", "は", "からい", "です"],
+      },
+      {
+        type: "listen",
+        audio: "このすしはおいしいです",
+        prompt: "What did you hear?",
+        options: [{ label: "このすしはおいしいです (This sushi is delicious.)", correct: true }, { label: "このラーメンはからいです" }, { label: "なっとうはにがてです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the tastes",
+        pairs: [
+          { jp: "おいしい", en: "delicious" },
+          { jp: "あまい", en: "sweet" },
+          { jp: "からい", en: "spicy" },
+          { jp: "にがて", en: "not a fan" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“This is sweet” = これは ___ です",
+        options: [{ label: "あまい", correct: true }, { label: "からい" }, { label: "まずい" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-30 Making plans ---------------- */
+  {
+    id: "b-30",
+    cls: "B",
+    number: 30,
+    title: "Making plans",
+    jpTitle: "予定を立てる",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Making plans",
+        objectives: ["Invite with 〜ませんか", "Suggest with 〜ましょう", "Talk about the weekend"],
+      },
+      { type: "teach", jp: "よてい", romaji: "yotei", en: "plan(s) / schedule" },
+      { type: "teach", jp: "しゅうまつ", romaji: "shūmatsu", en: "weekend" },
+      { type: "teach", label: "Grammar", jp: "いきませんか", romaji: "ikimasen ka", en: "Won't you go? (invitation)", note: "〜ませんか = a polite invitation." },
+      { type: "teach", label: "Grammar", jp: "いきましょう", romaji: "ikimashō", en: "Let's go", note: "〜ましょう = “let's ~”." },
+      {
+        type: "choice",
+        prompt: "Invite someone: “Won't you go?”",
+        options: [{ label: "いきませんか", correct: true }, { label: "いきましょう" }, { label: "いきます" }],
+      },
+      { type: "teach", jp: "いっしょに", romaji: "issho ni", en: "together" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Let's go to a movie together.",
+        tiles: ["いっしょに", "えいがに", "いきましょう"],
+        answer: ["いっしょに", "えいがに", "いきましょう"],
+      },
+      { type: "teach", label: "Phrase", jp: "よていがあります", romaji: "yotei ga arimasu", en: "I have plans." },
+      {
+        type: "listen",
+        audio: "しゅうまついっしょにいきませんか",
+        prompt: "What did you hear?",
+        options: [{ label: "しゅうまついっしょにいきませんか (Want to go together this weekend?)", correct: true }, { label: "いきましょう" }, { label: "よていがあります" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "よてい", en: "plans" },
+          { jp: "しゅうまつ", en: "weekend" },
+          { jp: "いっしょに", en: "together" },
+          { jp: "いきましょう", en: "let's go" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Suggest “Let's go!”",
+        options: [{ label: "いきましょう", correct: true }, { label: "いきませんか" }, { label: "よていがあります" }],
+      },
+    ],
+  },
 ];
+
