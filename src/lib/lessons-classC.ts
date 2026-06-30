@@ -558,5 +558,284 @@ export const classCLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- C-51 Casual speech ---------------- */
+  {
+    id: "c-51",
+    cls: "C",
+    number: 51,
+    title: "Casual speech",
+    jpTitle: "タメ口",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Casual speech",
+        objectives: ["Use plain form (だ / いく)", "Casual yes & no", "Make casual questions with の"],
+      },
+      { type: "teach", label: "Grammar", jp: "がくせいだ", romaji: "gakusei da", en: "(I)'m a student (casual)", note: "Casual だ replaces polite です." },
+      { type: "teach", label: "Grammar", jp: "いく", romaji: "iku", en: "go (casual / dictionary)", note: "Casual いく vs. polite いきます." },
+      { type: "teach", label: "Grammar", jp: "いかない", romaji: "ikanai", en: "don't go (casual)", note: "Casual negative; polite is いきません." },
+      {
+        type: "choice",
+        prompt: "Casual form of です = ?",
+        options: [{ label: "だ", correct: true }, { label: "ます" }, { label: "ない" }],
+      },
+      { type: "teach", jp: "うん", romaji: "un", en: "yeah (casual yes)", note: "ううん = nope (casual no)." },
+      { type: "teach", label: "Grammar", jp: "いくの", romaji: "iku no?", en: "Going? (casual question)", note: "Rising の makes a casual question." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Are you going today? (casual)",
+        tiles: ["きょう", "いく", "の"],
+        answer: ["きょう", "いく", "の"],
+      },
+      {
+        type: "listen",
+        audio: "いかない",
+        prompt: "What did you hear?",
+        options: [{ label: "いかない (don't go, casual)", correct: true }, { label: "いく (go)" }, { label: "いきます (go, polite)" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "だ", en: "casual です" },
+          { jp: "いく", en: "go (casual)" },
+          { jp: "うん", en: "yeah" },
+          { jp: "ううん", en: "nope" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Casual “yes” to a friend",
+        options: [{ label: "うん", correct: true }, { label: "はい" }, { label: "ううん" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-52 Honorifics intro ---------------- */
+  {
+    id: "c-52",
+    cls: "C",
+    number: 52,
+    title: "Honorifics intro",
+    jpTitle: "敬語の入り口",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Honorifics intro",
+        objectives: ["Understand けいご (honorifics)", "Use name suffixes さん / さま", "Recognize respectful forms"],
+      },
+      { type: "teach", jp: "けいご", romaji: "keigo", en: "honorific language" },
+      { type: "teach", label: "Grammar", jp: "たなかさん", romaji: "tanaka-san", en: "Mr./Ms. Tanaka", note: "さん = polite name suffix; さま is more formal." },
+      { type: "teach", label: "Grammar", jp: "でございます", romaji: "de gozaimasu", en: "is (very polite です)", note: "Formal/business version of です." },
+      { type: "teach", label: "Phrase", jp: "いらっしゃいます", romaji: "irasshaimasu", en: "(someone) is / comes (respectful)", note: "Respectful form of います / きます." },
+      {
+        type: "choice",
+        prompt: "Polite name suffix:",
+        options: [{ label: "さん", correct: true }, { label: "だ" }, { label: "の" }],
+      },
+      { type: "teach", jp: "ていねい", romaji: "teinei", en: "polite", note: "ていねいなことば = polite language." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "This is Mr. Tanaka.",
+        tiles: ["こちらは", "たなかさん", "です"],
+        answer: ["こちらは", "たなかさん", "です"],
+      },
+      {
+        type: "listen",
+        audio: "いらっしゃいませ",
+        prompt: "What did you hear?",
+        options: [{ label: "いらっしゃいませ (Welcome — respectful)", correct: true }, { label: "でございます" }, { label: "おねがいします" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "けいご", en: "honorific language" },
+          { jp: "さん", en: "Mr./Ms." },
+          { jp: "さま", en: "more formal" },
+          { jp: "ていねい", en: "polite" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "More formal than さん:",
+        options: [{ label: "さま", correct: true }, { label: "だ" }, { label: "の" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-53 Workplace Japanese ---------------- */
+  {
+    id: "c-53",
+    cls: "C",
+    number: 53,
+    title: "Workplace Japanese",
+    jpTitle: "職場の日本語",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Workplace Japanese",
+        objectives: ["Use common office phrases", "Excuse yourself properly", "Greet & leave at work"],
+      },
+      { type: "teach", jp: "かいしゃ", romaji: "kaisha", en: "company" },
+      { type: "teach", label: "Phrase", jp: "おつかれさまです", romaji: "otsukaresama desu", en: "Good work / thanks for your effort" },
+      { type: "teach", label: "Phrase", jp: "しつれいします", romaji: "shitsurei shimasu", en: "Excuse me", note: "Said when entering a room or leaving." },
+      { type: "teach", label: "Phrase", jp: "おさきにしつれいします", romaji: "osaki ni shitsurei shimasu", en: "I'm leaving before you (goodbye at work)" },
+      {
+        type: "choice",
+        prompt: "Leaving the office before others:",
+        options: [{ label: "おさきにしつれいします", correct: true }, { label: "おつかれさまです" }, { label: "いらっしゃいませ" }],
+      },
+      { type: "teach", jp: "かいぎ", romaji: "kaigi", en: "meeting" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "There's a meeting from 3.",
+        tiles: ["さんじから", "かいぎ", "です"],
+        answer: ["さんじから", "かいぎ", "です"],
+      },
+      {
+        type: "listen",
+        audio: "おつかれさまです",
+        prompt: "What did you hear?",
+        options: [{ label: "おつかれさまです (Good work.)", correct: true }, { label: "しつれいします" }, { label: "おさきにしつれいします" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "かいしゃ", en: "company" },
+          { jp: "かいぎ", en: "meeting" },
+          { jp: "しつれいします", en: "excuse me" },
+          { jp: "おつかれさま", en: "good work" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Greeting a colleague after work:",
+        options: [{ label: "おつかれさまです", correct: true }, { label: "おはようございます" }, { label: "かいぎ" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-54 Polite requests ---------------- */
+  {
+    id: "c-54",
+    cls: "C",
+    number: 54,
+    title: "Polite requests",
+    jpTitle: "ていねいなお願い",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Polite requests",
+        objectives: ["Make very polite requests", "Soften with a preface", "Ask a favor"],
+      },
+      { type: "teach", label: "Grammar", jp: "おしえていただけますか", romaji: "oshiete itadakemasu ka", en: "Could you teach me?", note: "〜ていただけますか = a very polite request." },
+      { type: "teach", label: "Grammar", jp: "てつだってくれますか", romaji: "tetsudatte kuremasu ka", en: "Could you help me?", note: "〜てくれますか = a friendly-polite request." },
+      { type: "teach", label: "Phrase", jp: "おねがいがあります", romaji: "onegai ga arimasu", en: "I have a favor to ask" },
+      {
+        type: "choice",
+        prompt: "The most polite request form:",
+        options: [{ label: "〜ていただけますか", correct: true }, { label: "〜てください" }, { label: "〜て" }],
+      },
+      { type: "teach", label: "Phrase", jp: "もうしわけありませんが", romaji: "mōshiwake arimasen ga", en: "I'm very sorry, but… (formal softener)" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Could you help me?",
+        tiles: ["てつだって", "いただけ", "ますか"],
+        answer: ["てつだって", "いただけ", "ますか"],
+      },
+      {
+        type: "listen",
+        audio: "おしえていただけますか",
+        prompt: "What did you hear?",
+        options: [{ label: "おしえていただけますか (Could you teach me?)", correct: true }, { label: "てつだってくれますか" }, { label: "おねがいがあります" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "いただけますか", en: "could you (formal)" },
+          { jp: "くれますか", en: "could you" },
+          { jp: "おねがい", en: "favor" },
+          { jp: "もうしわけありません", en: "very sorry" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Open a request: “I have a favor…”",
+        options: [{ label: "おねがいがあります", correct: true }, { label: "おつかれさまです" }, { label: "いただけますか" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-55 Apologizing & thanking ---------------- */
+  {
+    id: "c-55",
+    cls: "C",
+    number: 55,
+    title: "Apologizing & thanking",
+    jpTitle: "謝罪とお礼",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Apologizing & thanking",
+        objectives: ["Apologize formally", "Thank for past help", "Reassure & accept thanks"],
+      },
+      { type: "teach", label: "Phrase", jp: "もうしわけありません", romaji: "mōshiwake arimasen", en: "I'm terribly sorry (formal)" },
+      { type: "teach", label: "Phrase", jp: "おかげさまで", romaji: "okagesama de", en: "thanks to you (humble thanks)" },
+      { type: "teach", label: "Phrase", jp: "きにしないで", romaji: "ki ni shinai de", en: "don't worry about it" },
+      {
+        type: "choice",
+        prompt: "A formal apology:",
+        options: [{ label: "もうしわけありません", correct: true }, { label: "おかげさまで" }, { label: "きにしないで" }],
+      },
+      { type: "teach", label: "Phrase", jp: "ありがとうございました", romaji: "arigatō gozaimashita", en: "Thank you (for what you did)", note: "Past form, for completed help." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Thank you for yesterday.",
+        tiles: ["きのうは", "ありがとう", "ございました"],
+        answer: ["きのうは", "ありがとう", "ございました"],
+      },
+      {
+        type: "listen",
+        audio: "もうしわけありません",
+        prompt: "What did you hear?",
+        options: [{ label: "もうしわけありません (I'm terribly sorry.)", correct: true }, { label: "ありがとうございました" }, { label: "きにしないで" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "もうしわけありません", en: "terribly sorry" },
+          { jp: "おかげさまで", en: "thanks to you" },
+          { jp: "きにしないで", en: "don't worry" },
+          { jp: "ございました", en: "thank you (past)" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Reply to an apology: “Don't worry.”",
+        options: [{ label: "きにしないで", correct: true }, { label: "もうしわけありません" }, { label: "おかげさまで" }],
+      },
+    ],
+  },
 ];
+
 
