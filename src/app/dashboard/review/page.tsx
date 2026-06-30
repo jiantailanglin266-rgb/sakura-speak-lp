@@ -5,6 +5,7 @@ import TopBar from "@/components/dashboard/TopBar";
 import MobileNav from "@/components/dashboard/MobileNav";
 import Icon from "@/components/ui/Icon";
 import ReviewBrowser from "@/components/review/ReviewBrowser";
+import ReviewProgress from "@/components/review/ReviewProgress";
 
 export const metadata: Metadata = { title: "Review Sheets" };
 
@@ -21,6 +22,7 @@ export default function ReviewPage() {
             </Link>
             <h1 className="font-display text-2xl font-extrabold text-ink">Review Sheets 📝</h1>
           </div>
+          <ReviewProgress />
           <ReviewBrowser />
         </main>
         <MobileNav />
