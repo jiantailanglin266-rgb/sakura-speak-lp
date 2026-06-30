@@ -42,6 +42,24 @@ localStorage.
 6. Make yourself admin once:
    `update public.profiles set role = 'admin' where email = 'you@example.com';`
 
+## Payments (Stripe — static-site friendly)
+
+The subscribe screen uses **Stripe Payment Links** so no server is needed.
+
+1. In the Stripe dashboard, create a **Payment Link** for each plan
+   (Monthly / 3-Month / Yearly / Lifetime) with the matching price/recurrence.
+2. Under each link's settings, set the **after-payment redirect** to
+   `https://<your-domain>/subscribe/?checkout=success` (shows the success screen).
+3. Paste each link URL into the `NEXT_PUBLIC_STRIPE_LINK_*` env vars
+   (see `.env.local.example`), then rebuild/redeploy.
+4. When set, the checkout step redirects to Stripe (passing `client_reference_id`
+   = the member id and a prefilled email). When empty, the mock card form is used.
+
+**Reconciliation (marking a member as subscribed)** is the remaining
+"つなぎ込み": add a Stripe **webhook** (e.g. a Supabase Edge Function) that, on
+`checkout.session.completed`, looks up `client_reference_id` and updates the
+member's subscription state. Promo codes are entered on Stripe's own page.
+
 ## Notes
 
 - The anon key is meant to be public; never expose the **service_role** key.

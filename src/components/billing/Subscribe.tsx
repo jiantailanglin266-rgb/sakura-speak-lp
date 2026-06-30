@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Meemi from "../Meemi";
+import { useAuth } from "../auth/AuthProvider";
+import { buildPaymentLink } from "@/lib/stripe";
 import {
   plans,
   currencies,
@@ -18,6 +20,7 @@ type Step = "plans" | "checkout" | "success" | "manage" | "cancel" | "cancelled"
 
 export default function Subscribe() {
   const router = useRouter();
+  const { user } = useAuth();
   const [step, setStep] = useState<Step>("plans");
   const [planId, setPlanId] = useState<PlanId>("yearly");
   const [cur, setCur] = useState(currencies[0]);
@@ -28,6 +31,16 @@ export default function Subscribe() {
 
   const plan = plans.find((p) => p.id === planId)!;
   const isLifetime = plan.months === 0;
+  const stripeUrl = buildPaymentLink(planId, {
+    clientReferenceId: user?.id,
+    email: user?.email,
+  });
+
+  // When Stripe redirects back to /subscribe/?checkout=success, show success.
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get("checkout") === "success") setStep("success");
+  }, []);
 
   const applyCoupon = () => {
     const c = coupons.find((x) => x.code === couponInput.trim().toUpperCase());
@@ -181,19 +194,36 @@ export default function Subscribe() {
           )}
         </div>
 
-        {/* mock card form */}
-        <div className="mt-5 space-y-3 text-left">
-          <CardField label="Card number" placeholder="4242 4242 4242 4242" />
-          <div className="grid grid-cols-2 gap-3">
-            <CardField label="Expiry" placeholder="MM / YY" />
-            <CardField label="CVC" placeholder="123" />
-          </div>
-          <CardField label="Name on card" placeholder="Hina Tanaka" />
-        </div>
-
-        <button onClick={() => setStep("success")} className={btnPrimary}>
-          {isLifetime ? `Pay ${fmtPrice(discountedUsd, cur)}` : `Start ${TRIAL_DAYS}-day free trial`}
-        </button>
+        {stripeUrl ? (
+          /* ---- real Stripe (Payment Link) ---- */
+          <>
+            <div className="mt-5 rounded-2xl bg-cream p-4 text-left ring-1 ring-pink-soft/40">
+              <p className="text-sm font-bold text-ink">Secure payment by Stripe</p>
+              <p className="mt-1 text-xs text-ink-soft">
+                You'll be taken to Stripe's secure page to enter your card
+                {coupon ? " and any promo code" : ""}. Cancel anytime from “Manage”.
+              </p>
+            </div>
+            <a href={stripeUrl} className={`${btnPrimary} block text-center`}>
+              {isLifetime ? `Pay ${fmtPrice(discountedUsd, cur)}` : `Start ${TRIAL_DAYS}-day free trial`}
+            </a>
+          </>
+        ) : (
+          /* ---- mock card form (no Stripe configured) ---- */
+          <>
+            <div className="mt-5 space-y-3 text-left">
+              <CardField label="Card number" placeholder="4242 4242 4242 4242" />
+              <div className="grid grid-cols-2 gap-3">
+                <CardField label="Expiry" placeholder="MM / YY" />
+                <CardField label="CVC" placeholder="123" />
+              </div>
+              <CardField label="Name on card" placeholder="Hina Tanaka" />
+            </div>
+            <button onClick={() => setStep("success")} className={btnPrimary}>
+              {isLifetime ? `Pay ${fmtPrice(discountedUsd, cur)}` : `Start ${TRIAL_DAYS}-day free trial`}
+            </button>
+          </>
+        )}
         <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-ink-mute">
           🔒 Secured by Stripe · multi-currency · refunds not issued for forgotten cancellations
         </p>
