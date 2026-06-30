@@ -128,6 +128,8 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
         {step.type === "match" && (
           <Match step={step} onDone={(noMistakes) => { setMatchDone(true); grade(noMistakes); }} done={matchDone} />
         )}
+        {step.type === "culture" && <Culture step={step} />}
+        {step.type === "speak" && <Speak step={step} />}
       </main>
 
       {/* feedback + action */}
@@ -227,6 +229,59 @@ function Teach({ step }: { step: Extract<Step, { type: "teach" }> }) {
         {step.note && <p className="mt-2 text-sm text-ink-soft">{step.note}</p>}
       </div>
       <p className="mt-4 text-xs text-ink-mute">Tap 🔊 to hear it. Repeat out loud!</p>
+    </div>
+  );
+}
+
+/* ---------- Culture note ---------- */
+function Culture({ step }: { step: Extract<Step, { type: "culture" }> }) {
+  return (
+    <div className="flex flex-1 flex-col items-center justify-center text-center">
+      <div className="w-full rounded-[2rem] bg-gradient-to-br from-[#fff2cc]/70 to-white p-7 shadow-card ring-1 ring-pink-soft/40">
+        <span className="text-3xl">🏯</span>
+        <p className="mt-2 text-sm font-bold uppercase tracking-wider text-ink-mute">
+          {step.title ?? "Culture note"}
+        </p>
+        <p className="mt-3 text-lg leading-relaxed text-ink">{step.note}</p>
+      </div>
+      <p className="mt-4 text-xs text-ink-mute">A little culture goes a long way 🌸</p>
+    </div>
+  );
+}
+
+/* ---------- Speaking practice ---------- */
+function Speak({ step }: { step: Extract<Step, { type: "speak" }> }) {
+  return (
+    <div className="flex flex-1 flex-col">
+      <h2 className="font-display text-xl font-extrabold text-ink">🎤 Speaking practice</h2>
+      <p className="mt-1 text-sm text-ink-soft">{step.prompt}</p>
+
+      <div className="mt-5 space-y-3">
+        {step.phrases.map((p) => (
+          <div key={p.jp} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-card ring-1 ring-pink-soft/40">
+            <AudioButton text={p.jp} />
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-xl font-extrabold text-ink">
+                {p.jp} <span className="text-sm font-semibold text-ink-mute">{p.romaji}</span>
+              </p>
+              <p className="text-sm text-pink-ink">{p.en}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 rounded-2xl bg-gradient-to-br from-pink-soft/40 to-blue-soft/40 p-4 ring-1 ring-white">
+        <div className="flex flex-wrap gap-2">
+          {["Listen", "Repeat", "Record"].map((s) => (
+            <span key={s} className="rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-ink-soft">
+              {s}
+            </span>
+          ))}
+          <span className="rounded-full bg-white/60 px-3 py-1 text-xs font-bold text-ink-mute">
+            AI score — coming soon
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

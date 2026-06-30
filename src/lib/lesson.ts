@@ -22,7 +22,9 @@ export type Step =
       options: { label: string; correct?: boolean }[];
     }
   | { type: "arrange"; prompt: string; en: string; tiles: string[]; answer: string[] }
-  | { type: "match"; prompt: string; pairs: { jp: string; en: string }[] };
+  | { type: "match"; prompt: string; pairs: { jp: string; en: string }[] }
+  | { type: "culture"; title?: string; note: string }
+  | { type: "speak"; prompt: string; phrases: { jp: string; romaji: string; en: string }[] };
 
 export type Lesson = {
   id: string;
@@ -144,7 +146,73 @@ import { classBLessons } from "./lessons-classB";
 import { classCLessons } from "./lessons-classC";
 import { classDLessons } from "./lessons-classD";
 
-const authored: Lesson[] = [...classALessons, ...classBLessons, ...classCLessons, ...classDLessons];
+/* ---- Cultural notes + speaking tasks (auto-added to every lesson) ---- */
+
+// Specific culture notes by lesson id (where culture is especially relevant).
+const cultureNotes: Record<string, string> = {
+  "a-1": "A small bow often accompanies greetings. The right greeting depends on the time of day — Japanese is sensitive to context.",
+  "a-2": "“Sumimasen” is wonderfully flexible — it means excuse me, sorry, AND thank you (for trouble caused). Politeness is the social default.",
+  "a-3": "First meetings often include a slight bow and exchanging business cards (meishi) with both hands. よろしくお願いします has no English equivalent.",
+  "a-5": "Pointing with one finger can seem rude; a gentle open hand is softer. これ/それ/あれ map to distance from the speaker AND listener.",
+  "a-6": "Punctuality is highly valued — “on time” often means a few minutes early. Time-of-day greetings shift through the day.",
+  "a-8": "You lower your own family (ちち/はは) and raise others' (おとうさん/おかあさん). This humble/honorific split runs through the language.",
+  "a-11": "Say いただきます before eating and ごちそうさま after — gratitude for the meal and everyone who made it.",
+  "a-16": "The four seasons shape daily life, food, and greetings. Calendars and school/работ years often start in April.",
+  "a-17": "Weather is a common, safe small-talk opener — much like in the UK.",
+  "a-18": "Prices usually include consumption tax. Cash is still common; trays are used to pass money at registers.",
+  "a-19": "If lost, a neighborhood police box (交番 kōban) will happily give directions.",
+  "b-23": "Trains are famously punctual and quiet — phone calls are avoided and phones set to manner mode.",
+  "b-27": "Convenience stores (konbini) are a way of life: bills, tickets, parcels, hot meals — all in one stop.",
+  "b-28": "You call the server with すみません rather than waiting to be noticed. Tipping is not customary — and can confuse.",
+  "b-31": "Invitations are often softened; a vague “ちょっと…” is a polite ‘no’ without an outright refusal.",
+  "b-36": "Wearing a mask when unwell is normal courtesy to protect others.",
+  "c-52": "Keigo (honorific language) signals respect and social distance — essential in service and business.",
+  "c-53": "おつかれさまです is the all-purpose workplace greeting; おさきにしつれいします when leaving before colleagues.",
+  "c-55": "Apologizing readily smooths relationships; a sincere すみません/もうしわけありません goes a long way.",
+  "d-67": "Respectful keigo (尊敬語) raises the other person's actions — used for customers and superiors.",
+  "d-68": "Humble keigo (謙譲語) lowers your own actions — the flip side of respect.",
+  "d-69": "Business emails follow set openings/closings (おせわになっております … よろしくお願いいたします).",
+  "d-78": "Take off shoes at the entrance (玄関), line up patiently, and keep public spaces quiet — everyday etiquette.",
+};
+
+// Fallback per class so every lesson still has a cultural note.
+const classCultureFallback: Record<ClassCode, string> = {
+  A: "Politeness is built in from the start — Japanese chooses words by relationship and situation, not just meaning.",
+  B: "Everyday service in Japan is famously polite and smooth; set phrases keep interactions friendly and predictable.",
+  C: "As you gain fluency, matching the right politeness level to the moment matters as much as grammar.",
+  D: "Nuance, indirectness and keigo carry a lot of meaning — what's left unsaid is often as important as what's said.",
+};
+
+function cultureStep(l: Lesson): Step | null {
+  const note = cultureNotes[l.id] || classCultureFallback[l.cls as ClassCode];
+  return note ? { type: "culture", title: "Culture note", note } : null;
+}
+
+function speakStep(l: Lesson): Step | null {
+  const phrases = l.steps
+    .filter((s): s is Extract<Step, { type: "teach" }> => s.type === "teach")
+    .slice(0, 3)
+    .map((s) => ({ jp: s.jp, romaji: s.romaji, en: s.en }));
+  if (phrases.length === 0) return null;
+  return { type: "speak", prompt: "Shadow these — listen, then say them aloud.", phrases };
+}
+
+/* Insert a culture note after the intro and a speaking task before the finish. */
+function enrich(l: Lesson): Lesson {
+  const steps = [...l.steps];
+  const c = cultureStep(l);
+  if (c) steps.splice(steps[0]?.type === "intro" ? 1 : 0, 0, c);
+  const sp = speakStep(l);
+  if (sp) steps.push(sp);
+  return { ...l, steps };
+}
+
+const authored: Lesson[] = [
+  ...classALessons,
+  ...classBLessons,
+  ...classCLessons,
+  ...classDLessons,
+].map(enrich);
 
 export const lessonsById: Record<string, Lesson> = Object.fromEntries(
   authored.map((l) => [l.id, l])
