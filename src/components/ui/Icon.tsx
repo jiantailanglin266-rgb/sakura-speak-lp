@@ -205,6 +205,54 @@ export default function Icon({ name, className = "h-7 w-7" }: Props) {
           <path d="M3 9h18M9 3l-3 6 6 12 6-12-3-6" />
         </svg>
       );
+    case "send":
+      return (
+        <svg {...common}>
+          <path d="M4 12l16-8-6 16-3-6z" />
+          <path d="M11 13l9-9" />
+        </svg>
+      );
+    case "smile":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M8.5 14a4 4 0 0 0 7 0" />
+          <path d="M9 9.5h.01M15 9.5h.01" />
+        </svg>
+      );
+    case "reply":
+      return (
+        <svg {...common}>
+          <path d="M9 7L4 12l5 5" />
+          <path d="M4 12h11a5 5 0 0 1 5 5v1" />
+        </svg>
+      );
+    case "close":
+      return (
+        <svg {...common}>
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      );
+    case "arrow-down":
+      return (
+        <svg {...common}>
+          <path d="M12 5v14M6 13l6 6 6-6" />
+        </svg>
+      );
+    case "info":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v5M12 8h.01" />
+        </svg>
+      );
+    case "sound":
+      return (
+        <svg {...common}>
+          <path d="M5 9v6h4l5 4V5L9 9z" />
+          <path d="M17 9a4 4 0 0 1 0 6" />
+        </svg>
+      );
     default:
       return null;
   }

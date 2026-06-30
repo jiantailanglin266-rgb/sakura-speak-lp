@@ -68,3 +68,45 @@ create trigger on_auth_user_created
 
 -- To grant yourself admin after signing up once:
 --   update public.profiles set role = 'admin' where email = 'you@example.com';
+
+-- ---- community chatroom messages ----
+create table if not exists public.messages (
+  id         uuid primary key default gen_random_uuid(),
+  room_id    text not null,                                  -- e.g. 'lounge', 'daily'
+  user_id    uuid not null references auth.users(id) on delete cascade,
+  username   text not null,
+  text       text not null,
+  reply_to   uuid references public.messages(id) on delete set null,
+  reactions  jsonb not null default '{}'::jsonb,             -- emoji -> [userId]
+  created_at timestamptz not null default now()
+);
+create index if not exists messages_room_created on public.messages (room_id, created_at);
+
+alter table public.messages enable row level security;
+
+-- any signed-in member may read room history
+drop policy if exists "messages_select" on public.messages;
+create policy "messages_select" on public.messages
+  for select using (auth.role() = 'authenticated');
+
+-- members post only as themselves
+drop policy if exists "messages_insert" on public.messages;
+create policy "messages_insert" on public.messages
+  for insert with check (user_id = auth.uid());
+
+-- NOTE (prototype): toggling a reaction edits the row's jsonb, so any signed-in
+-- member needs UPDATE. For production, move reactions to a dedicated table (or an
+-- RPC) and restrict text/edits to the author. See lib/chat.ts react().
+drop policy if exists "messages_update" on public.messages;
+create policy "messages_update" on public.messages
+  for update using (auth.role() = 'authenticated');
+
+-- authors (and admins) may delete
+drop policy if exists "messages_delete" on public.messages;
+create policy "messages_delete" on public.messages
+  for delete using (user_id = auth.uid() or public.is_admin());
+
+-- broadcast inserts/updates over Realtime
+do $$ begin
+  alter publication supabase_realtime add table public.messages;
+exception when duplicate_object then null; end $$;
