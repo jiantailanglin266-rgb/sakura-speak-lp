@@ -361,4 +361,268 @@ export const classALessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- A-6 Days & time basics ---------------- */
+  {
+    id: "a-6",
+    cls: "A",
+    number: 6,
+    title: "Days & time basics",
+    jpTitle: "曜日と時間",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Days & time basics",
+        objectives: ["Say morning, noon and night", "Say today, tomorrow, yesterday", "Ask what time it is"],
+      },
+      { type: "teach", jp: "あさ", romaji: "asa", en: "morning" },
+      { type: "teach", jp: "ひる", romaji: "hiru", en: "noon / daytime" },
+      { type: "teach", jp: "よる", romaji: "yoru", en: "night" },
+      {
+        type: "choice",
+        prompt: "Which means “night”?",
+        options: [{ label: "よる", correct: true }, { label: "あさ" }, { label: "ひる" }],
+      },
+      { type: "teach", jp: "きょう", romaji: "kyō", en: "today" },
+      { type: "teach", jp: "あした", romaji: "ashita", en: "tomorrow" },
+      { type: "teach", jp: "きのう", romaji: "kinō", en: "yesterday" },
+      {
+        type: "listen",
+        audio: "あした",
+        prompt: "What did you hear?",
+        options: [{ label: "あした (tomorrow)", correct: true }, { label: "きのう (yesterday)" }, { label: "きょう (today)" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "あさ", en: "morning" },
+          { jp: "よる", en: "night" },
+          { jp: "きょう", en: "today" },
+          { jp: "あした", en: "tomorrow" },
+        ],
+      },
+      { type: "teach", label: "Phrase", jp: "いまなんじですか", romaji: "ima nanji desu ka", en: "What time is it now?", note: "いま = now, なんじ = what time." },
+      {
+        type: "choice",
+        prompt: "Ask “What time is it now?”",
+        options: [{ label: "いまなんじですか", correct: true }, { label: "きょうはなんですか" }, { label: "あれはなんですか" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-7 What is this? ---------------- */
+  {
+    id: "a-7",
+    cls: "A",
+    number: 7,
+    title: "What is this?",
+    jpTitle: "これは何ですか",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "What is this?",
+        objectives: ["Name common objects", "Answer “What is this?”", "Use the “N は N です” pattern"],
+      },
+      { type: "teach", jp: "つくえ", romaji: "tsukue", en: "desk" },
+      { type: "teach", jp: "いす", romaji: "isu", en: "chair" },
+      { type: "teach", jp: "かばん", romaji: "kaban", en: "bag" },
+      { type: "teach", jp: "とけい", romaji: "tokei", en: "clock / watch" },
+      {
+        type: "choice",
+        prompt: "Which means “bag”?",
+        options: [{ label: "かばん", correct: true }, { label: "いす" }, { label: "とけい" }, { label: "つくえ" }],
+      },
+      { type: "teach", label: "Grammar", jp: "これはかばんです", romaji: "kore wa kaban desu", en: "This is a bag.", note: "Answer pattern: [thing] は [noun] です." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "This is a clock.",
+        tiles: ["これ", "は", "とけい", "です"],
+        answer: ["これ", "は", "とけい", "です"],
+      },
+      {
+        type: "listen",
+        audio: "これはいすです",
+        prompt: "What did you hear?",
+        options: [{ label: "これはいすです (This is a chair.)", correct: true }, { label: "これはつくえです" }, { label: "それはかばんです" }],
+      },
+      {
+        type: "choice",
+        prompt: "Answer “What is this?” — (it's a desk)",
+        options: [{ label: "これはつくえです", correct: true }, { label: "これはいすです" }, { label: "あれはとけいです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "つくえ", en: "desk" },
+          { jp: "いす", en: "chair" },
+          { jp: "かばん", en: "bag" },
+          { jp: "とけい", en: "clock" },
+        ],
+      },
+    ],
+  },
+
+  /* ---------------- A-8 Family ---------------- */
+  {
+    id: "a-8",
+    cls: "A",
+    number: 8,
+    title: "Family",
+    jpTitle: "家族",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Family",
+        objectives: ["Name your family members", "Know humble vs. polite forms", "Talk about your family"],
+      },
+      { type: "teach", jp: "かぞく", romaji: "kazoku", en: "family" },
+      { type: "teach", jp: "ちち", romaji: "chichi", en: "(my) father", note: "Someone else's father: おとうさん." },
+      { type: "teach", jp: "はは", romaji: "haha", en: "(my) mother", note: "Someone else's mother: おかあさん." },
+      { type: "teach", jp: "あに", romaji: "ani", en: "(my) older brother" },
+      { type: "teach", jp: "あね", romaji: "ane", en: "(my) older sister" },
+      {
+        type: "choice",
+        prompt: "Talking about your OWN mother, you say…",
+        options: [{ label: "はは", correct: true }, { label: "おかあさん" }, { label: "ちち" }],
+      },
+      { type: "teach", jp: "おとうと", romaji: "otōto", en: "(my) younger brother" },
+      { type: "teach", jp: "いもうと", romaji: "imōto", en: "(my) younger sister" },
+      {
+        type: "listen",
+        audio: "かぞく",
+        prompt: "What did you hear?",
+        options: [{ label: "かぞく (family)", correct: true }, { label: "ちち (father)" }, { label: "あね (older sister)" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "ちち", en: "father" },
+          { jp: "はは", en: "mother" },
+          { jp: "あに", en: "older brother" },
+          { jp: "いもうと", en: "younger sister" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Which means “family”?",
+        options: [{ label: "かぞく", correct: true }, { label: "あに" }, { label: "おとうと" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-9 Likes & dislikes ---------------- */
+  {
+    id: "a-9",
+    cls: "A",
+    number: 9,
+    title: "Likes & dislikes",
+    jpTitle: "好き・きらい",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Likes & dislikes",
+        objectives: ["Say what you like and dislike", "Use the が-particle with すき", "Ask what someone likes"],
+      },
+      { type: "teach", jp: "すき", romaji: "suki", en: "like / fond of" },
+      { type: "teach", jp: "きらい", romaji: "kirai", en: "dislike" },
+      { type: "teach", label: "Grammar", jp: "すしがすきです", romaji: "sushi ga suki desu", en: "I like sushi.", note: "Pattern: [thing] が すきです. The particle が marks what you like." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I like sushi.",
+        tiles: ["すし", "が", "すき", "です"],
+        answer: ["すし", "が", "すき", "です"],
+      },
+      { type: "teach", jp: "だいすき", romaji: "daisuki", en: "love / really like" },
+      {
+        type: "choice",
+        prompt: "“I don't like natto” = なっとうが ___ です",
+        options: [{ label: "きらい", correct: true }, { label: "すき" }, { label: "だいすき" }],
+      },
+      { type: "teach", label: "Phrase", jp: "なにがすきですか", romaji: "nani ga suki desu ka", en: "What do you like?" },
+      {
+        type: "listen",
+        audio: "すしがすきです",
+        prompt: "What did you hear?",
+        options: [{ label: "すしがすきです (I like sushi.)", correct: true }, { label: "すしがきらいです" }, { label: "おちゃがすきです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "すき", en: "like" },
+          { jp: "きらい", en: "dislike" },
+          { jp: "だいすき", en: "love" },
+          { jp: "なに", en: "what" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask “What do you like?”",
+        options: [{ label: "なにがすきですか", correct: true }, { label: "これはなんですか" }, { label: "いまなんじですか" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-10 Colors ---------------- */
+  {
+    id: "a-10",
+    cls: "A",
+    number: 10,
+    title: "Colors",
+    jpTitle: "色",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Colors",
+        objectives: ["Name common colors", "Recognize colors by sound", "Use a color to describe a noun"],
+      },
+      { type: "teach", jp: "いろ", romaji: "iro", en: "color" },
+      { type: "teach", jp: "あか", romaji: "aka", en: "red" },
+      { type: "teach", jp: "あお", romaji: "ao", en: "blue" },
+      { type: "teach", jp: "しろ", romaji: "shiro", en: "white" },
+      { type: "teach", label: "Colors", jp: "くろ、きいろ、みどり", romaji: "kuro, kiiro, midori", en: "black, yellow, green" },
+      {
+        type: "choice",
+        prompt: "Which is “blue”?",
+        options: [{ label: "あお", correct: true }, { label: "あか" }, { label: "しろ" }, { label: "くろ" }],
+      },
+      {
+        type: "listen",
+        audio: "しろ",
+        prompt: "What color did you hear?",
+        options: [{ label: "white", correct: true }, { label: "black" }, { label: "red" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the colors",
+        pairs: [
+          { jp: "あか", en: "red" },
+          { jp: "あお", en: "blue" },
+          { jp: "きいろ", en: "yellow" },
+          { jp: "みどり", en: "green" },
+        ],
+      },
+      { type: "teach", label: "Grammar", jp: "あかいはな", romaji: "akai hana", en: "a red flower", note: "Add い to a color to describe a noun: あかい = red (before nouns). The noun form is あか." },
+      {
+        type: "choice",
+        prompt: "“a red flower” = ___ はな",
+        options: [{ label: "あかい", correct: true }, { label: "あお" }, { label: "くろ" }],
+      },
+    ],
+  },
 ];
