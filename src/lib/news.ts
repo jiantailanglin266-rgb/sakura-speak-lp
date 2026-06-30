@@ -266,3 +266,39 @@ export async function fetchRssNews(): Promise<Article[]> {
 }
 
 export const newsSourceCount = parseFeeds().length;
+
+/* ====================================================== cache + helpers === */
+// Shared by the News page and the dashboard News card so one fetch serves both.
+const CACHE_KEY = "sakura-news-cache";
+const CACHE_TTL = 30 * 60 * 1000; // 30 min
+
+type NewsCache = { ts: number; items: Article[] };
+
+export function readNewsCache(): Article[] | null {
+  try {
+    const c: NewsCache = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+    if (c && Date.now() - c.ts < CACHE_TTL && Array.isArray(c.items) && c.items.length) return c.items;
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
+export function writeNewsCache(items: Article[]): void {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), items }));
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Short relative label, e.g. "just now", "3h ago", "2d ago", else a date. */
+export function relativeTime(ts?: number): string {
+  if (!ts) return "";
+  const diff = Date.now() - ts;
+  if (diff < 60_000) return "just now";
+  if (diff < 3_600_000) return `${Math.floor(diff / 60_000)}m ago`;
+  if (diff < 86_400_000) return `${Math.floor(diff / 3_600_000)}h ago`;
+  if (diff < 7 * 86_400_000) return `${Math.floor(diff / 86_400_000)}d ago`;
+  return fmtDate(new Date(ts));
+}

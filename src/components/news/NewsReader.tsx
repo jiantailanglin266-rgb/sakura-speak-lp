@@ -2,7 +2,15 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Icon from "../ui/Icon";
-import { articles, fetchRssNews, rssEnabled, newsSourceCount, type Article } from "@/lib/news";
+import {
+  articles,
+  fetchRssNews,
+  rssEnabled,
+  newsSourceCount,
+  readNewsCache,
+  writeNewsCache,
+  type Article,
+} from "@/lib/news";
 
 const cover: Record<string, string> = {
   pink: "from-pink-deep to-pink",
@@ -19,27 +27,6 @@ const tagCls: Record<string, string> = {
   lilac: "bg-[#efe7ff] text-[#7a5bd6]",
 };
 
-const CACHE_KEY = "sakura-news-cache";
-const TTL = 30 * 60 * 1000; // 30 min
-
-type Cache = { ts: number; items: Article[] };
-function readCache(): Article[] | null {
-  try {
-    const c: Cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-    if (c && Date.now() - c.ts < TTL && Array.isArray(c.items) && c.items.length) return c.items;
-  } catch {
-    /* ignore */
-  }
-  return null;
-}
-function writeCache(items: Article[]) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), items }));
-  } catch {
-    /* ignore */
-  }
-}
-
 export default function NewsReader() {
   const [items, setItems] = useState<Article[] | null>(null); // null = loading
   const [live, setLive] = useState(false);
@@ -55,7 +42,7 @@ export default function NewsReader() {
       return;
     }
     if (!force) {
-      const cached = readCache();
+      const cached = readNewsCache();
       if (cached) {
         setItems(cached);
         setLive(true);
@@ -68,7 +55,7 @@ export default function NewsReader() {
       if (fresh.length) {
         setItems(fresh);
         setLive(true);
-        writeCache(fresh);
+        writeNewsCache(fresh);
       } else {
         throw new Error("empty");
       }
