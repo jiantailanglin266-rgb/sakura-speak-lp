@@ -150,6 +150,15 @@
       <li>同じ画面が、実アカウント・データベース・決済で動作するようになります（他の変更は不要）。</li>
     </ul>
   </div>
+  <div class="card">
+    <h3>任意：Anime Learning の実動画（YouTube）</h3>
+    <ul class="dot">
+      <li><code>console.cloud.google.com</code> でプロジェクト作成 → <b>YouTube Data API v3</b> を有効化 → <b>APIキー</b>を作成。</li>
+      <li>キーを制限：HTTPリファラー＝自社ドメイン、API＝YouTube Data APIのみ（ブラウザで使うため）。</li>
+      <li><code>.env.local</code> に <code>NEXT_PUBLIC_YOUTUBE_API_KEY</code> を設定して再ビルド。</li>
+      <li><b>無料</b> — 1日1万ユニット（約90回検索）・カード不要。キーが無くてもサンプル動画＋「Open on YouTube」で公式動画に到達できます。</li>
+    </ul>
+  </div>
   <div class="note"><b>この段階はコマンド操作を含むため、開発者の対応が必要</b>です。ご希望であれば、接続〜本番公開まで当社で代行いたします。お気軽にどうぞ。</div>
 </div>
 

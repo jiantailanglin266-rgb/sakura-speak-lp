@@ -156,6 +156,15 @@
       <li>The same screens now use real accounts, database and payments — no other changes.</li>
     </ul>
   </div>
+  <div class="card">
+    <h3>Optional: live Anime Learning videos (YouTube)</h3>
+    <ul class="dot">
+      <li>At <code>console.cloud.google.com</code>: create a project → enable <b>YouTube Data API v3</b> → create an <b>API key</b>.</li>
+      <li>Restrict the key: HTTP referrers = your domain, API = YouTube Data API only (it's used in the browser).</li>
+      <li>Set <code>NEXT_PUBLIC_YOUTUBE_API_KEY</code> in <code>.env.local</code> and rebuild.</li>
+      <li><b>Free</b> — 10,000 units/day (~90 searches), no credit card. Without a key, sample videos + “Open on YouTube” are shown.</li>
+    </ul>
+  </div>
   <div class="note"><b>This stage needs a developer</b> (it involves a few commands). If you'd like, we can do the full
   connection and go-live for you — just ask.</div>
 </div>

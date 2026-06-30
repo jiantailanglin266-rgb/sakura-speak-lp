@@ -62,6 +62,28 @@ member's `profiles.plan` / `subscription_status` / `trial_ends`. The app's
 premium gating (`PremiumGate`, `useEntitlement`) reads those columns. Promo codes
 are entered on Stripe's own page.
 
+## Anime Learning (YouTube Data API) — optional
+
+The Anime Learning screen works with bundled sample videos out of the box (no key
+needed). To stream **live official anime videos** inline, add a YouTube Data API
+key — created and owned by the client.
+
+1. Go to https://console.cloud.google.com → create a project.
+2. "APIs & Services" → Library → enable **YouTube Data API v3**.
+3. "APIs & Services" → Credentials → Create credentials → **API key**.
+4. Restrict the key (important — it's used in the browser):
+   - Application restriction: **HTTP referrers** → add your site's domain(s).
+   - API restriction: **YouTube Data API v3** only.
+5. Put it in `.env.local` (or the build env) as `NEXT_PUBLIC_YOUTUBE_API_KEY` and rebuild.
+
+**Cost:** free. The API has a daily quota of **10,000 units/day** (no credit card
+required). A search ≈ 100 units, so ~90–100 searches/day on the free tier. Exceeding
+it is handled by a free quota-increase request — there is no pay-per-use charge.
+
+**At scale:** since each page load can call the API, add response caching (or a
+small serverless proxy that hides the key) before high traffic, to protect the
+client's quota.
+
 ## Notes
 
 - The anon key is meant to be public; never expose the **service_role** key.
