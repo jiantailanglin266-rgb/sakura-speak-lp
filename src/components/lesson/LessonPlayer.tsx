@@ -334,7 +334,7 @@ function ChoiceLike({
           }
           return (
             <button
-              key={idx}
+              key={o.label}
               onClick={() => onSelect(idx)}
               disabled={revealed}
               aria-pressed={isSel}

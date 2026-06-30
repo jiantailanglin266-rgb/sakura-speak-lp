@@ -46,7 +46,11 @@ export default function AvatarPicker() {
       ...existing,
       config: sel.config, // preserve coins/owned/profile; only the look changes
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {
+      /* ignore (private mode / storage full) */
+    }
     setSaved(true);
     window.setTimeout(() => setSaved(false), 1800);
   };

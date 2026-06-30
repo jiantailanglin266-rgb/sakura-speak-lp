@@ -115,6 +115,7 @@ export default function ChatRoom({
       onUpdate: (m) => setMessages((prev) => prev.map((x) => (x.id === m.id ? m : x))),
       onPresence: (p) => setPresence(p),
       onTyping: (u) => setTyping(u),
+      onError: (msg) => onToast(msg),
     });
     connRef.current = conn;
     conn.history().then((h) => setMessages((prev) => (prev.length ? prev : h)));
@@ -141,6 +142,24 @@ export default function ChatRoom({
       setUnread((u) => u + (messages.length - prev));
     }
   }, [messages]);
+
+  // Close any open emoji popover / message menu on outside-click or Escape.
+  useEffect(() => {
+    if (!emojiFor && !menuFor) return;
+    const close = () => {
+      setEmojiFor(null);
+      setMenuFor(null);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("click", close);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", close);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [emojiFor, menuFor]);
 
   const onScroll = () => {
     const el = scrollRef.current;
@@ -384,7 +403,7 @@ export default function ChatRoom({
                   {/* hover action bar */}
                   <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
                     <button
-                      onClick={() => setEmojiFor(emojiFor === m.id ? null : m.id)}
+                      onClick={(ev) => { ev.stopPropagation(); setEmojiFor(emojiFor === m.id ? null : m.id); }}
                       aria-label="React"
                       className="grid h-7 w-7 place-items-center rounded-full text-ink-mute hover:bg-pink-soft/40 hover:text-pink-ink"
                     >
@@ -411,7 +430,7 @@ export default function ChatRoom({
                     )}
                     {!mine && (
                       <button
-                        onClick={() => setMenuFor(menuFor === m.id ? null : m.id)}
+                        onClick={(ev) => { ev.stopPropagation(); setMenuFor(menuFor === m.id ? null : m.id); }}
                         aria-label="More"
                         className="grid h-7 w-7 place-items-center rounded-full text-ink-mute hover:bg-pink-soft/40 hover:text-pink-ink"
                       >
@@ -446,11 +465,15 @@ export default function ChatRoom({
 
                 {/* emoji popover */}
                 {emojiFor === m.id && (
-                  <div className={`absolute top-full z-20 mt-1 flex gap-0.5 rounded-2xl bg-white p-1.5 shadow-pop ring-1 ring-pink-soft/50 ${mine ? "right-0" : "left-0"}`}>
+                  <div
+                    onClick={(ev) => ev.stopPropagation()}
+                    className={`absolute top-full z-20 mt-1 flex gap-0.5 rounded-2xl bg-white p-1.5 shadow-pop ring-1 ring-pink-soft/50 ${mine ? "right-0" : "left-0"}`}
+                  >
                     {EMOJIS.map((e) => (
                       <button
                         key={e}
                         onClick={() => react(m.id, e)}
+                        aria-label={`React with ${e}`}
                         className="grid h-8 w-8 place-items-center rounded-full text-lg hover:bg-pink-soft/40"
                       >
                         {e}
@@ -461,7 +484,10 @@ export default function ChatRoom({
 
                 {/* more menu */}
                 {menuFor === m.id && (
-                  <div className={`absolute top-full z-20 mt-1 flex flex-col rounded-xl bg-white p-1 shadow-pop ring-1 ring-pink-soft/50 ${mine ? "right-0" : "left-0"}`}>
+                  <div
+                    onClick={(ev) => ev.stopPropagation()}
+                    className={`absolute top-full z-20 mt-1 flex flex-col rounded-xl bg-white p-1 shadow-pop ring-1 ring-pink-soft/50 ${mine ? "right-0" : "left-0"}`}
+                  >
                     <button
                       onClick={() => toggleMute(m.userId, m.username)}
                       className="rounded-lg px-3 py-1.5 text-left text-xs font-bold text-ink-soft hover:bg-pink-soft/40 hover:text-pink-ink"
@@ -525,7 +551,10 @@ export default function ChatRoom({
       {/* ---- composer ---- */}
       <div className="relative border-t border-pink-soft/40 px-3 py-3">
         {emojiFor === "composer" && (
-          <div className="absolute bottom-full left-3 z-20 mb-2 flex gap-0.5 rounded-2xl bg-white p-1.5 shadow-pop ring-1 ring-pink-soft/50">
+          <div
+            onClick={(ev) => ev.stopPropagation()}
+            className="absolute bottom-full left-3 z-20 mb-2 flex gap-0.5 rounded-2xl bg-white p-1.5 shadow-pop ring-1 ring-pink-soft/50"
+          >
             {EMOJIS.map((e) => (
               <button
                 key={e}
@@ -533,6 +562,7 @@ export default function ChatRoom({
                   setInput((v) => (v + e).slice(0, MAX));
                   taRef.current?.focus();
                 }}
+                aria-label={`Insert ${e}`}
                 className="grid h-8 w-8 place-items-center rounded-full text-lg hover:bg-pink-soft/40"
               >
                 {e}
@@ -542,7 +572,7 @@ export default function ChatRoom({
         )}
         <div className="flex items-end gap-2">
           <button
-            onClick={() => setEmojiFor(emojiFor === "composer" ? null : "composer")}
+            onClick={(ev) => { ev.stopPropagation(); setEmojiFor(emojiFor === "composer" ? null : "composer"); }}
             aria-label="Emoji"
             className={`grid h-11 w-11 shrink-0 place-items-center rounded-full transition-colors ${
               emojiFor === "composer" ? "bg-pink-soft/70 text-pink-ink" : "bg-cream text-ink-soft hover:text-pink-ink"

@@ -138,7 +138,7 @@ export default function ListenGame() {
             }
             return (
               <button
-                key={i}
+                key={c.label}
                 onClick={() => select(i)}
                 disabled={revealed}
                 className={`flex items-center justify-between rounded-2xl px-5 py-4 text-left text-lg font-bold ring-2 transition-all ${cls}`}

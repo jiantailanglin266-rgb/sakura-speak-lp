@@ -185,7 +185,7 @@ export default function WordBlitz() {
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {q.choices.map((c, i) => (
                 <button
-                  key={i}
+                  key={c.label}
                   onClick={() => answer(i)}
                   className="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 text-left text-lg font-bold text-ink shadow-card ring-2 ring-pink-soft/50 transition-all hover:-translate-y-0.5 hover:ring-pink active:scale-95"
                 >

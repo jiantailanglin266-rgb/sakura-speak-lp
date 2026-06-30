@@ -38,6 +38,8 @@ export type ChatHandlers = {
   onUpdate?: (m: ChatMessage) => void;
   onPresence?: (users: PresenceUser[]) => void;
   onTyping?: (usernames: string[]) => void;
+  /** A backend operation failed (e.g. network) — surface to the user. */
+  onError?: (msg: string) => void;
 };
 
 export type Me = { id: string; username: string };
@@ -293,35 +295,56 @@ function realConnect(roomId: string, me: Me, handlers: ChatHandlers): ChatConnec
   return {
     backend: "supabase",
     history: async () => {
-      const { data } = await sb
-        .from("messages")
-        .select("*")
-        .eq("room_id", roomId)
-        .order("created_at", { ascending: true })
-        .limit(200);
-      return (data ?? []).map(mapRow);
+      try {
+        const { data, error } = await sb
+          .from("messages")
+          .select("*")
+          .eq("room_id", roomId)
+          .order("created_at", { ascending: true })
+          .limit(200);
+        if (error) throw error;
+        return (data ?? []).map(mapRow);
+      } catch {
+        handlers.onError?.("Couldn't load chat history. Check your connection.");
+        return [];
+      }
     },
     send: async (text, replyToId) => {
-      await sb.from("messages").insert({
-        room_id: roomId,
-        user_id: me.id,
-        username: me.username,
-        text,
-        reply_to: replyToId ?? null,
-      });
+      try {
+        const { error } = await sb.from("messages").insert({
+          room_id: roomId,
+          user_id: me.id,
+          username: me.username,
+          text,
+          reply_to: replyToId ?? null,
+        });
+        if (error) throw error;
+      } catch {
+        handlers.onError?.("Couldn't send your message. Please try again.");
+      }
     },
     react: async (id, emoji) => {
       // Prototype: read-modify-write on a jsonb column. Production should move
       // reactions to a dedicated table or an RPC to avoid lost updates.
-      const { data } = await sb.from("messages").select("reactions").eq("id", id).single();
-      const reactions = ((data?.reactions ?? {}) as Reactions);
-      const cur = reactions[emoji] ?? [];
-      reactions[emoji] = cur.includes(me.id) ? cur.filter((u) => u !== me.id) : [...cur, me.id];
-      if (!reactions[emoji].length) delete reactions[emoji];
-      await sb.from("messages").update({ reactions }).eq("id", id);
+      try {
+        const { data } = await sb.from("messages").select("reactions").eq("id", id).single();
+        const reactions = (data?.reactions ?? {}) as Reactions;
+        const cur = reactions[emoji] ?? [];
+        reactions[emoji] = cur.includes(me.id) ? cur.filter((u) => u !== me.id) : [...cur, me.id];
+        if (!reactions[emoji].length) delete reactions[emoji];
+        const { error } = await sb.from("messages").update({ reactions }).eq("id", id);
+        if (error) throw error;
+      } catch {
+        handlers.onError?.("Couldn't update reaction.");
+      }
     },
     setTyping: (isTyping) => {
-      channel.send({ type: "broadcast", event: "typing", payload: { username: me.username, typing: isTyping } });
+      // Best-effort; never surface typing failures.
+      try {
+        channel.send({ type: "broadcast", event: "typing", payload: { username: me.username, typing: isTyping } });
+      } catch {
+        /* ignore */
+      }
     },
     dispose: () => {
       Object.values(typingClear).forEach((t) => clearTimeout(t));
