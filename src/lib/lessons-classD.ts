@@ -840,6 +840,310 @@ export const classDLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- D-76 Slang & youth speech ---------------- */
+  {
+    id: "d-76",
+    cls: "D",
+    number: 76,
+    title: "Slang & youth speech",
+    jpTitle: "スラング",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Slang & youth speech",
+        objectives: ["Recognize casual slang", "Use it only with friends", "Understand real conversations"],
+      },
+      { type: "teach", label: "Slang", jp: "やばい", romaji: "yabai", en: "awesome / terrible (slang)", note: "Context decides: amazing OR awful. Casual only." },
+      { type: "teach", label: "Slang", jp: "まじ", romaji: "maji", en: "seriously / really", note: "まじで = “for real”." },
+      { type: "teach", label: "Slang", jp: "めっちゃ", romaji: "meccha", en: "super / very (casual)" },
+      { type: "teach", label: "Slang", jp: "うざい", romaji: "uzai", en: "annoying" },
+      {
+        type: "choice",
+        prompt: "“seriously / for real” =",
+        options: [{ label: "まじ", correct: true }, { label: "やばい" }, { label: "うざい" }],
+      },
+      { type: "teach", label: "Slang", jp: "ぶっちゃけ", romaji: "bucchake", en: "to be honest / frankly" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "This is super delicious.",
+        tiles: ["これ", "めっちゃ", "おいしい"],
+        answer: ["これ", "めっちゃ", "おいしい"],
+      },
+      {
+        type: "listen",
+        audio: "まじでやばい",
+        prompt: "What did you hear?",
+        options: [{ label: "まじでやばい (seriously amazing/awful)", correct: true }, { label: "めっちゃおいしい" }, { label: "ぶっちゃけ" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the slang",
+        pairs: [
+          { jp: "やばい", en: "awesome/terrible" },
+          { jp: "まじ", en: "seriously" },
+          { jp: "うざい", en: "annoying" },
+          { jp: "めっちゃ", en: "super" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Casual “super / very” =",
+        options: [{ label: "めっちゃ", correct: true }, { label: "まじ" }, { label: "ぶっちゃけ" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-77 Job interview Japanese ---------------- */
+  {
+    id: "d-77",
+    cls: "D",
+    number: 77,
+    title: "Job interview Japanese",
+    jpTitle: "面接の日本語",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Job interview Japanese",
+        objectives: ["Enter & greet politely", "Express interest & motivation", "Close with confidence"],
+      },
+      { type: "teach", jp: "めんせつ", romaji: "mensetsu", en: "interview" },
+      { type: "teach", label: "Phrase", jp: "しつれいします", romaji: "shitsurei shimasu", en: "Excuse me (entering)" },
+      { type: "teach", label: "Phrase", jp: "がんばります", romaji: "ganbarimasu", en: "I'll do my best" },
+      { type: "teach", label: "Phrase", jp: "きょうみがあります", romaji: "kyōmi ga arimasu", en: "I'm interested (in)" },
+      {
+        type: "choice",
+        prompt: "Entering the interview room, you say…",
+        options: [{ label: "しつれいします", correct: true }, { label: "おつかれさまです" }, { label: "がんばります" }],
+      },
+      { type: "teach", label: "Phrase", jp: "よろしくおねがいいたします", romaji: "yoroshiku onegai itashimasu", en: "Thank you (formal closing)" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I'm interested in this company.",
+        tiles: ["このかいしゃに", "きょうみが", "あります"],
+        answer: ["このかいしゃに", "きょうみが", "あります"],
+      },
+      {
+        type: "listen",
+        audio: "よろしくおねがいいたします",
+        prompt: "What did you hear?",
+        options: [{ label: "よろしくおねがいいたします (Thank you — formal)", correct: true }, { label: "がんばります" }, { label: "しつれいします" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "めんせつ", en: "interview" },
+          { jp: "がんばります", en: "I'll do my best" },
+          { jp: "きょうみ", en: "interest" },
+          { jp: "しつれいします", en: "excuse me" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Express interest: “I'm interested.”",
+        options: [{ label: "きょうみがあります", correct: true }, { label: "がんばります" }, { label: "しつれいします" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-78 Cultural etiquette ---------------- */
+  {
+    id: "d-78",
+    cls: "D",
+    number: 78,
+    title: "Cultural etiquette",
+    jpTitle: "文化とマナー",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Cultural etiquette",
+        objectives: ["Know everyday manners", "Use mealtime phrases", "Respect common customs"],
+      },
+      { type: "teach", jp: "おじぎ", romaji: "ojigi", en: "a bow (greeting)" },
+      { type: "teach", label: "Phrase", jp: "くつをぬぐ", romaji: "kutsu o nugu", en: "take off your shoes", note: "Done at the entrance (げんかん)." },
+      { type: "teach", label: "Phrase", jp: "いただきます", romaji: "itadakimasu", en: "(said before eating)", note: "ごちそうさま is said after eating." },
+      { type: "teach", jp: "マナー", romaji: "manā", en: "manners / etiquette" },
+      {
+        type: "choice",
+        prompt: "Said before eating:",
+        options: [{ label: "いただきます", correct: true }, { label: "ごちそうさま" }, { label: "おじぎ" }],
+      },
+      { type: "teach", label: "Phrase", jp: "ならんでください", romaji: "narande kudasai", en: "please line up", note: "Queueing is expected." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Please take off your shoes.",
+        tiles: ["くつを", "ぬいで", "ください"],
+        answer: ["くつを", "ぬいで", "ください"],
+      },
+      {
+        type: "listen",
+        audio: "いただきます",
+        prompt: "What did you hear?",
+        options: [{ label: "いただきます (before eating)", correct: true }, { label: "ごちそうさま" }, { label: "おじぎ" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "おじぎ", en: "bow" },
+          { jp: "くつをぬぐ", en: "take off shoes" },
+          { jp: "マナー", en: "manners" },
+          { jp: "ごちそうさま", en: "after eating" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Said after eating:",
+        options: [{ label: "ごちそうさま", correct: true }, { label: "いただきます" }, { label: "ならんでください" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-79 Free conversation ---------------- */
+  {
+    id: "d-79",
+    cls: "D",
+    number: 79,
+    title: "Free conversation",
+    jpTitle: "フリートーク",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Free conversation",
+        objectives: ["Use natural fillers", "Keep a chat flowing", "Change topics smoothly"],
+      },
+      { type: "teach", label: "Filler", jp: "えーと", romaji: "ēto", en: "um / let me see" },
+      { type: "teach", label: "Filler", jp: "そうですね", romaji: "sō desu ne", en: "let me think / that's right" },
+      { type: "teach", label: "Phrase", jp: "ほんとう", romaji: "hontō?", en: "really?" },
+      { type: "teach", label: "Connector", jp: "ところで", romaji: "tokorode", en: "by the way" },
+      {
+        type: "choice",
+        prompt: "Filler “um / let me see” =",
+        options: [{ label: "えーと", correct: true }, { label: "ところで" }, { label: "ほんとう" }],
+      },
+      { type: "teach", label: "Phrase", jp: "じつは", romaji: "jitsu wa", en: "actually / to tell the truth" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "By the way, are you free tomorrow?",
+        tiles: ["ところで", "あした", "ひまですか"],
+        answer: ["ところで", "あした", "ひまですか"],
+      },
+      {
+        type: "listen",
+        audio: "ところでしゅみはなんですか",
+        prompt: "What did you hear?",
+        options: [{ label: "ところでしゅみはなんですか (By the way, what's your hobby?)", correct: true }, { label: "えーと" }, { label: "そうですね" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "えーと", en: "um" },
+          { jp: "そうですね", en: "let me think" },
+          { jp: "ところで", en: "by the way" },
+          { jp: "じつは", en: "actually" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Change the topic: “by the way” =",
+        options: [{ label: "ところで", correct: true }, { label: "じつは" }, { label: "えーと" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-80 Capstone review ---------------- */
+  {
+    id: "d-80",
+    cls: "D",
+    number: 80,
+    title: "Capstone review",
+    jpTitle: "総まとめ",
+    xp: 30,
+    coins: 30,
+    steps: [
+      {
+        type: "intro",
+        title: "Capstone review",
+        objectives: ["Review the whole journey (A→D)", "Mix everything you've learned", "Celebrate your fluency! 🌸"],
+      },
+      {
+        type: "choice",
+        prompt: "(Class A) Greet someone in the morning",
+        options: [{ label: "おはようございます", correct: true }, { label: "こんばんは" }, { label: "おやすみなさい" }],
+      },
+      {
+        type: "choice",
+        prompt: "(Class B) Ask what's recommended at a restaurant",
+        options: [{ label: "おすすめはなんですか", correct: true }, { label: "おかいけいおねがいします" }, { label: "いらっしゃいませ" }],
+      },
+      {
+        type: "arrange",
+        prompt: "(Class C) Build the sentence",
+        en: "I want to go to Japan.",
+        tiles: ["にほんに", "いきたい", "です"],
+        answer: ["にほんに", "いきたい", "です"],
+      },
+      {
+        type: "match",
+        prompt: "Match across all classes",
+        pairs: [
+          { jp: "おいしい", en: "delicious" },
+          { jp: "けいご", en: "honorifics" },
+          { jp: "びみょう", en: "iffy" },
+          { jp: "やばい", en: "awesome" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "(Class C) Ask permission to take a photo",
+        options: [{ label: "しゃしんをとってもいいですか", correct: true }, { label: "しゃしんをとってはいけません" }, { label: "だめです" }],
+      },
+      {
+        type: "listen",
+        audio: "いけばよかった",
+        prompt: "(Class D) What did you hear?",
+        options: [{ label: "いけばよかった (I should have gone.)", correct: true }, { label: "おせわになっております" }, { label: "ニュースによると" }],
+      },
+      {
+        type: "arrange",
+        prompt: "(Class D) Build the sentence",
+        en: "However, it is difficult.",
+        tiles: ["しかし", "むずかしい", "です"],
+        answer: ["しかし", "むずかしい", "です"],
+      },
+      {
+        type: "match",
+        prompt: "Match the phrases",
+        pairs: [
+          { jp: "いらっしゃいませ", en: "Welcome" },
+          { jp: "がんばって", en: "do your best" },
+          { jp: "いただきます", en: "before eating" },
+          { jp: "ところで", en: "by the way" },
+        ],
+      },
+      { type: "teach", label: "Phrase", jp: "おめでとうございます", romaji: "omedetō gozaimasu", en: "Congratulations!", note: "You've reached the end of the course — おめでとう! 🌸" },
+      {
+        type: "choice",
+        prompt: "Celebrate: “Congratulations!”",
+        options: [{ label: "おめでとうございます", correct: true }, { label: "おつかれさまです" }, { label: "ありがとうございます" }],
+      },
+    ],
+  },
 ];
+
 
 
