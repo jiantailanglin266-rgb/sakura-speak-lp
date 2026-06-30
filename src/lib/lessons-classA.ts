@@ -883,4 +883,297 @@ export const classALessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- A-16 The calendar ---------------- */
+  {
+    id: "a-16",
+    cls: "A",
+    number: 16,
+    title: "The calendar",
+    jpTitle: "カレンダー",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "The calendar",
+        objectives: ["Say the days of the week", "Ask what day it is", "Say this week / next week"],
+      },
+      { type: "teach", label: "Days", jp: "げつようび、かようび、すいようび", romaji: "getsu-yōbi, ka-yōbi, sui-yōbi", en: "Monday, Tuesday, Wednesday" },
+      { type: "teach", label: "Days", jp: "もくようび、きんようび", romaji: "moku-yōbi, kin-yōbi", en: "Thursday, Friday" },
+      { type: "teach", label: "Days", jp: "どようび、にちようび", romaji: "do-yōbi, nichi-yōbi", en: "Saturday, Sunday" },
+      {
+        type: "choice",
+        prompt: "Which is “Sunday”?",
+        options: [{ label: "にちようび", correct: true }, { label: "どようび" }, { label: "げつようび" }],
+      },
+      { type: "teach", label: "Phrase", jp: "きょうはなんようびですか", romaji: "kyō wa nan-yōbi desu ka", en: "What day is it today?", note: "なんようび = what day of the week." },
+      { type: "teach", jp: "こんしゅう", romaji: "konshū", en: "this week" },
+      { type: "teach", jp: "らいしゅう", romaji: "raishū", en: "next week" },
+      {
+        type: "listen",
+        audio: "どようび",
+        prompt: "What did you hear?",
+        options: [{ label: "Saturday", correct: true }, { label: "Sunday" }, { label: "Monday" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the days",
+        pairs: [
+          { jp: "げつようび", en: "Monday" },
+          { jp: "きんようび", en: "Friday" },
+          { jp: "どようび", en: "Saturday" },
+          { jp: "にちようび", en: "Sunday" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask “What day is it today?”",
+        options: [{ label: "きょうはなんようびですか", correct: true }, { label: "いまなんじですか" }, { label: "これはなんですか" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-17 Weather ---------------- */
+  {
+    id: "a-17",
+    cls: "A",
+    number: 17,
+    title: "Weather",
+    jpTitle: "天気",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Weather",
+        objectives: ["Name kinds of weather", "Say “Today it's …”", "Understand a weather sentence"],
+      },
+      { type: "teach", jp: "てんき", romaji: "tenki", en: "weather" },
+      { type: "teach", jp: "はれ", romaji: "hare", en: "sunny / clear" },
+      { type: "teach", jp: "あめ", romaji: "ame", en: "rain" },
+      { type: "teach", jp: "くもり", romaji: "kumori", en: "cloudy" },
+      { type: "teach", jp: "ゆき", romaji: "yuki", en: "snow" },
+      {
+        type: "choice",
+        prompt: "Which means “rain”?",
+        options: [{ label: "あめ", correct: true }, { label: "ゆき" }, { label: "はれ" }, { label: "くもり" }],
+      },
+      { type: "teach", label: "Grammar", jp: "きょうははれです", romaji: "kyō wa hare desu", en: "Today it's sunny.", note: "weather word + です." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Today it's rainy.",
+        tiles: ["きょう", "は", "あめ", "です"],
+        answer: ["きょう", "は", "あめ", "です"],
+      },
+      {
+        type: "listen",
+        audio: "ゆき",
+        prompt: "What weather did you hear?",
+        options: [{ label: "snow", correct: true }, { label: "rain" }, { label: "sunny" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the weather",
+        pairs: [
+          { jp: "てんき", en: "weather" },
+          { jp: "はれ", en: "sunny" },
+          { jp: "あめ", en: "rain" },
+          { jp: "ゆき", en: "snow" },
+        ],
+      },
+    ],
+  },
+
+  /* ---------------- A-18 Shopping basics ---------------- */
+  {
+    id: "a-18",
+    cls: "A",
+    number: 18,
+    title: "Shopping basics",
+    jpTitle: "買い物の基本",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Shopping basics",
+        objectives: ["Ask how much something is", "Ask for something with ください", "Talk about price in yen"],
+      },
+      { type: "teach", jp: "いくら", romaji: "ikura", en: "how much (price)" },
+      { type: "teach", label: "Phrase", jp: "これはいくらですか", romaji: "kore wa ikura desu ka", en: "How much is this?" },
+      { type: "teach", jp: "ください", romaji: "kudasai", en: "please (give me)" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "This one, please.",
+        tiles: ["これ", "を", "ください"],
+        answer: ["これ", "を", "ください"],
+      },
+      { type: "teach", jp: "えん", romaji: "en", en: "yen (¥)" },
+      { type: "teach", jp: "かいます", romaji: "kaimasu", en: "buy" },
+      {
+        type: "choice",
+        prompt: "Ask “How much is this?”",
+        options: [{ label: "これはいくらですか", correct: true }, { label: "これはなんですか" }, { label: "いまなんじですか" }],
+      },
+      {
+        type: "listen",
+        audio: "これはいくらですか",
+        prompt: "What did you hear?",
+        options: [{ label: "これはいくらですか (How much is this?)", correct: true }, { label: "これをください" }, { label: "あれはなんですか" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "いくら", en: "how much" },
+          { jp: "えん", en: "yen" },
+          { jp: "ください", en: "please give" },
+          { jp: "かいます", en: "buy" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“1000 yen” = せん ___",
+        options: [{ label: "えん", correct: true }, { label: "いくら" }, { label: "ください" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-19 Asking directions ---------------- */
+  {
+    id: "a-19",
+    cls: "A",
+    number: 19,
+    title: "Asking directions",
+    jpTitle: "道をたずねる",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Asking directions",
+        objectives: ["Say right, left, straight", "Ask where a place is", "Understand simple directions"],
+      },
+      { type: "teach", jp: "みぎ", romaji: "migi", en: "right" },
+      { type: "teach", jp: "ひだり", romaji: "hidari", en: "left" },
+      { type: "teach", jp: "まっすぐ", romaji: "massugu", en: "straight" },
+      { type: "teach", label: "Phrase", jp: "えきはどこですか", romaji: "eki wa doko desu ka", en: "Where is the station?" },
+      {
+        type: "choice",
+        prompt: "Which means “left”?",
+        options: [{ label: "ひだり", correct: true }, { label: "みぎ" }, { label: "まっすぐ" }],
+      },
+      { type: "teach", label: "Phrase", jp: "みぎにまがってください", romaji: "migi ni magatte kudasai", en: "Please turn right", note: "〜てください = “please do ~”." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Please go straight.",
+        tiles: ["まっすぐ", "いって", "ください"],
+        answer: ["まっすぐ", "いって", "ください"],
+      },
+      {
+        type: "listen",
+        audio: "みぎにまがってください",
+        prompt: "What did you hear?",
+        options: [{ label: "みぎにまがってください (Turn right.)", correct: true }, { label: "ひだりにまがってください" }, { label: "まっすぐいってください" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "みぎ", en: "right" },
+          { jp: "ひだり", en: "left" },
+          { jp: "まっすぐ", en: "straight" },
+          { jp: "えき", en: "station" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Tell someone to turn right",
+        options: [{ label: "みぎにまがってください", correct: true }, { label: "ひだりにまがってください" }, { label: "まっすぐいってください" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-20 Review: simple talk ---------------- */
+  {
+    id: "a-20",
+    cls: "A",
+    number: 20,
+    title: "Review: simple talk",
+    jpTitle: "復習：かんたん会話",
+    xp: 20,
+    coins: 20,
+    steps: [
+      {
+        type: "intro",
+        title: "Review: simple talk",
+        objectives: ["Review greetings & basics", "Combine what you've learned", "Hold a simple exchange"],
+      },
+      {
+        type: "choice",
+        prompt: "Greet someone in the morning",
+        options: [{ label: "おはようございます", correct: true }, { label: "こんばんは" }, { label: "おやすみなさい" }],
+      },
+      {
+        type: "choice",
+        prompt: "Say “thank you”",
+        options: [{ label: "ありがとうございます", correct: true }, { label: "すみません" }, { label: "どういたしまして" }],
+      },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I'm Tanaka.",
+        tiles: ["わたし", "は", "たなか", "です"],
+        answer: ["わたし", "は", "たなか", "です"],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "こんにちは", en: "Hello" },
+          { jp: "ありがとう", en: "Thank you" },
+          { jp: "すき", en: "like" },
+          { jp: "みず", en: "water" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask “What is this?”",
+        options: [{ label: "これはなんですか", correct: true }, { label: "これはいくらですか" }, { label: "いまなんじですか" }],
+      },
+      {
+        type: "listen",
+        audio: "これはいくらですか",
+        prompt: "What did you hear?",
+        options: [{ label: "これはいくらですか (How much is this?)", correct: true }, { label: "これはなんですか" }, { label: "いまなんじですか" }],
+      },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I like sushi.",
+        tiles: ["すし", "が", "すき", "です"],
+        answer: ["すし", "が", "すき", "です"],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "みぎ", en: "right" },
+          { jp: "あか", en: "red" },
+          { jp: "あに", en: "older brother" },
+          { jp: "よる", en: "night" },
+        ],
+      },
+      { type: "teach", label: "Phrase", jp: "またね", romaji: "mata ne", en: "See you! (casual)", note: "A casual goodbye to friends." },
+      {
+        type: "choice",
+        prompt: "A casual goodbye to a friend",
+        options: [{ label: "またね", correct: true }, { label: "はじめまして" }, { label: "おはよう" }],
+      },
+    ],
+  },
 ];
