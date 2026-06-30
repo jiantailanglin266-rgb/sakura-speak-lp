@@ -836,6 +836,312 @@ export const classCLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- C-56 Storytelling basics ---------------- */
+  {
+    id: "c-56",
+    cls: "C",
+    number: 56,
+    title: "Storytelling basics",
+    jpTitle: "話の組み立て",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Storytelling basics",
+        objectives: ["Order events (first… then… finally)", "Use 〜とき (when)", "Connect a short story"],
+      },
+      { type: "teach", label: "Connector", jp: "まず", romaji: "mazu", en: "first (of all)" },
+      { type: "teach", label: "Connector", jp: "つぎに", romaji: "tsugi ni", en: "next" },
+      { type: "teach", label: "Connector", jp: "さいごに", romaji: "saigo ni", en: "finally" },
+      {
+        type: "choice",
+        prompt: "Which means “first”?",
+        options: [{ label: "まず", correct: true }, { label: "つぎに" }, { label: "さいごに" }],
+      },
+      { type: "teach", label: "Grammar", jp: "こどものとき", romaji: "kodomo no toki", en: "when (I was) a child", note: "〜とき = “when ~”." },
+      { type: "teach", label: "Connector", jp: "そのあと", romaji: "sono ato", en: "after that" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "First I get up and eat.",
+        tiles: ["まず", "おきて", "たべます"],
+        answer: ["まず", "おきて", "たべます"],
+      },
+      {
+        type: "listen",
+        audio: "まずおきます",
+        prompt: "What did you hear?",
+        options: [{ label: "まずおきます (First, I get up.)", correct: true }, { label: "つぎにたべます" }, { label: "さいごにねます" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the connectors",
+        pairs: [
+          { jp: "まず", en: "first" },
+          { jp: "つぎに", en: "next" },
+          { jp: "さいごに", en: "finally" },
+          { jp: "とき", en: "when" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Which means “finally”?",
+        options: [{ label: "さいごに", correct: true }, { label: "まず" }, { label: "そのあと" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-57 Expressing emotions ---------------- */
+  {
+    id: "c-57",
+    cls: "C",
+    number: 57,
+    title: "Expressing emotions",
+    jpTitle: "気持ちを表す",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Expressing emotions",
+        objectives: ["Name feelings", "Say “looks ~” with 〜そう", "React to news"],
+      },
+      { type: "teach", jp: "うれしい", romaji: "ureshii", en: "happy / glad" },
+      { type: "teach", jp: "かなしい", romaji: "kanashii", en: "sad" },
+      { type: "teach", jp: "たのしい", romaji: "tanoshii", en: "fun / enjoyable" },
+      { type: "teach", jp: "こわい", romaji: "kowai", en: "scary / afraid" },
+      {
+        type: "choice",
+        prompt: "Which means “happy”?",
+        options: [{ label: "うれしい", correct: true }, { label: "かなしい" }, { label: "こわい" }, { label: "たのしい" }],
+      },
+      { type: "teach", label: "Grammar", jp: "うれしそう", romaji: "ureshisō", en: "looks happy", note: "adj stem + そう = “looks / seems ~”." },
+      { type: "teach", jp: "びっくり", romaji: "bikkuri", en: "surprised" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "The movie was fun.",
+        tiles: ["えいがは", "たのしかった", "です"],
+        answer: ["えいがは", "たのしかった", "です"],
+      },
+      {
+        type: "listen",
+        audio: "かなしいです",
+        prompt: "What did you hear?",
+        options: [{ label: "かなしいです (I'm sad.)", correct: true }, { label: "うれしいです" }, { label: "こわいです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the feelings",
+        pairs: [
+          { jp: "うれしい", en: "happy" },
+          { jp: "かなしい", en: "sad" },
+          { jp: "たのしい", en: "fun" },
+          { jp: "こわい", en: "scary" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“looks happy” = うれし ___",
+        options: [{ label: "そう", correct: true }, { label: "い" }, { label: "ね" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-58 Travel conversations ---------------- */
+  {
+    id: "c-58",
+    cls: "C",
+    number: 58,
+    title: "Travel conversations",
+    jpTitle: "旅行の会話",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Travel conversations",
+        objectives: ["Talk about sightseeing", "Ask permission & questions", "Handle getting lost"],
+      },
+      { type: "teach", jp: "かんこう", romaji: "kankō", en: "sightseeing" },
+      { type: "teach", label: "Phrase", jp: "おすすめのばしょ", romaji: "osusume no basho", en: "a recommended place" },
+      { type: "teach", label: "Phrase", jp: "しゃしんをとってもいいですか", romaji: "shashin o totte mo ii desu ka", en: "May I take a photo?" },
+      { type: "teach", label: "Phrase", jp: "どこからきましたか", romaji: "doko kara kimashita ka", en: "Where are you from?" },
+      {
+        type: "choice",
+        prompt: "Ask “Where are you from?”",
+        options: [{ label: "どこからきましたか", correct: true }, { label: "おすすめのばしょ" }, { label: "かんこう" }],
+      },
+      { type: "teach", label: "Phrase", jp: "みちにまよいました", romaji: "michi ni mayoimashita", en: "I got lost" },
+      { type: "teach", jp: "おみやげ", romaji: "omiyage", en: "souvenir" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Where are you from?",
+        tiles: ["どこから", "きました", "か"],
+        answer: ["どこから", "きました", "か"],
+      },
+      {
+        type: "listen",
+        audio: "しゃしんをとってもいいですか",
+        prompt: "What did you hear?",
+        options: [{ label: "しゃしんをとってもいいですか (May I take a photo?)", correct: true }, { label: "どこからきましたか" }, { label: "みちにまよいました" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "かんこう", en: "sightseeing" },
+          { jp: "おみやげ", en: "souvenir" },
+          { jp: "みちにまよう", en: "get lost" },
+          { jp: "おすすめ", en: "recommendation" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Tell someone “I'm lost.”",
+        options: [{ label: "みちにまよいました", correct: true }, { label: "どこからきましたか" }, { label: "おみやげ" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-59 Routines & frequency ---------------- */
+  {
+    id: "c-59",
+    cls: "C",
+    number: 59,
+    title: "Routines & frequency",
+    jpTitle: "頻度と習慣",
+    xp: 16,
+    coins: 16,
+    steps: [
+      {
+        type: "intro",
+        title: "Routines & frequency",
+        objectives: ["Use frequency adverbs", "Say how often you do things", "Use あまり / ぜんぜん + negative"],
+      },
+      { type: "teach", jp: "いつも", romaji: "itsumo", en: "always" },
+      { type: "teach", jp: "よく", romaji: "yoku", en: "often" },
+      { type: "teach", jp: "ときどき", romaji: "tokidoki", en: "sometimes" },
+      { type: "teach", label: "Grammar", jp: "あまり", romaji: "amari", en: "not much (+ negative)", note: "あまり〜ない = “not very / not often”." },
+      {
+        type: "choice",
+        prompt: "Which means “always”?",
+        options: [{ label: "いつも", correct: true }, { label: "よく" }, { label: "ときどき" }],
+      },
+      { type: "teach", jp: "まいにち", romaji: "mainichi", en: "every day", note: "まいしゅう = every week." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I sometimes drink coffee.",
+        tiles: ["ときどき", "コーヒーを", "のみます"],
+        answer: ["ときどき", "コーヒーを", "のみます"],
+      },
+      {
+        type: "listen",
+        audio: "いつもおちゃをのみます",
+        prompt: "What did you hear?",
+        options: [{ label: "いつもおちゃをのみます (I always drink tea.)", correct: true }, { label: "あまりのみません" }, { label: "まいにち" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the adverbs",
+        pairs: [
+          { jp: "いつも", en: "always" },
+          { jp: "よく", en: "often" },
+          { jp: "ときどき", en: "sometimes" },
+          { jp: "あまり", en: "not much" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“not at all” (+ negative) = ___ 〜ない",
+        options: [{ label: "ぜんぜん", correct: true }, { label: "いつも" }, { label: "よく" }],
+      },
+    ],
+  },
+
+  /* ---------------- C-60 Review: fluency ---------------- */
+  {
+    id: "c-60",
+    cls: "C",
+    number: 60,
+    title: "Review: fluency",
+    jpTitle: "復習：運用力",
+    xp: 20,
+    coins: 20,
+    steps: [
+      {
+        type: "intro",
+        title: "Review: fluency",
+        objectives: ["Review Class C grammar", "Combine opinions, reasons & requests", "Sound more natural"],
+      },
+      {
+        type: "choice",
+        prompt: "Say “I think it's good.”",
+        options: [{ label: "いいとおもいます", correct: true }, { label: "どうおもいますか" }, { label: "さんせいです" }],
+      },
+      {
+        type: "choice",
+        prompt: "Ask permission to eat",
+        options: [{ label: "たべてもいいですか", correct: true }, { label: "たべてはいけません" }, { label: "たべました" }],
+      },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I want to go to Japan.",
+        tiles: ["にほんに", "いきたい", "です"],
+        answer: ["にほんに", "いきたい", "です"],
+      },
+      {
+        type: "match",
+        prompt: "Match the grammar",
+        pairs: [
+          { jp: "から", en: "because" },
+          { jp: "たら", en: "if" },
+          { jp: "つもり", en: "intend to" },
+          { jp: "いちばん", en: "the most" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Give a reason: “because it's cold”",
+        options: [{ label: "さむいから", correct: true }, { label: "さむいです" }, { label: "さむくない" }],
+      },
+      {
+        type: "listen",
+        audio: "おしえていただけますか",
+        prompt: "What did you hear?",
+        options: [{ label: "おしえていただけますか (Could you teach me?)", correct: true }, { label: "てつだってくれますか" }, { label: "もうしわけありません" }],
+      },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I get up and eat.",
+        tiles: ["おきて", "ごはんを", "たべます"],
+        answer: ["おきて", "ごはんを", "たべます"],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "けいご", en: "honorifics" },
+          { jp: "うれしい", en: "happy" },
+          { jp: "かんこう", en: "sightseeing" },
+          { jp: "いつも", en: "always" },
+        ],
+      },
+      { type: "teach", label: "Phrase", jp: "なるほど", romaji: "naruhodo", en: "I see / that makes sense", note: "A natural reaction in conversation." },
+      {
+        type: "choice",
+        prompt: "React: “I see / that makes sense.”",
+        options: [{ label: "なるほど", correct: true }, { label: "もうしわけありません" }, { label: "おかげさまで" }],
+      },
+    ],
+  },
 ];
+
 
 
