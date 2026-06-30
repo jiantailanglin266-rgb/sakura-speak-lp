@@ -562,5 +562,284 @@ export const classDLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- D-71 Reading short articles ---------------- */
+  {
+    id: "d-71",
+    cls: "D",
+    number: 71,
+    title: "Reading short articles",
+    jpTitle: "短い記事を読む",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Reading short articles",
+        objectives: ["Know reading vocabulary", "Use 〜によって & 〜という", "Recognize written-style である"],
+      },
+      { type: "teach", jp: "きじ", romaji: "kiji", en: "article" },
+      { type: "teach", jp: "みだし", romaji: "midashi", en: "headline" },
+      { type: "teach", label: "Grammar", jp: "ちいきによって", romaji: "chiiki ni yotte", en: "depending on the region", note: "〜によって = “depending on / by”." },
+      { type: "teach", label: "Grammar", jp: "である", romaji: "de aru", en: "is (written/formal style)", note: "〜である = formal/written form of です/だ." },
+      {
+        type: "choice",
+        prompt: "“depending on the region” = ちいき ___",
+        options: [{ label: "によって", correct: true }, { label: "について" }, { label: "によると" }],
+      },
+      { type: "teach", label: "Grammar", jp: "じこという", romaji: "jiko to iu", en: "called / named (an accident)", note: "〜という = “called / that says ~”." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "It depends on the person.",
+        tiles: ["ひとに", "よって", "ちがいます"],
+        answer: ["ひとに", "よって", "ちがいます"],
+      },
+      {
+        type: "listen",
+        audio: "きじをよみます",
+        prompt: "What did you hear?",
+        options: [{ label: "きじをよみます (I read an article.)", correct: true }, { label: "みだしをみます" }, { label: "じじつである" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "きじ", en: "article" },
+          { jp: "みだし", en: "headline" },
+          { jp: "によって", en: "depending on" },
+          { jp: "である", en: "written です" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Written-style “is / da”:",
+        options: [{ label: "である", correct: true }, { label: "という" }, { label: "によって" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-72 Subtle feelings ---------------- */
+  {
+    id: "d-72",
+    cls: "D",
+    number: 72,
+    title: "Subtle feelings",
+    jpTitle: "微妙な気持ち",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Subtle feelings",
+        objectives: ["Wonder to yourself (〜かな)", "Say “iffy / so-so”", "Use 〜気がする"],
+      },
+      { type: "teach", label: "Grammar", jp: "いこうかな", romaji: "ikō kana", en: "maybe I'll go (wondering)", note: "〜かな = “I wonder / maybe” (to oneself)." },
+      { type: "teach", jp: "びみょう", romaji: "bimyō", en: "iffy / so-so / subtle", note: "A soft, vague negative." },
+      { type: "teach", jp: "なんとなく", romaji: "nantonaku", en: "somehow / vaguely" },
+      { type: "teach", label: "Grammar", jp: "わすれたきがする", romaji: "wasureta ki ga suru", en: "I have a feeling I forgot", note: "〜きがする = “have a feeling that ~”." },
+      {
+        type: "choice",
+        prompt: "“so-so / iffy” =",
+        options: [{ label: "びみょう", correct: true }, { label: "なんとなく" }, { label: "いこうかな" }],
+      },
+      { type: "teach", label: "Phrase", jp: "なやんでいます", romaji: "nayande imasu", en: "I'm troubled / can't decide" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I have a feeling I forgot.",
+        tiles: ["わすれた", "きが", "する"],
+        answer: ["わすれた", "きが", "する"],
+      },
+      {
+        type: "listen",
+        audio: "びみょうですね",
+        prompt: "What did you hear?",
+        options: [{ label: "びみょうですね (It's kind of iffy.)", correct: true }, { label: "なんとなく" }, { label: "なやんでいます" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "かな", en: "I wonder" },
+          { jp: "びみょう", en: "iffy" },
+          { jp: "なんとなく", en: "somehow" },
+          { jp: "きがする", en: "have a feeling" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“I wonder if I'll go” = いこう ___",
+        options: [{ label: "かな", correct: true }, { label: "きがする" }, { label: "びみょう" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-73 Hypothetical & regret ---------------- */
+  {
+    id: "d-73",
+    cls: "D",
+    number: 73,
+    title: "Hypothetical & regret",
+    jpTitle: "仮定と後悔",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Hypothetical & regret",
+        objectives: ["Say “if I had…”", "Express regret (〜ばよかった)", "Use 〜てしまった"],
+      },
+      { type: "teach", label: "Grammar", jp: "しっていたら", romaji: "shitte itara", en: "if (I) had known", note: "〜たら + past = hypothetical past." },
+      { type: "teach", label: "Grammar", jp: "いけばよかった", romaji: "ikeba yokatta", en: "I should have gone (regret)", note: "〜ばよかった = “should have ~” (regret)." },
+      { type: "teach", label: "Grammar", jp: "わすれてしまった", romaji: "wasurete shimatta", en: "I (regretfully) forgot", note: "〜てしまった = ended up ~ / did completely (often regret)." },
+      {
+        type: "choice",
+        prompt: "Regret: “I should have gone” = いけば ___",
+        options: [{ label: "よかった", correct: true }, { label: "いい" }, { label: "ました" }],
+      },
+      { type: "teach", jp: "こうかい", romaji: "kōkai", en: "regret" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I should have studied.",
+        tiles: ["べんきょう", "すれば", "よかった"],
+        answer: ["べんきょう", "すれば", "よかった"],
+      },
+      {
+        type: "listen",
+        audio: "いけばよかった",
+        prompt: "What did you hear?",
+        options: [{ label: "いけばよかった (I should have gone.)", correct: true }, { label: "しっていたら" }, { label: "わすれてしまった" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "たら(+過去)", en: "if had" },
+          { jp: "ばよかった", en: "should have" },
+          { jp: "てしまった", en: "ended up" },
+          { jp: "こうかい", en: "regret" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“I ended up forgetting” = わすれて ___",
+        options: [{ label: "しまった", correct: true }, { label: "よかった" }, { label: "いた" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-74 Reported speech ---------------- */
+  {
+    id: "d-74",
+    cls: "D",
+    number: 74,
+    title: "Reported speech",
+    jpTitle: "伝聞・引用",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Reported speech",
+        objectives: ["Report hearsay (〜そうです)", "Use 〜らしい (apparently)", "Quote casually with 〜って"],
+      },
+      { type: "teach", label: "Grammar", jp: "あめがふるそうです", romaji: "ame ga furu sō desu", en: "I hear it will rain", note: "plain + そうです = “I hear that ~” (hearsay)." },
+      { type: "teach", label: "Grammar", jp: "やすみらしい", romaji: "yasumi rashii", en: "apparently it's a day off", note: "〜らしい = “apparently / it seems”." },
+      { type: "teach", label: "Grammar", jp: "くるって", romaji: "kuru tte", en: "(they) say he's coming (casual)", note: "Casual version of 〜と言っていた." },
+      {
+        type: "choice",
+        prompt: "Hearsay “I hear it will rain” = あめがふる ___",
+        options: [{ label: "そうです", correct: true }, { label: "でしょう" }, { label: "かもしれません" }],
+      },
+      { type: "teach", label: "Grammar", jp: "によると", romaji: "ni yoru to", en: "according to", note: "Often paired with 〜そうです." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I hear he's coming.",
+        tiles: ["くる", "そう", "です"],
+        answer: ["くる", "そう", "です"],
+      },
+      {
+        type: "listen",
+        audio: "やすみらしいです",
+        prompt: "What did you hear?",
+        options: [{ label: "やすみらしいです (Apparently it's a holiday.)", correct: true }, { label: "あめがふるそうです" }, { label: "くるって" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "そうです", en: "I hear that" },
+          { jp: "らしい", en: "apparently" },
+          { jp: "って", en: "they say (casual)" },
+          { jp: "によると", en: "according to" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Casual “they say ~” =",
+        options: [{ label: "って", correct: true }, { label: "らしい" }, { label: "そうです" }],
+      },
+    ],
+  },
+
+  /* ---------------- D-75 Advanced conjunctions ---------------- */
+  {
+    id: "d-75",
+    cls: "D",
+    number: 75,
+    title: "Advanced conjunctions",
+    jpTitle: "上級の接続",
+    xp: 18,
+    coins: 18,
+    steps: [
+      {
+        type: "intro",
+        title: "Advanced conjunctions",
+        objectives: ["Use formal connectors", "Contrast with にもかかわらず", "Compare with いっぽう"],
+      },
+      { type: "teach", label: "Connector", jp: "しかし", romaji: "shikashi", en: "however (formal)" },
+      { type: "teach", label: "Connector", jp: "したがって", romaji: "shitagatte", en: "therefore (formal)" },
+      { type: "teach", label: "Grammar", jp: "あめにもかかわらず", romaji: "ame ni mo kakawarazu", en: "despite the rain", note: "〜にもかかわらず = “despite / in spite of”." },
+      { type: "teach", label: "Connector", jp: "いっぽう", romaji: "ippō", en: "on the other hand" },
+      {
+        type: "choice",
+        prompt: "Formal “however” =",
+        options: [{ label: "しかし", correct: true }, { label: "したがって" }, { label: "いっぽう" }],
+      },
+      { type: "teach", label: "Grammar", jp: "むずかしいものの", romaji: "muzukashii mono no", en: "although it's difficult", note: "〜ものの = “although”." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "However, it is difficult.",
+        tiles: ["しかし", "むずかしい", "です"],
+        answer: ["しかし", "むずかしい", "です"],
+      },
+      {
+        type: "listen",
+        audio: "あめにもかかわらず",
+        prompt: "What did you hear?",
+        options: [{ label: "あめにもかかわらず (despite the rain)", correct: true }, { label: "したがって" }, { label: "いっぽう" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the connectors",
+        pairs: [
+          { jp: "しかし", en: "however" },
+          { jp: "したがって", en: "therefore" },
+          { jp: "にもかかわらず", en: "despite" },
+          { jp: "いっぽう", en: "on the other hand" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“despite the rain” = あめ ___",
+        options: [{ label: "にもかかわらず", correct: true }, { label: "ものの" }, { label: "いっぽう" }],
+      },
+    ],
+  },
 ];
+
 
