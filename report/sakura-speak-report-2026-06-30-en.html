@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @page {
+    size: A4; margin: 18mm 16mm 20mm 16mm;
+    @bottom-center { content: "Sakura Speak — Development Report (Update)  ·  STELLAR / MOFURI"; font-family: "Segoe UI","Yu Gothic",sans-serif; font-size: 8pt; color: #b98aa3; }
+    @bottom-right { content: counter(page) " / " counter(pages); font-family: "Segoe UI","Yu Gothic",sans-serif; font-size: 8pt; color: #b98aa3; }
+  }
+  @page :first { margin: 0; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI","Helvetica Neue","Yu Gothic","Noto Sans",sans-serif; color: #3a2b33; font-size: 10.2pt; line-height: 1.65; margin: 0; }
+
+  .cover { height: 297mm; background: linear-gradient(160deg,#fff5f9 0%,#ffe6f0 42%,#f0f7ff 100%); position: relative; page-break-after: always; overflow: hidden; }
+  .petal { position: absolute; border-radius: 60% 0 60% 0; background: rgba(247,168,196,0.22); }
+  .p1 { width: 220px; height: 220px; top: -60px; right: -50px; transform: rotate(20deg); }
+  .p2 { width: 150px; height: 150px; top: 120px; left: -50px; background: rgba(143,214,255,0.20); transform: rotate(-15deg); }
+  .p3 { width: 110px; height: 110px; bottom: 80px; right: 60px; transform: rotate(35deg); }
+  .cover-inner { position: relative; padding: 46mm 22mm 0; }
+  .wordmark { font-size: 30pt; font-weight: 800; letter-spacing: -0.5px; color: #3a2b33; }
+  .wordmark span { color: #ef85ac; }
+  .mark { display: inline-block; vertical-align: middle; margin-right: 10px; }
+  .cover h1 { margin: 60px 0 6px; font-size: 26pt; font-weight: 800; color: #2c2030; line-height: 1.3; }
+  .cover .sub { font-size: 12pt; color: #8a6c7a; font-weight: 600; }
+  .cover .rule { width: 64px; height: 5px; border-radius: 4px; background: linear-gradient(90deg,#f7a8c4,#8fd6ff); margin: 24px 0; }
+  .cover .badge { display: inline-block; margin-top: 12px; padding: 7px 16px; border-radius: 999px; background: #fff; border: 1.5px solid #f7c9da; color: #d65f8c; font-weight: 700; font-size: 9.5pt; }
+  .cover .meta { margin-top: 110px; font-size: 10.5pt; color: #6d5660; }
+  .cover .meta b { color: #3a2b33; }
+
+  h2 { font-size: 15pt; color: #2c2030; margin: 26px 0 4px; padding-left: 12px; border-left: 6px solid #f7a8c4; line-height: 1.3; }
+  h2 small { color: #b98aa3; font-size: 9.5pt; font-weight: 600; margin-left: 8px; }
+  h3 { font-size: 11pt; color: #c0588a; margin: 16px 0 4px; }
+  p { margin: 6px 0; } .lead { color: #5a4651; }
+  .section { page-break-inside: avoid; }
+
+  .stat-grid { display: flex; gap: 9px; margin: 14px 0 4px; flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 90px; background: linear-gradient(155deg,#fff,#fff4f8); border: 1.5px solid #fbe0eb; border-radius: 14px; padding: 12px 10px; text-align: center; }
+  .stat .n { font-size: 20pt; font-weight: 800; color: #ef85ac; line-height: 1; }
+  .stat .n.blue { color: #5aafe0; }
+  .stat .l { font-size: 8.2pt; color: #8a6c7a; margin-top: 5px; font-weight: 600; }
+
+  ul.feat { margin: 6px 0; padding-left: 0; list-style: none; }
+  ul.feat li { padding: 4px 0 4px 24px; position: relative; }
+  ul.feat li:before { content: "✓"; position: absolute; left: 0; color: #2f9d77; font-weight: 800; top: 4px; }
+  ul.feat li b { color: #2c2030; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.2pt; }
+  th { background: #fbe3ed; color: #9c4d73; text-align: left; padding: 6px 10px; font-weight: 700; border-bottom: 2px solid #f5c6d9; }
+  td { padding: 5px 10px; border-bottom: 1px solid #f2e6ec; vertical-align: top; }
+  td.u { font-family: "Consolas","Courier New",monospace; font-size: 8.6pt; color: #2b7fc0; word-break: break-all; }
+
+  .url-box { background: linear-gradient(155deg,#f3f9ff,#eaf4ff); border: 1.5px solid #cfe7fa; border-radius: 14px; padding: 14px 16px; margin: 10px 0; }
+  .url-box .cap { font-size: 8.8pt; color: #6d8595; margin-bottom: 3px; font-weight: 600; }
+  .url-box .u { font-family: "Consolas","Courier New",monospace; font-size: 10.5pt; font-weight: 700; color: #2b7fc0; word-break: break-all; }
+
+  .note { background: #fffaf3; border: 1.5px solid #f6e3c7; border-radius: 12px; padding: 11px 14px; margin: 10px 0; font-size: 9pt; color: #7a6243; }
+  .note b { color: #5a4326; }
+  .two { display: flex; gap: 14px; } .two > div { flex: 1; }
+  .card { background: #fff; border: 1.5px solid #fbe0eb; border-radius: 12px; padding: 12px 14px; }
+  .card.blue { border-color: #cfe7fa; background: #f7fbff; }
+  .card h3 { margin: 0 0 5px; } .card.blue h3 { color: #2b7fc0; }
+  .closing { margin-top: 22px; padding: 16px 18px; background: linear-gradient(155deg,#fff,#fff4f8); border: 1.5px solid #fbe0eb; border-radius: 14px; }
+  .sign { margin-top: 14px; font-size: 9.6pt; color: #6d5660; } .sign b { color: #3a2b33; font-size: 10.4pt; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
+  <div class="cover-inner">
+    <div class="wordmark">
+      <svg class="mark" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#f7a8c4"><ellipse cx="20" cy="7" rx="5.2" ry="7"/><ellipse cx="20" cy="33" rx="5.2" ry="7"/><ellipse cx="7" cy="20" rx="7" ry="5.2"/><ellipse cx="33" cy="20" rx="7" ry="5.2"/><ellipse cx="11" cy="11" rx="6" ry="5" transform="rotate(45 11 11)"/><ellipse cx="29" cy="11" rx="6" ry="5" transform="rotate(-45 29 11)"/><ellipse cx="11" cy="29" rx="6" ry="5" transform="rotate(-45 11 29)"/><ellipse cx="29" cy="29" rx="6" ry="5" transform="rotate(45 29 29)"/></g>
+        <circle cx="20" cy="20" r="5" fill="#fff2cc"/>
+      </svg>
+      Sakura<span>Speak</span>
+    </div>
+    <h1>Development Report <span style="font-size:16pt;color:#8a6c7a">(Update)</span></h1>
+    <div class="sub">Japanese Learning Platform — Launch-ready prototype</div>
+    <div class="rule"></div>
+    <div class="badge">This round: 4 mini-games · real auth &amp; member management · Stripe-ready · premium gating</div>
+    <div class="meta">
+      <p>Issued: <b>June 30, 2026</b></p>
+      <p>Produced by: <b>STELLAR / MOFURI</b></p>
+      <p>Live at: <b>jiantailanglin266-rgb.github.io/sakura-speak-lp</b></p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Greetings</h2>
+  <p class="lead">
+    Thank you for your continued partnership. Since the last report, we've built out the features agreed for launch.
+    The prototype now covers the full journey — from the public landing page through sign-up, subscription, the member
+    area, and an admin console — and it's live for you to try in the browser. This update summarizes what's new, shares
+    every URL, and lists what's needed on your side to take it fully live.
+  </p>
+</div>
+
+<div class="section">
+  <h2>At a glance <small>current build</small></h2>
+  <div class="stat-grid">
+    <div class="stat"><div class="n">20</div><div class="l">Live routes</div></div>
+    <div class="stat"><div class="n blue">10</div><div class="l">Vocab categories</div></div>
+    <div class="stat"><div class="n">101</div><div class="l">Vocab sheets</div></div>
+    <div class="stat"><div class="n blue">2,122</div><div class="l">Words</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Mini-games</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>What's new this round</h2>
+  <ul class="feat">
+    <li><b>Mini-games completed (4 total)</b> — added <b>Sentence Scramble</b> (tap words into the right order) alongside Word Blitz, Memory Match &amp; Listen It.</li>
+    <li><b>Avatar — preset selection</b> — replaced the dress-up customizer with a simple picker of ready-made Meemi looks (selection only). These are placeholders, ready to swap for your supplied artwork.</li>
+    <li><b>Real authentication &amp; accounts</b> — sign-up / login / guest / logout with sessions; the member area is gated (signed-out visitors are redirected to sign in). Email-confirmation flow supported.</li>
+    <li><b>Member database</b> — member data persists; ready for Supabase (schema &amp; setup guide included).</li>
+    <li><b>Member management (admin)</b> — the admin console lists members and can suspend / ban / restore and grant or revoke admin — on live data.</li>
+    <li><b>Guest → account upgrade</b> — guests are nudged to create an account; upgrading keeps the same account &amp; progress.</li>
+    <li><b>Stripe-ready checkout</b> — the subscribe screen redirects to Stripe (Payment Links) once your links are set; otherwise a demo checkout. No server required.</li>
+    <li><b>Free / Premium gating</b> — premium features (e.g. mini-games) are locked for free members and unlock after subscribing; the plan status shows in the sidebar.</li>
+  </ul>
+  <div class="note">
+    Everything runs today on the static site in a built-in demo mode (no real charges/data). Setting the Supabase and
+    Stripe details (below) switches the same screens to real auth, database and payments — no code changes.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Live URLs <small>try it on any device</small></h2>
+  <div class="url-box">
+    <div class="cap">▶ Home (public landing page)</div>
+    <div class="u">https://jiantailanglin266-rgb.github.io/sakura-speak-lp/</div>
+  </div>
+  <table>
+    <thead><tr><th style="width:38%">Screen</th><th>URL</th></tr></thead>
+    <tbody>
+      <tr><td>Sign up / Log in</td><td class="u">/auth/</td></tr>
+      <tr><td>Subscribe</td><td class="u">/subscribe/</td></tr>
+      <tr><td>Member dashboard</td><td class="u">/dashboard/</td></tr>
+      <tr><td>Lessons</td><td class="u">/dashboard/lessons/</td></tr>
+      <tr><td>Mini-games (premium)</td><td class="u">/dashboard/games/</td></tr>
+      <tr><td>Vocabulary sheets</td><td class="u">/dashboard/vocab/</td></tr>
+      <tr><td>Avatar</td><td class="u">/dashboard/avatar/</td></tr>
+      <tr><td>Profile / Community</td><td class="u">/dashboard/profile/ · /dashboard/community/</td></tr>
+      <tr><td>Admin console</td><td class="u">/admin/</td></tr>
+    </tbody>
+  </table>
+  <p class="lead" style="margin-top:6px;font-size:9.4pt">All paths are under the Home URL above.</p>
+
+  <div class="two" style="margin-top:8px">
+    <div class="card">
+      <h3>Demo logins (demo mode)</h3>
+      <p style="margin:0;font-size:9.3pt">Admin: <b>admin@sakura.dev</b> / <b>password</b><br>Or register on <b>/auth/</b>, or tap “Continue as guest”.</p>
+    </div>
+    <div class="card">
+      <h3>Suggested walkthrough</h3>
+      <p style="margin:0;font-size:9.3pt">1. LP → sign up · 2. Open Mini-games → see the premium gate · 3. Subscribe (demo) → games unlock · 4. Log in as admin → Members.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Scope status</h2>
+  <div class="two">
+    <div class="card">
+      <h3>Delivered (our side)</h3>
+      <ul class="feat">
+        <li>Design &amp; front-end of all screens</li>
+        <li>Vocabulary sheets (10 cat / 101 / 2,122)</li>
+        <li>Auth, member DB &amp; member management</li>
+        <li>Subscription screen + Stripe redirect</li>
+        <li>Premium gating &amp; plan status</li>
+      </ul>
+    </div>
+    <div class="card blue">
+      <h3>To go live (your side)</h3>
+      <ul class="feat" style="--c:#2b7fc0">
+        <li><b>Design image assets</b> (incl. official Meemi art)</li>
+        <li><b>Domain &amp; server</b> + production deployment</li>
+        <li><b>Stripe</b> account + Payment Links + webhook</li>
+        <li><b>Backend accounts</b> — Supabase + email (SMTP)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">A step-by-step setup guide is included in the project (<b>docs/backend-setup.md</b>): run the schema, set the env values, and the same site switches to real auth, database &amp; payments.</div>
+</div>
+
+<div class="section">
+  <div class="closing">
+    <p style="margin:0">
+      Please try the screens and share your thoughts on usability, design direction, and what to prioritize next.
+      Once the items on your side are ready, we can move to the production launch. Thank you very much.
+    </p>
+    <div class="sign">June 30, 2026<br><b>STELLAR / MOFURI — Sakura Speak Development Team</b></div>
+  </div>
+</div>
+
+</body>
+</html>

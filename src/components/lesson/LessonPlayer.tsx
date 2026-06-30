@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Meemi from "../Meemi";
 import Icon from "../ui/Icon";
 import { speak } from "@/lib/speak";
+import { markComplete } from "@/lib/lesson-progress";
 import type { Lesson, Step } from "@/lib/lesson";
 
 const GRADABLE = new Set(["choice", "listen", "arrange", "match"]);
@@ -18,6 +19,11 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
   const [matchDone, setMatchDone] = useState(false);
   const [score, setScore] = useState({ correct: 0, graded: 0 });
   const [finished, setFinished] = useState(false);
+
+  // Record completion when the lesson is finished.
+  useEffect(() => {
+    if (finished) markComplete(lesson.id);
+  }, [finished, lesson.id]);
 
   const step = lesson.steps[i];
   const total = lesson.steps.length;
@@ -208,7 +214,7 @@ function Intro({
 function Teach({ step }: { step: Extract<Step, { type: "teach" }> }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center text-center">
-      <p className="text-sm font-bold uppercase tracking-wider text-ink-mute">New word</p>
+      <p className="text-sm font-bold uppercase tracking-wider text-ink-mute">{step.label ?? "New word"}</p>
       <div className="mt-4 w-full rounded-[2rem] bg-white p-8 shadow-card ring-1 ring-pink-soft/40">
         <p className="font-display text-5xl font-extrabold text-ink sm:text-6xl">{step.jp}</p>
         <p className="mt-2 text-lg font-semibold text-ink-mute">{step.romaji}</p>

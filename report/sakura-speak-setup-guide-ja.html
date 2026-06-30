@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 17mm 16mm 18mm 16mm;
+    @bottom-center { content: "Sakura Speak — 設置・公開手順書  ·  株式会社Stellar"; font-family: "Yu Gothic","Meiryo",sans-serif; font-size: 8pt; color: #b98aa3; }
+    @bottom-right { content: counter(page) " / " counter(pages); font-family: "Yu Gothic","Meiryo",sans-serif; font-size: 8pt; color: #b98aa3; }
+  }
+  @page :first { margin: 0; }
+  * { box-sizing: border-box; }
+  body { font-family: "Yu Gothic","Meiryo","Noto Sans JP",sans-serif; color: #3a2b33; font-size: 10.3pt; line-height: 1.8; margin: 0; }
+
+  .cover { height: 297mm; background: linear-gradient(160deg,#fff5f9 0%,#ffe6f0 42%,#f0f7ff 100%); position: relative; page-break-after: always; overflow: hidden; }
+  .petal { position: absolute; border-radius: 60% 0 60% 0; background: rgba(247,168,196,0.22); }
+  .p1 { width: 220px; height: 220px; top: -60px; right: -50px; transform: rotate(20deg); }
+  .p2 { width: 150px; height: 150px; top: 120px; left: -50px; background: rgba(143,214,255,0.2); transform: rotate(-15deg); }
+  .cover-inner { position: relative; padding: 52mm 22mm 0; }
+  .wordmark { font-size: 28pt; font-weight: 800; letter-spacing: -0.5px; }
+  .wordmark span { color: #ef85ac; }
+  .mark { display: inline-block; vertical-align: middle; margin-right: 10px; }
+  .cover h1 { margin: 60px 0 6px; font-size: 24pt; font-weight: 800; color: #2c2030; line-height: 1.35; }
+  .cover .sub { font-size: 12pt; color: #8a6c7a; font-weight: 600; }
+  .cover .rule { width: 64px; height: 5px; border-radius: 4px; background: linear-gradient(90deg,#f7a8c4,#8fd6ff); margin: 24px 0; }
+  .cover .meta { margin-top: 120px; font-size: 10.5pt; color: #6d5660; } .cover .meta b { color: #3a2b33; }
+  .cover .badge { display:inline-block; margin-top:10px; padding:7px 16px; border-radius:999px; background:#fff; border:1.5px solid #f7c9da; color:#d65f8c; font-weight:700; font-size:9.5pt; }
+
+  h2 { font-size: 14.5pt; color: #2c2030; margin: 24px 0 6px; padding-left: 12px; border-left: 6px solid #f7a8c4; }
+  h2 .tag { font-size: 8pt; font-weight: 700; color: #fff; background: #ef85ac; border-radius: 999px; padding: 2px 9px; margin-left: 8px; vertical-align: middle; }
+  h2 .tag.easy { background: #2f9d77; } h2 .tag.adv { background: #7a5bd6; }
+  h3 { font-size: 11pt; color: #c0588a; margin: 14px 0 4px; }
+  p { margin: 6px 0; } .lead { color: #5a4651; }
+  ol.steps { margin: 6px 0 6px; padding-left: 0; list-style: none; counter-reset: s; }
+  ol.steps > li { position: relative; padding: 4px 0 8px 34px; }
+  ol.steps > li:before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 4px; width: 22px; height: 22px; border-radius: 999px; background: linear-gradient(155deg,#f7a8c4,#ef85ac); color: #fff; font-weight: 800; font-size: 9pt; text-align: center; line-height: 22px; }
+  ul.dot { margin: 4px 0; padding-left: 18px; } ul.dot li { margin: 3px 0; }
+  code, .mono { font-family: "Consolas","Courier New",monospace; font-size: 9pt; background: #f4eef1; padding: 1px 5px; border-radius: 4px; color: #b03a6e; }
+  .card { background: #fff; border: 1.5px solid #fbe0eb; border-radius: 14px; padding: 12px 16px; margin: 8px 0; }
+  .card.blue { border-color: #cfe7fa; background: #f7fbff; }
+  .card.green { border-color: #bfe9d4; background: #f3fbf7; }
+  .note { background: #fffaf3; border: 1.5px solid #f6e3c7; border-radius: 12px; padding: 10px 14px; margin: 9px 0; font-size: 9.2pt; color: #7a6243; }
+  .note b { color: #5a4326; }
+  .tip { background: #f3f9ff; border: 1.5px solid #cfe7fa; border-radius: 12px; padding: 10px 14px; margin: 9px 0; font-size: 9.2pt; color: #3a5a6d; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.3pt; }
+  th { background: #fbe3ed; color: #9c4d73; text-align: left; padding: 6px 10px; font-weight: 700; }
+  td { padding: 6px 10px; border-bottom: 1px solid #f2e6ec; vertical-align: top; }
+  .section { page-break-inside: avoid; }
+  .closing { margin-top: 18px; padding: 16px 18px; background: linear-gradient(155deg,#fff,#fff4f8); border: 1.5px solid #fbe0eb; border-radius: 14px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="petal p1"></div><div class="petal p2"></div>
+  <div class="cover-inner">
+    <div class="wordmark">
+      <svg class="mark" width="38" height="38" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#f7a8c4"><ellipse cx="20" cy="7" rx="5.2" ry="7"/><ellipse cx="20" cy="33" rx="5.2" ry="7"/><ellipse cx="7" cy="20" rx="7" ry="5.2"/><ellipse cx="33" cy="20" rx="7" ry="5.2"/><ellipse cx="11" cy="11" rx="6" ry="5" transform="rotate(45 11 11)"/><ellipse cx="29" cy="11" rx="6" ry="5" transform="rotate(-45 29 11)"/><ellipse cx="11" cy="29" rx="6" ry="5" transform="rotate(-45 11 29)"/><ellipse cx="29" cy="29" rx="6" ry="5" transform="rotate(45 29 29)"/></g>
+        <circle cx="20" cy="20" r="5" fill="#fff2cc"/></svg>
+      Sakura<span>Speak</span>
+    </div>
+    <h1>設置・公開 手順書</h1>
+    <div class="sub">納品データの設置マニュアル（ステップ・バイ・ステップ）</div>
+    <div class="rule"></div>
+    <div class="badge">基本の公開はプログラミング不要です 🌸</div>
+    <div class="meta">
+      <p>宛先：<b>Sakura Speak ご担当者様</b></p>
+      <p>発行：<b>株式会社Stellar</b></p>
+      <p>版：<b>2026年6月30日</b></p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>1. 納品物の内容</h2>
+  <p class="lead">ZIPファイル1つ（<code>Sakura Speak 納品一式 2026-06-30.zip</code>）をお渡ししています。まず解凍してください
+  （Windowsは右クリック→「すべて展開」、Macはダブルクリック）。中身は次の通りです。</p>
+  <table>
+    <tr><th style="width:24%">フォルダ / ファイル</th><th>内容</th></tr>
+    <tr><td><code>build/</code></td><td><b>完成したWebサイトのファイル</b> — このまま公開できます。<b>これをネットに上げます。</b></td></tr>
+    <tr><td><code>source/</code></td><td>ソースコード一式（開発者向け／今後の改修用）。</td></tr>
+    <tr><td><code>docs/</code></td><td>PDF：提案書・見積書・開発レポート。</td></tr>
+    <tr><td><code>HANDOVER.md</code></td><td>技術的な概要メモ。</td></tr>
+  </table>
+  <div class="note"><b>全体像：</b>このサイトは2段階で考えるとシンプルです。<b>第1段階（本書 2〜3章）</b>＝サイトをネットに公開し、
+  「デモモード」で見て触れる状態にする。<b>第2段階（4章）</b>＝実際のアカウント・決済を接続する。
+  第1段階はプログラミング不要、第2段階は開発者と進めるのがおすすめです（当社でも対応可能）。</div>
+</div>
+
+<div class="section">
+  <h2>2. いちばん簡単な公開方法 <span class="tag easy">コード不要</span></h2>
+  <p class="lead">無料サービス <b>Netlify Drop</b> を使い、最短で公開リンクを発行します。</p>
+  <ol class="steps">
+    <li>納品ZIPを解凍し（1章）、<code>build</code> フォルダを見つけます。</li>
+    <li>ブラウザで <code>https://app.netlify.com/drop</code> を開きます。</li>
+    <li><code>build</code> フォルダごと、ページ上（「Drag and drop your site folder here」と書かれた領域）にドラッグ＆ドロップします。</li>
+    <li>数秒待つと <code>https://〇〇〇.netlify.app</code> のような公開リンクが表示されます。これで公開完了です 🎉</li>
+    <li>（任意）無料のNetlifyアカウントを作ると、サイトの保持やリンク名の変更ができます。</li>
+    <li>（任意）独自ドメイン接続：Netlifyの「Domain settings」→「Add a domain」から画面の案内に従います。</li>
+  </ol>
+  <div class="tip"><b>ヒント：</b>他の無料ホスティング（Cloudflare Pages、Vercel、GitHub Pages 等）でも手順は同じです。
+  どれを使う場合も、やることは<code>build</code> フォルダの中身を公開するだけです。</div>
+  <div class="note"><b>ご注意：</b><code>build/index.html</code> をパソコン上でそのままダブルクリックして開かないでください
+  （デザインやリンクが正しく表示されません）。必ず上記の手順でホスティングに公開するか、5章のローカル確認をご利用ください。</div>
+</div>
+
+<div class="section">
+  <h2>3. 自社サーバー／レンタルサーバーに置く <span class="tag easy">コード不要</span></h2>
+  <p class="lead">既にドメイン・サーバー（cPanel、FTPアカウント等）をお持ちの場合：</p>
+  <ol class="steps">
+    <li>サーバーの管理画面にログイン（またはFTPソフト、例：FileZilla を開く）。</li>
+    <li>公開フォルダを開きます。多くは <code>public_html</code> / <code>www</code> / <code>htdocs</code> という名前です。</li>
+    <li><code>build</code> フォルダの<b>中身すべて</b>を、その公開フォルダにアップロードします（<code>build</code> フォルダ自体ではなく、中身を）。</li>
+    <li><code>index.html</code> が公開フォルダの直下に来ているか確認します。</li>
+    <li>ブラウザでドメインにアクセスすると、サイトが表示されます。</li>
+  </ol>
+  <div class="note"><b>サブフォルダで公開する場合</b>（例：<code>yourdomain.com/sakura/</code>）は、そのパスを設定して再ビルドが必要です。
+  これは小さな開発作業です（4章／当社にご相談ください）。</div>
+</div>
+
+<div class="section">
+  <h2>4. 本番化：アカウントと決済の接続 <span class="tag adv">開発者向け</span></h2>
+  <p class="lead">デモモードでは登録・決済は擬似動作です。<b>実際の</b>会員アカウント・データベース・Stripe決済を使うには、
+  下記2サービスを接続します。詳細手順は <code>source/docs/backend-setup.md</code> にあります。概要：</p>
+
+  <div class="card green">
+    <h3>A. 会員アカウント＆データベース — Supabase（無料から）</h3>
+    <ul class="dot">
+      <li><code>supabase.com</code> でプロジェクトを作成（このアカウント・課金は貴社名義のままです）。</li>
+      <li>「SQL Editor」を開き、<code>source/supabase/schema.sql</code> の内容を貼り付けて実行します。</li>
+      <li>「Authentication」でメールログインを有効化。確実な登録メール配信には送信サービス（Resend/SendGrid 等）の追加を推奨（任意）。</li>
+      <li>「Project Settings → API」から <b>Project URL</b> と <b>anon public key</b> をコピーします。</li>
+    </ul>
+  </div>
+
+  <div class="card blue">
+    <h3>B. 決済 — Stripe（サーバー不要）</h3>
+    <ul class="dot">
+      <li>Stripeダッシュボードで、各プラン（月額／3ヶ月／年額／買い切り）の <b>Payment Link</b> を作成します。</li>
+      <li>各リンクの「支払い後リダイレクト先」を <code>https://公開URL/subscribe/?checkout=success</code> に設定します。</li>
+      <li>各Payment LinkのURLをコピーします。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>C. 値を入力して再ビルド</h3>
+    <ul class="dot">
+      <li><code>source/</code> 内の <code>.env.local.example</code> を <code>.env.local</code> にコピーし、SupabaseのURL/キーとStripeリンクを貼り付けます。</li>
+      <li>再ビルド：<code>source/</code> で <code>npm install</code> →  <code>npm run build</code> を実行し、新しい <code>out/</code> を再公開します（2章／3章と同じ要領）。</li>
+      <li>同じ画面が、実アカウント・データベース・決済で動作するようになります（他の変更は不要）。</li>
+    </ul>
+  </div>
+  <div class="note"><b>この段階はコマンド操作を含むため、開発者の対応が必要</b>です。ご希望であれば、接続〜本番公開まで当社で代行いたします。お気軽にどうぞ。</div>
+</div>
+
+<div class="section">
+  <h2>5. パソコンでの確認＆デモ用ログイン</h2>
+  <h3>ローカルで確認する（任意・Node.js が必要）</h3>
+  <ol class="steps">
+    <li><code>nodejs.org</code> から Node.js（LTS版）をインストール。</li>
+    <li><code>source</code> フォルダでターミナル／コマンドプロンプトを開きます。</li>
+    <li><code>npm install</code> → <code>npm run dev</code> を実行。</li>
+    <li>ブラウザで <code>http://localhost:3000</code> を開きます。</li>
+  </ol>
+  <h3>デモ用ログイン（デモモード）</h3>
+  <ul class="dot">
+    <li>管理者（管理画面の確認用）：<b>admin@sakura.dev</b> / <b>password</b></li>
+    <li>または「Sign up」で登録、「Continue as guest」でゲスト入室。</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>6. 困ったときは</h2>
+  <table>
+    <tr><th style="width:42%">症状</th><th>対処</th></tr>
+    <tr><td><code>index.html</code> を開いたらデザインが崩れる</td><td>パソコンから直接開かないでください。<code>build</code> をホスティングに公開（2章）するか、ローカル確認（5章）を使います。</td></tr>
+    <tr><td>公開したが画像やフォントが出ない</td><td><code>build/</code> の<b>中身</b>を、<code>index.html</code> と <code>_next</code> フォルダが同じ場所に来るようアップロードしてください。</td></tr>
+    <tr><td>登録・決済が保存されない</td><td>デモモードでは正常です。4章でSupabase／Stripeを接続してください。</td></tr>
+    <tr><td>サブフォルダでリンクが404になる</td><td>サブパスを設定して再ビルドが必要です（小さな開発作業／4章・当社へご相談）。</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="closing">
+    <h3 style="margin-top:0">今後のリニューアル・機能追加について</h3>
+    <p style="margin:0">
+      今後、<b>デザインのリニューアルや新機能の追加</b>をご希望の際は、その時のご要望に合わせて柔軟に対応いたします
+      （レッスンコンテンツ、新しい画面、外部連携、全面リニューアル等）。ご相談いただければ、一緒に内容を詰めてまいります。
+    </p>
+    <p style="margin:10px 0 0; font-size:9.6pt; color:#6d5660">
+      <b>株式会社Stellar</b> — Sakura Speak 開発チーム ／ 担当：林
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
