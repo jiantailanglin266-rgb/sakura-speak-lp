@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 15mm 18mm 15mm;
+    @bottom-center {
+      content: "Sakura Speak — Quotation & Scope of Work  ·  STELLAR / MOFURI";
+      font-family: "Segoe UI", "Yu Gothic", sans-serif; font-size: 8pt; color: #b98aa3;
+    }
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font-family: "Segoe UI", "Yu Gothic", sans-serif; font-size: 8pt; color: #b98aa3;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", "Yu Gothic", "Noto Sans", sans-serif;
+    color: #3a2b33; font-size: 10pt; line-height: 1.6; margin: 0;
+  }
+
+  /* ---- header ---- */
+  .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .wordmark { font-size: 19pt; font-weight: 800; letter-spacing: -0.4px; color: #3a2b33; }
+  .wordmark span { color: #ef85ac; }
+  .mark { display: inline-block; vertical-align: middle; margin-right: 7px; }
+  .doc-title { text-align: right; }
+  .doc-title h1 { margin: 0; font-size: 21pt; font-weight: 800; color: #2c2030; letter-spacing: 0.5px; }
+  .doc-title .meta { margin-top: 6px; font-size: 8.8pt; color: #6d5660; line-height: 1.55; }
+  .doc-title .meta b { color: #3a2b33; }
+  .rule { height: 5px; border-radius: 4px; background: linear-gradient(90deg, #f7a8c4, #8fd6ff); margin: 12px 0 16px; }
+
+  .parties { display: flex; gap: 14px; margin-bottom: 6px; }
+  .party { flex: 1; background: #fff7fa; border: 1.5px solid #fbe0eb; border-radius: 12px; padding: 11px 14px; }
+  .party .lbl { font-size: 7.8pt; font-weight: 700; color: #c0588a; text-transform: uppercase; letter-spacing: 0.5px; }
+  .party .nm { font-size: 11pt; font-weight: 800; color: #2c2030; margin-top: 2px; }
+  .party .dt { font-size: 8.8pt; color: #6d5660; margin-top: 2px; }
+
+  h2 { font-size: 12.5pt; color: #2c2030; margin: 14px 0 5px; padding-left: 11px; border-left: 5px solid #f7a8c4; }
+  p { margin: 5px 0; } .lead { color: #5a4651; font-size: 9.5pt; }
+
+  table { width: 100%; border-collapse: collapse; margin: 7px 0; font-size: 9.3pt; }
+  th { background: #fbe3ed; color: #9c4d73; text-align: left; padding: 6px 10px; font-weight: 700; border-bottom: 2px solid #f5c6d9; }
+  td { padding: 5px 10px; border-bottom: 1px solid #f2e6ec; vertical-align: top; }
+  .r { text-align: right; white-space: nowrap; }
+  .em { color: #8a6c7a; font-size: 8.4pt; }
+
+  .totals { width: 56%; margin-left: 44%; margin-top: 6px; font-size: 9.6pt; }
+  .totals td { padding: 6px 10px; border: none; }
+  .totals tr.sub td { border-top: 1px solid #f2e6ec; }
+  .totals tr.grand td { background: linear-gradient(155deg, #fff, #ffeef5); font-weight: 800; font-size: 12pt; color: #c0588a; border-top: 2px solid #f5c6d9; border-radius: 8px; }
+
+  .pay td { font-size: 9.4pt; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 8pt; font-weight: 700; }
+  .pill.due { background: #fdeef4; color: #d65f8c; }
+  .pill.del { background: #eaf4ff; color: #2b7fc0; }
+
+  ul.feat { margin: 6px 0; padding-left: 0; list-style: none; }
+  ul.feat li { padding: 2px 0 2px 20px; position: relative; font-size: 9.3pt; line-height: 1.45; }
+  ul.feat li:before { content: "✓"; position: absolute; left: 0; color: #2f9d77; font-weight: 800; top: 3px; }
+  ul.resp li:before { content: "▸"; color: #2b7fc0; }
+
+  .two { display: flex; gap: 14px; }
+  .two > div { flex: 1; }
+  .card { background: #fff; border: 1.5px solid #fbe0eb; border-radius: 12px; padding: 10px 13px; }
+  .card.blue { border-color: #cfe7fa; background: #f7fbff; }
+  .card h3 { margin: 0 0 6px; font-size: 10.2pt; }
+  .card.pink h3 { color: #c0588a; } .card.blue h3 { color: #2b7fc0; }
+
+  .note { background: #fffaf3; border: 1.5px solid #f6e3c7; border-radius: 11px; padding: 9px 13px; margin: 9px 0; font-size: 8.7pt; color: #7a6243; }
+  .note b { color: #5a4326; }
+
+  .acc { page-break-inside: avoid; }
+  .sign { display: flex; gap: 30px; margin-top: 18px; }
+  .sign > div { flex: 1; }
+  .sign .line { border-bottom: 1.5px solid #c9b7c0; height: 34px; margin-bottom: 5px; }
+  .sign .cap { font-size: 8.2pt; color: #8a6c7a; }
+</style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="top">
+    <div>
+      <div class="wordmark">
+        <svg class="mark" width="30" height="30" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#f7a8c4">
+            <ellipse cx="20" cy="7" rx="5.2" ry="7"/><ellipse cx="20" cy="33" rx="5.2" ry="7"/>
+            <ellipse cx="7" cy="20" rx="7" ry="5.2"/><ellipse cx="33" cy="20" rx="7" ry="5.2"/>
+            <ellipse cx="11" cy="11" rx="6" ry="5" transform="rotate(45 11 11)"/>
+            <ellipse cx="29" cy="11" rx="6" ry="5" transform="rotate(-45 29 11)"/>
+            <ellipse cx="11" cy="29" rx="6" ry="5" transform="rotate(-45 11 29)"/>
+            <ellipse cx="29" cy="29" rx="6" ry="5" transform="rotate(45 29 29)"/>
+          </g><circle cx="20" cy="20" r="5" fill="#fff2cc"/>
+        </svg>
+        Sakura<span>Speak</span>
+      </div>
+    </div>
+    <div class="doc-title">
+      <h1>QUOTATION</h1>
+      <div class="meta">
+        Quotation No. <b>SS-2026-0701</b><br>
+        Issue date: <b>June 30, 2026</b><br>
+        Valid until: <b>July 31, 2026</b>
+      </div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="parties">
+    <div class="party">
+      <div class="lbl">From</div>
+      <div class="nm">MOFURI Inc.</div>
+      <div class="dt">Shinjuku 2-13-10-3F, Shinjuku-ku, Tokyo 160-0022, Japan<br>Attn: Hayashi · Sakura Speak Team</div>
+    </div>
+    <div class="party">
+      <div class="lbl">To</div>
+      <div class="nm">Sakura Speak — Client</div>
+      <div class="dt">(Billing name &amp; address to be confirmed)</div>
+    </div>
+    <div class="party">
+      <div class="lbl">Project</div>
+      <div class="nm">Sakura Speak</div>
+      <div class="dt">Japanese learning platform — LP &amp; member area</div>
+    </div>
+  </div>
+
+  <p class="lead">
+    Thank you for the opportunity. This document sets out our quotation and the scope of work for the design and
+    implementation of Sakura Speak, including the minimum requirements needed to launch the service. Amounts are in Japanese Yen (JPY).
+  </p>
+
+  <!-- ===== QUOTATION TABLE ===== -->
+  <h2>Quotation</h2>
+  <table>
+    <thead><tr><th style="width:56%">Item</th><th>Details</th><th class="r">Amount</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Design &amp; implementation (launch-ready)</b><div class="em">Sakura Speak — public LP &amp; member area</div></td>
+        <td>UI/UX design and implementation of all screens and full Vocabulary Sheets (10 categories / 101 topics / 2,122 words), plus the minimum requirements to launch — real authentication, a member database, and a member-management screen. See "Scope of Work" below.</td>
+        <td class="r">¥2,000,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="totals">
+    <tr class="sub"><td>Subtotal</td><td class="r">¥2,000,000</td></tr>
+    <tr><td>Consumption tax (10%)</td><td class="r">¥200,000</td></tr>
+    <tr class="grand"><td>Total (tax included)</td><td class="r">¥2,200,000</td></tr>
+  </table>
+
+  <!-- ===== PAYMENT SCHEDULE ===== -->
+  <h2>Payment schedule <span style="font-size:9pt;color:#b98aa3;font-weight:600">— two installments</span></h2>
+  <table class="pay">
+    <thead><tr><th>#</th><th>Milestone</th><th class="r">Amount</th><th class="r">Due</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><b>Initial payment</b> (50%)<div class="em">To commence and secure the schedule</div></td>
+        <td class="r">¥1,100,000</td>
+        <td class="r"><span class="pill due">July 6, 2026</span></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><b>On delivery</b> (50%)<div class="em">Payable upon delivery of the project</div></td>
+        <td class="r">¥1,100,000</td>
+        <td class="r"><span class="pill del">July 31, 2026</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <b>Delivery &amp; final payment:</b> The target delivery date is <b>July 31, 2026</b>. Should the project be completed
+    ahead of schedule, the second installment will become due <b>at the point of early delivery</b>. An invoice with our
+    bank-transfer details will be issued upon your confirmation of this quotation.
+  </div>
+
+  <table style="margin-top:4px">
+    <thead><tr><th colspan="2">Bank transfer details</th></tr></thead>
+    <tbody>
+      <tr><td style="width:32%"><b>Bank</b></td><td>SBI Sumishin Net Bank (SBI Net Bank)</td></tr>
+      <tr><td><b>Branch</b></td><td>Corporate Business Branch No.1 (branch code 106)</td></tr>
+      <tr><td><b>Account</b></td><td>Ordinary (futsu) No. 3100658</td></tr>
+      <tr><td><b>Account holder</b></td><td>MOFURI Inc. (株式会社MOFURI.)</td></tr>
+    </tbody>
+  </table>
+  <p class="em" style="margin:2px 0 0">* Bank transfer fees, if any, are kindly to be borne by the client.</p>
+
+  <!-- ===== SCOPE OF WORK ===== -->
+  <h2>Scope of Work</h2>
+  <div class="two">
+    <div class="card pink">
+      <h3>Included in this engagement</h3>
+      <p class="em" style="margin:0 0 4px">Design &amp; implementation — launch-ready, incl. the following:</p>
+      <ul class="feat">
+        <li>Public landing page (JP/EN switch, responsive/mobile)</li>
+        <li>Member dashboard, lessons &amp; lesson player</li>
+        <li>Mini-games ×4 (quiz / memory / listening / sentence scramble)</li>
+        <li>Vocabulary Sheets — full data (10 cat / 101 topics / 2,122 words)</li>
+        <li>Preset avatars — several options built from your supplied images (selection only; no dress-up)</li>
+        <li>Profile &amp; social, community, review sheets &amp; news</li>
+        <li><b>Authentication &amp; member accounts</b> (real sign-up / login)</li>
+        <li><b>Member database</b> &amp; data persistence (e.g. Supabase)</li>
+        <li><b>Member-management screen</b> &amp; admin CMS</li>
+        <li>Subscription screen, ready for your Stripe connection</li>
+        <li>Onboarding tour &amp; custom Meemi mascot (SVG)</li>
+      </ul>
+    </div>
+    <div class="card blue">
+      <h3>To be provided / arranged by the client</h3>
+      <p class="em" style="margin:0 0 4px">Required to take the product live (outside this scope):</p>
+      <ul class="feat resp">
+        <li><b>Design image assets</b> — all photos, logos and visuals to be used in the design (incl. official Meemi artwork, if to be swapped in)</li>
+        <li><b>Domain &amp; server (hosting)</b> — preparing the production domain/server and the production upload (deployment) to it</li>
+        <li><b>Stripe</b> — Stripe account/contract and the live payment integration (connecting checkout to real billing)</li>
+        <li><b>Backend service accounts</b> — Supabase account/project (member data &amp; auth; paid plan for production) and an email-sending service (SMTP, e.g. Resend/SendGrid) with a sending domain. OAuth credentials if social login (Google/Apple) is enabled. Ownership &amp; billing remain with the client.</li>
+      </ul>
+      <p class="em" style="margin:8px 0 0">Future phase (optional, separate quote): full lesson content (Class A–D) and further feature expansion.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Notes:</b> On delivery, member sign-up/login and member data are functional; payment processing becomes active once
+    you connect your Stripe account. Pronunciation uses the browser's built-in speech synthesis.
+    Providing the client-side items above (especially design images) early helps ensure on-time — or early — delivery.
+    Prices are valid until the date shown above. Currency: JPY; alternative currency or transfer method can be discussed on request.
+  </div>
+
+  <!-- ===== ACCEPTANCE ===== -->
+  <div class="acc">
+  <h2>Acceptance</h2>
+  <p class="lead" style="margin-top:0">By signing below, the client agrees to the quotation, payment schedule and scope of work set out above.</p>
+  <div class="sign">
+    <div>
+      <div class="line"></div>
+      <div class="cap">Client — signature / date</div>
+    </div>
+    <div>
+      <div class="line"></div>
+      <div class="cap">MOFURI Inc. — signature / date</div>
+    </div>
+  </div>
+  </div>
+
+</body>
+</html>

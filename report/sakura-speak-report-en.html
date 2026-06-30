@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm 20mm 16mm;
+    @bottom-center {
+      content: "Sakura Speak — Development Report  ·  STELLAR / MOFURI";
+      font-family: "Segoe UI", "Yu Gothic", sans-serif;
+      font-size: 8pt;
+      color: #b98aa3;
+    }
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font-family: "Segoe UI", "Yu Gothic", sans-serif;
+      font-size: 8pt;
+      color: #b98aa3;
+    }
+  }
+  @page :first { margin: 0; }
+
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", "Yu Gothic", "Noto Sans", sans-serif;
+    color: #3a2b33;
+    font-size: 10.4pt;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    height: 297mm;
+    padding: 0;
+    background: linear-gradient(160deg, #fff5f9 0%, #ffe6f0 42%, #f0f7ff 100%);
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .cover .petal { position: absolute; border-radius: 60% 0 60% 0; background: rgba(247,168,196,0.22); }
+  .p1 { width: 220px; height: 220px; top: -60px; right: -50px; transform: rotate(20deg); }
+  .p2 { width: 150px; height: 150px; top: 120px; left: -50px; background: rgba(143,214,255,0.20); transform: rotate(-15deg); }
+  .p3 { width: 110px; height: 110px; bottom: 80px; right: 60px; background: rgba(247,168,196,0.18); transform: rotate(35deg); }
+  .cover-inner { position: relative; padding: 48mm 22mm 0 22mm; }
+  .wordmark { font-size: 30pt; font-weight: 800; letter-spacing: -0.5px; color: #3a2b33; }
+  .wordmark span { color: #ef85ac; }
+  .mark { display: inline-block; vertical-align: middle; margin-right: 10px; }
+  .cover h1 { margin: 64px 0 6px; font-size: 28pt; font-weight: 800; color: #2c2030; line-height: 1.3; }
+  .cover .sub { font-size: 12pt; color: #8a6c7a; font-weight: 600; }
+  .cover .rule { width: 64px; height: 5px; border-radius: 4px; background: linear-gradient(90deg, #f7a8c4, #8fd6ff); margin: 26px 0; }
+  .cover .meta { margin-top: 120px; font-size: 10.5pt; color: #6d5660; }
+  .cover .meta b { color: #3a2b33; }
+  .cover .badge {
+    display: inline-block; margin-top: 14px; padding: 7px 16px; border-radius: 999px;
+    background: #fff; border: 1.5px solid #f7c9da; color: #d65f8c; font-weight: 700; font-size: 9.5pt;
+  }
+
+  /* ---------- CONTENT ---------- */
+  h2 { font-size: 15pt; color: #2c2030; margin: 30px 0 4px; padding-left: 12px; border-left: 6px solid #f7a8c4; line-height: 1.3; }
+  h2 small { color: #b98aa3; font-size: 9.5pt; font-weight: 600; margin-left: 8px; }
+  h3 { font-size: 11.5pt; color: #c0588a; margin: 20px 0 6px; }
+  p { margin: 7px 0; }
+  .lead { color: #5a4651; }
+  .section { page-break-inside: avoid; }
+
+  .stat-grid { display: flex; gap: 10px; margin: 16px 0 6px; }
+  .stat { flex: 1; background: linear-gradient(155deg, #fff, #fff4f8); border: 1.5px solid #fbe0eb; border-radius: 14px; padding: 14px 12px; text-align: center; }
+  .stat .n { font-size: 22pt; font-weight: 800; color: #ef85ac; line-height: 1; }
+  .stat .n.blue { color: #5aafe0; }
+  .stat .l { font-size: 8.6pt; color: #8a6c7a; margin-top: 6px; font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 9.5pt; }
+  th { background: #fbe3ed; color: #9c4d73; text-align: left; padding: 7px 10px; font-weight: 700; border-bottom: 2px solid #f5c6d9; }
+  td { padding: 6px 10px; border-bottom: 1px solid #f2e6ec; vertical-align: top; }
+  tr:nth-child(even) td { background: #fffafc; }
+  td .em { color: #b98aa3; font-size: 8.6pt; }
+  .num { text-align: right; font-weight: 700; color: #c0588a; }
+
+  ul.feat { margin: 6px 0; padding-left: 0; list-style: none; }
+  ul.feat li { padding: 4px 0 4px 22px; position: relative; }
+  ul.feat li:before { content: "✦"; position: absolute; left: 0; color: #f7a8c4; font-size: 9pt; top: 5px; }
+
+  .url-box { background: linear-gradient(155deg, #f3f9ff, #eaf4ff); border: 1.5px solid #cfe7fa; border-radius: 14px; padding: 16px 18px; margin: 12px 0; }
+  .url-box .u { font-family: "Consolas", "Courier New", monospace; font-size: 11pt; font-weight: 700; color: #2b7fc0; word-break: break-all; }
+  .url-box .cap { font-size: 8.8pt; color: #6d8595; margin-bottom: 4px; font-weight: 600; }
+
+  .note { background: #fffaf3; border: 1.5px solid #f6e3c7; border-radius: 12px; padding: 12px 15px; margin: 12px 0; font-size: 9.4pt; color: #7a6243; }
+  .closing { margin-top: 26px; padding: 18px 20px; background: linear-gradient(155deg, #fff, #fff4f8); border: 1.5px solid #fbe0eb; border-radius: 14px; }
+  .sign { margin-top: 16px; font-size: 9.8pt; color: #6d5660; }
+  .sign b { color: #3a2b33; font-size: 10.6pt; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="petal p3"></div>
+  <div class="cover-inner">
+    <div class="wordmark">
+      <svg class="mark" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#f7a8c4">
+          <ellipse cx="20" cy="7"  rx="5.2" ry="7" />
+          <ellipse cx="20" cy="33" rx="5.2" ry="7" />
+          <ellipse cx="7"  cy="20" rx="7" ry="5.2" />
+          <ellipse cx="33" cy="20" rx="7" ry="5.2" />
+          <ellipse cx="11" cy="11" rx="6" ry="5" transform="rotate(45 11 11)" />
+          <ellipse cx="29" cy="11" rx="6" ry="5" transform="rotate(-45 29 11)" />
+          <ellipse cx="11" cy="29" rx="6" ry="5" transform="rotate(-45 11 29)" />
+          <ellipse cx="29" cy="29" rx="6" ry="5" transform="rotate(45 29 29)" />
+        </g>
+        <circle cx="20" cy="20" r="5" fill="#fff2cc"/>
+      </svg>
+      Sakura<span>Speak</span>
+    </div>
+
+    <h1>Development Report &amp; Greetings</h1>
+    <div class="sub">Japanese Learning Platform — Prototype Implementation Update</div>
+    <div class="rule"></div>
+    <div class="badge">Today's milestone: All vocabulary categories fully implemented</div>
+
+    <div class="meta">
+      <p>Issued: <b>June 27, 2026</b></p>
+      <p>Produced by: <b>STELLAR / MOFURI</b></p>
+      <p>Subject: <b>Sakura Speak — Public LP &amp; Member Area prototype</b></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GREETING ============ -->
+<div class="section">
+  <h2>Greetings</h2>
+  <p class="lead">
+    Thank you, as always, for your continued partnership. We are delighted to be developing the Sakura Speak prototype.
+    We are especially grateful for the clear product specification and the valuable vocabulary lists (107 pages in total) you provided.
+  </p>
+  <p class="lead">
+    This report summarizes everything implemented to date and shares the <b>live URLs</b> where you can try the product directly
+    in your browser. Guided by the concept of a "serious, systematic learning platform" for Japanese learners abroad,
+    we have prepared a hands-on experience that spans the full journey — from the public landing page all the way through the member area.
+  </p>
+  <p class="lead">
+    Most importantly, today we <b>completed the integration of all categories</b> of your <b>Vocabulary Sheets</b> —
+    the centerpiece of your marketing. Learners can browse vocabulary by real-life scenes such as "supermarket," "bank,"
+    "airport," and "restaurant," and tap any word to hear its pronunciation.
+  </p>
+</div>
+
+<!-- ============ SUMMARY ============ -->
+<div class="section">
+  <h2>Today at a glance <small>summary</small></h2>
+  <div class="stat-grid">
+    <div class="stat"><div class="n">19</div><div class="l">Live routes (screens)</div></div>
+    <div class="stat"><div class="n blue">10</div><div class="l">Vocabulary categories</div></div>
+    <div class="stat"><div class="n">101</div><div class="l">Vocabulary sheets (topics)</div></div>
+    <div class="stat"><div class="n blue">2,122</div><div class="l">Words included</div></div>
+  </div>
+  <p class="lead" style="margin-top:12px">
+    The core user flow is up and running as a prototype: public LP, sign-up &amp; subscription, member dashboard, lessons,
+    mini-games, vocabulary, avatar, profile, community, review, news, and the admin console. Japanese/English language
+    switching and mobile (smartphone) layouts are also supported.
+  </p>
+</div>
+
+<!-- ============ VOCAB ============ -->
+<div class="section">
+  <h2>Vocabulary Sheets — all categories complete <small>today's main deliverable</small></h2>
+  <p class="lead">
+    Based on the vocabulary PDF you supplied, every word has been digitized with <b>kanji, kana, romaji, and English</b>.
+    Because the Japanese text could not be machine-extracted from the source, each page was transcribed by hand to ensure accuracy.
+    Learners pick a category, open a topic sheet, and tap a card to <b>hear the pronunciation</b>; a "Quiz mode" hides the
+    meanings for self-testing.
+  </p>
+  <table>
+    <thead><tr><th>Category</th><th>Sample topics</th><th class="num">Status</th></tr></thead>
+    <tbody>
+      <tr><td>Home &amp; Daily Life</td><td>Living Room / Kitchen / Cleaning &amp; Laundry / Furniture, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Shopping &amp; Retail</td><td>Supermarket / Convenience Store / Fashion / Payments, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Food &amp; Dining</td><td>Restaurant / Japanese cuisine / Sushi / Izakaya / Cafe, etc. (19 topics)</td><td class="num">Done</td></tr>
+      <tr><td>Travel &amp; Tourism</td><td>Airport / Tickets &amp; Booking / Hotel / Sightseeing, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Public Life &amp; Services</td><td>Banking &amp; ATMs / Post Office / City Hall / Hospital, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Education &amp; Career</td><td>School / Supplies / Job Hunting / Remote Work, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Social &amp; Identity</td><td>Family / Friends / Emotions / Personality, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Nature &amp; Seasons</td><td>Weather / Four Seasons / Plants &amp; Animals / Disasters, etc.</td><td class="num">Done</td></tr>
+      <tr><td>Leisure &amp; Entertainment</td><td>Music / Anime &amp; Manga / Video Games / Movies, etc. (10 topics)</td><td class="num">Done</td></tr>
+      <tr><td>Conversation &amp; Slang</td><td>Counters / Onomatopoeia / Frequency adverbs / Time, Conjunctions, Directions</td><td class="num">Done</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <b>Note:</b> For the "Conversation &amp; Slang" category, the originally planned placeholder topics (Casual Phrases, Dialects, etc.)
+    had no corresponding data in the PDF, so we replaced them with the topics actually present in the source —
+    <b>Counters, Onomatopoeia, Frequency Adverbs, Time Words, Conjunctions, and Directional Words</b>.
+    The PDF also still contains a large amount of vocabulary not yet covered by the current 10 categories
+    (ceremonies, holidays, sports, sensory words for colors and shapes, grouped verbs, etc.), which we can add by expanding the taxonomy on request.
+  </div>
+</div>
+
+<!-- ============ FEATURES ============ -->
+<div class="section">
+  <h2>Key features implemented</h2>
+  <h3>Public area (marketing LP)</h3>
+  <ul class="feat">
+    <li>Hero / About / Features / Curriculum (80 lessons, Class A–D) / 4 pricing plans / FAQ / CTA</li>
+    <li>The mascot "Meemi" hand-built in SVG (structured for easy swap once official art arrives)</li>
+    <li>Japanese / English language switching; smartphone support (including the hamburger menu)</li>
+  </ul>
+  <h3>Member area</h3>
+  <ul class="feat">
+    <li>Dashboard (progress, streak, coins, today's goals, news)</li>
+    <li>Lessons (immersive player screen, browser speech-synthesis pronunciation, multiple exercise types)</li>
+    <li>Three mini-games (timed quiz / memory match / listening) that auto-link to the vocabulary data</li>
+    <li>Vocabulary Sheets (completed today, above) / Review sheets / News reader</li>
+    <li>Meemi avatar customizer (parametric SVG, dress-up, save)</li>
+    <li>Profile &amp; social (follow, etc.), Community (chat, voice rooms, events)</li>
+  </ul>
+  <h3>Foundation &amp; operations</h3>
+  <ul class="feat">
+    <li>Auth screens (login / sign-up / email verification) and subscription (multi-currency, coupons, cancellation flow)</li>
+    <li>Admin CMS (role-based permissions; news, events, users, and report moderation)</li>
+    <li>Onboarding (first-run tutorial — a guided tour that highlights the real UI)</li>
+  </ul>
+</div>
+
+<!-- ============ URL ============ -->
+<div class="section">
+  <h2>Live URLs (try it on real devices)</h2>
+  <div class="url-box">
+    <div class="cap">▶ Home (public landing page)</div>
+    <div class="u">https://jiantailanglin266-rgb.github.io/sakura-speak-lp/</div>
+  </div>
+  <div class="url-box">
+    <div class="cap">▶ Today's highlight: Vocabulary Sheets (member area)</div>
+    <div class="u">https://jiantailanglin266-rgb.github.io/sakura-speak-lp/dashboard/vocab/</div>
+  </div>
+  <table>
+    <thead><tr><th>Screen</th><th>URL (under the domain above)</th></tr></thead>
+    <tbody>
+      <tr><td>Member dashboard</td><td>/dashboard/</td></tr>
+      <tr><td>Lessons</td><td>/dashboard/lessons/</td></tr>
+      <tr><td>Mini-games</td><td>/dashboard/games/</td></tr>
+      <tr><td>Avatar creator</td><td>/dashboard/avatar/</td></tr>
+      <tr><td>Profile / Community</td><td>/dashboard/profile/ · /dashboard/community/</td></tr>
+      <tr><td>Sign-up / Checkout</td><td>/auth/ · /subscribe/</td></tr>
+      <tr><td>Admin console (CMS)</td><td>/admin/</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    Note: You can also reach the member area via the "Dashboard (demo)" link in the public LP footer. This is a pre-data
+    prototype, so inputs, purchases, and submissions are demo behavior (no real charges or messages are sent).
+    Audio uses the device's built-in browser speech synthesis.
+  </div>
+</div>
+
+<!-- ============ NEXT ============ -->
+<div class="section">
+  <h2>Next steps (for discussion)</h2>
+  <ul class="feat">
+    <li>Integrate the remaining vocabulary (beyond the 10 categories: ceremonies, holidays, sports, sensory words, etc. — via taxonomy expansion)</li>
+    <li>Produce the full lesson content (Class A–D; the scope of material you plan to provide)</li>
+    <li>Production hardening: authentication (Supabase), live Stripe billing, database design, server-side audio quality</li>
+    <li>Replace Meemi with the official mascot artwork</li>
+  </ul>
+  <div class="closing">
+    <p style="margin:0">
+      This report captures where things stand today. We'd be grateful if you could try the screens yourself and share
+      your candid thoughts on usability, design direction, and which features you'd like us to prioritize next.
+      We will continue working hard to make Sakura Speak the best it can be. Thank you very much.
+    </p>
+    <div class="sign">
+      June 27, 2026<br>
+      <b>STELLAR / MOFURI — Sakura Speak Development Team</b>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
