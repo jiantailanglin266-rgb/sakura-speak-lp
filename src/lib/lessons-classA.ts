@@ -617,7 +617,7 @@ export const classALessons: Lesson[] = [
           { jp: "みどり", en: "green" },
         ],
       },
-      { type: "teach", label: "Grammar", jp: "あかいはな", romaji: "akai hana", en: "a red flower", note: "Add い to a color to describe a noun: あかい = red (before nouns). The noun form is あか." },
+      { type: "teach", label: "Grammar", jp: "あかいはな", romaji: "akai hana", en: "a red flower", note: "あか・あお・しろ・くろ become i-adjectives before a noun (あかい/あおい/しろい/くろい). Colours like みどり take の: みどりのくるま." },
       {
         type: "choice",
         prompt: "“a red flower” = ___ はな",
