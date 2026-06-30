@@ -36,6 +36,8 @@ export default function PortalGrid() {
                     ? "/dashboard/games"
                     : p.key === "vocab"
                     ? "/dashboard/vocab"
+                    : p.key === "anime"
+                    ? "/dashboard/anime"
                     : p.key === "chat" || p.key === "voice"
                     ? "/dashboard/community"
                     : p.key === "review"

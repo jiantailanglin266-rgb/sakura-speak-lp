@@ -191,6 +191,13 @@ export default function Icon({ name, className = "h-7 w-7" }: Props) {
           <circle cx="12" cy="12" r="0.6" fill="currentColor" />
         </svg>
       );
+    case "film":
+      return (
+        <svg {...common}>
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <path d="M3 9h18M3 15h18M8 4v16M16 4v16" />
+        </svg>
+      );
     case "gem":
       return (
         <svg {...common}>

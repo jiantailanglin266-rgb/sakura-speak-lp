@@ -80,6 +80,15 @@ export const portals: Portal[] = [
     accent: "blue",
   },
   {
+    key: "anime",
+    icon: "film",
+    title: "Anime Learning",
+    jp: "アニメで学ぶ",
+    blurb: "Learn from official anime trailers, clips & cultural videos.",
+    meta: "New ✦",
+    accent: "lilac",
+  },
+  {
     key: "review",
     icon: "review",
     title: "Review Sheets",
@@ -190,6 +199,7 @@ export const navItems = [
   { key: "home", icon: "home", label: "Home", active: true },
   { key: "lessons", icon: "book", label: "Lessons", active: false },
   { key: "vocab", icon: "vocab", label: "Vocabulary", active: false },
+  { key: "anime", icon: "film", label: "Anime Learning", active: false },
   { key: "review", icon: "review", label: "Review", active: false },
   { key: "games", icon: "game", label: "Games", active: false },
   { key: "chat", icon: "chat", label: "Chatrooms", active: false },

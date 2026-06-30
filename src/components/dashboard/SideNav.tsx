@@ -30,6 +30,8 @@ export default function SideNav() {
                 ? "/dashboard/games"
                 : n.key === "vocab"
                 ? "/dashboard/vocab"
+                : n.key === "anime"
+                ? "/dashboard/anime"
                 : n.key === "chat" || n.key === "voice"
                 ? "/dashboard/community"
                 : n.key === "review"
