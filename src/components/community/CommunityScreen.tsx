@@ -3,16 +3,14 @@
 import { useState } from "react";
 import Icon from "../ui/Icon";
 import ChatRoom from "./ChatRoom";
-import VoiceRoom from "./VoiceRoom";
 import {
   textRooms,
-  voiceRooms,
   events,
   typeBadge,
   type CommunityEvent,
 } from "@/lib/community";
 
-type Tab = "chat" | "voice" | "events";
+type Tab = "chat" | "events";
 
 const chipAccent: Record<string, string> = {
   pink: "bg-pink-soft/70 text-pink-ink",
@@ -48,7 +46,6 @@ function downloadIcs(e: CommunityEvent) {
 export default function CommunityScreen() {
   const [tab, setTab] = useState<Tab>("chat");
   const [chatId, setChatId] = useState<string | null>(null);
-  const [voiceId, setVoiceId] = useState<string | null>(null);
   const [rsvp, setRsvp] = useState<Set<string>>(new Set());
   const [toast, setToast] = useState<string | null>(null);
 
@@ -59,17 +56,15 @@ export default function CommunityScreen() {
 
   const tabs: { id: Tab; label: string; icon: string }[] = [
     { id: "chat", label: "Chatrooms", icon: "chat" },
-    { id: "voice", label: "Voice Rooms", icon: "mic" },
     { id: "events", label: "Events", icon: "calendar" },
   ];
 
   const activeChat = chatId ? textRooms.find((r) => r.id === chatId)! : null;
-  const activeVoice = voiceId ? voiceRooms.find((r) => r.id === voiceId)! : null;
 
   return (
     <div>
       {/* tabs (hidden while inside a room) */}
-      {!activeChat && !activeVoice && (
+      {!activeChat && (
         <div className="mb-5 flex gap-2">
           {tabs.map((t) => (
             <button
@@ -113,42 +108,6 @@ export default function CommunityScreen() {
                     <span className="block truncate text-xs text-ink-soft">{r.topic}</span>
                   </span>
                   <Icon name="chevron" className="h-4 w-4 shrink-0 text-ink-mute" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        ))}
-
-      {/* ---- VOICE ---- */}
-      {tab === "voice" &&
-        (activeVoice ? (
-          <VoiceRoom room={activeVoice} onBack={() => setVoiceId(null)} onToast={flash} />
-        ) : (
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {voiceRooms.map((r) => (
-              <li key={r.id}>
-                <button
-                  onClick={() => setVoiceId(r.id)}
-                  className="flex h-full w-full flex-col rounded-2xl bg-white p-4 text-left shadow-card ring-1 ring-pink-soft/40 transition-all hover:-translate-y-0.5 hover:shadow-pop"
-                >
-                  <span className="flex items-center gap-2">
-                    <span className={`rounded-full px-2 py-0.5 text-[0.6rem] font-bold ${typeBadge[r.type]}`}>
-                      {r.type}
-                    </span>
-                    {r.isPrivate && <span className="text-xs">🔒</span>}
-                    {r.live ? (
-                      <span className="flex items-center gap-1 rounded-full bg-pink-deep px-2 py-0.5 text-[0.6rem] font-bold text-white">
-                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" /> LIVE
-                      </span>
-                    ) : (
-                      r.when && <span className="text-[0.65rem] font-bold text-ink-mute">{r.when}</span>
-                    )}
-                  </span>
-                  <span className="mt-2 font-bold text-ink">{r.name}</span>
-                  <span className="text-xs text-ink-soft">Host: {r.host}</span>
-                  <span className="mt-2 text-xs text-ink-mute">
-                    🎙️ {r.speakers.length} on stage · 👂 {r.listeners} listening
-                  </span>
                 </button>
               </li>
             ))}

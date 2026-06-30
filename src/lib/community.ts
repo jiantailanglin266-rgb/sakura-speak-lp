@@ -1,11 +1,4 @@
-/* Community mock data: text chatrooms, voice rooms, events. */
-import { defaultConfig, type AvatarConfig } from "./avatar";
-
-const A = (o: Partial<AvatarConfig>): AvatarConfig => ({ ...defaultConfig, ...o });
-
-export type Role = "Host" | "Co-host" | "Speaker" | "Listener";
-
-export type Member = { name: string; role: Role; cfg: AvatarConfig };
+/* Community mock data: text chatrooms & events. */
 
 // ---------- Text chatrooms ----------
 export type TextRoom = {
@@ -52,91 +45,9 @@ export const cannedReplies = [
   "Can someone explain that grammar?",
 ];
 
-// ---------- Voice rooms ----------
-export type VoiceRoom = {
-  id: string;
-  name: string;
-  jp: string;
-  type: "Public" | "Private" | "Event" | "Community" | "Official";
-  host: string;
-  live: boolean;
-  listeners: number;
-  speakers: Member[];
-  isPrivate?: boolean;
-  code?: string;
-  when?: string;
-};
-
-export const voiceRooms: VoiceRoom[] = [
-  {
-    id: "cafe",
-    name: "Café Japanese · Casual Talk",
-    jp: "カフェ日本語",
-    type: "Public",
-    host: "Yuki",
-    live: true,
-    listeners: 24,
-    speakers: [
-      { name: "Yuki (Native)", role: "Host", cfg: A({ fur: "#fff0d9", eye: "#b07a4a", hair: "bob", hairColor: "#2f2b30" }) },
-      { name: "Aiko", role: "Co-host", cfg: A({ fur: "#ffffff", eye: "#8fe0a8", hair: "bangs", hairColor: "#7a5a44" }) },
-      { name: "Marco", role: "Speaker", cfg: A({ fur: "#f3d9b1", eye: "#b07a4a" }) },
-    ],
-  },
-  {
-    id: "pron",
-    name: "Pronunciation Clinic",
-    jp: "発音クリニック",
-    type: "Official",
-    host: "Hana",
-    live: true,
-    listeners: 41,
-    speakers: [
-      { name: "Hana (Native)", role: "Host", cfg: A({ fur: "#ffffff", eye: "#8fd6ff", lashes: true, hair: "ponytail", hairColor: "#2f2b30" }) },
-    ],
-  },
-  {
-    id: "n5",
-    name: "N5 Study Group",
-    jp: "N5スタディ",
-    type: "Community",
-    host: "Marco",
-    live: true,
-    listeners: 12,
-    speakers: [
-      { name: "Marco", role: "Host", cfg: A({ fur: "#f3d9b1", eye: "#b07a4a" }) },
-      { name: "Lena", role: "Speaker", cfg: A({ fur: "#ddd1ff", eye: "#b59cff" }) },
-    ],
-  },
-  {
-    id: "friends",
-    name: "Tomodachi Hangout",
-    jp: "ともだちハングアウト",
-    type: "Private",
-    host: "Sora",
-    live: true,
-    listeners: 6,
-    isPrivate: true,
-    code: "1234",
-    speakers: [
-      { name: "Sora", role: "Host", cfg: A({ fur: "#d9dde3", eye: "#b59cff", lashes: true, hair: "ponytail", hairColor: "#7db8e8" }) },
-    ],
-  },
-  {
-    id: "anime-night",
-    name: "Anime Night Special",
-    jp: "アニメナイト",
-    type: "Event",
-    host: "Meemi Team",
-    live: false,
-    listeners: 0,
-    when: "Sat · 21:00",
-    speakers: [
-      { name: "Meemi Team", role: "Host", cfg: A({ fur: "#ffffff", eye: "#8fd6ff" }) },
-    ],
-  },
-];
-
 // ---------- Events ----------
+export type EventType = "Public" | "Private" | "Event" | "Community" | "Official";
+
 export type CommunityEvent = {
   id: string;
   title: string;
@@ -144,7 +55,7 @@ export type CommunityEvent = {
   host: string;
   when: string;
   going: number;
-  type: VoiceRoom["type"];
+  type: EventType;
   desc: string;
   dtStart: string; // ICS local datetime YYYYMMDDTHHMMSS
   dtEnd: string;
@@ -201,7 +112,7 @@ export const events: CommunityEvent[] = [
   },
 ];
 
-export const typeBadge: Record<VoiceRoom["type"], string> = {
+export const typeBadge: Record<EventType, string> = {
   Public: "bg-mint/40 text-[#2f9d77]",
   Private: "bg-ink/10 text-ink-soft",
   Event: "bg-[#efe7ff] text-[#7a5bd6]",

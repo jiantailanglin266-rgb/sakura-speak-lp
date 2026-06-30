@@ -32,7 +32,7 @@ export default function SideNav() {
                 ? "/dashboard/vocab"
                 : n.key === "anime"
                 ? "/dashboard/anime"
-                : n.key === "chat" || n.key === "voice"
+                : n.key === "chat"
                 ? "/dashboard/community"
                 : n.key === "review"
                 ? "/dashboard/review"

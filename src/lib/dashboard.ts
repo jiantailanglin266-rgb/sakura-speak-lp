@@ -111,18 +111,9 @@ export const portals: Portal[] = [
     icon: "chat",
     title: "Chatrooms",
     jp: "チャット",
-    blurb: "Practice with learners in text rooms.",
+    blurb: "Practice with learners in text rooms & community events.",
     meta: "8 active now",
     accent: "lilac",
-  },
-  {
-    key: "voice",
-    icon: "mic",
-    title: "Voice Rooms",
-    jp: "ボイス",
-    blurb: "Speak live with learners, guests & native speakers.",
-    meta: "2 live",
-    accent: "pink",
   },
   {
     key: "news",
@@ -203,7 +194,6 @@ export const navItems = [
   { key: "review", icon: "review", label: "Review", active: false },
   { key: "games", icon: "game", label: "Games", active: false },
   { key: "chat", icon: "chat", label: "Chatrooms", active: false },
-  { key: "voice", icon: "mic", label: "Voice", active: false },
   { key: "news", icon: "news", label: "News", active: false },
   { key: "profile", icon: "profile", label: "Profile", active: false },
 ] as const;

@@ -6,9 +6,9 @@ export default function EventsCard() {
   return (
     <div className="rounded-[1.5rem] bg-white p-5 shadow-card ring-1 ring-pink-soft/40">
       <div className="flex items-center gap-2">
-        <Icon name="mic" className="h-5 w-5 text-pink-deep" />
+        <Icon name="calendar" className="h-5 w-5 text-pink-deep" />
         <h3 className="font-display text-base font-extrabold text-ink">
-          Voice events
+          Community events
         </h3>
       </div>
 

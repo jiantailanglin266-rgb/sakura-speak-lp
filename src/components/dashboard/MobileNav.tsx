@@ -5,7 +5,7 @@ const items = [
   { key: "home", icon: "home", label: "Home", active: true },
   { key: "lessons", icon: "book", label: "Lessons", active: false },
   { key: "games", icon: "game", label: "Games", active: false },
-  { key: "voice", icon: "mic", label: "Voice", active: false },
+  { key: "chat", icon: "chat", label: "Community", active: false },
   { key: "profile", icon: "profile", label: "You", active: false },
 ] as const;
 
@@ -23,7 +23,7 @@ export default function MobileNav() {
                   ? "/dashboard/lessons"
                   : n.key === "games"
                   ? "/dashboard/games"
-                  : n.key === "voice"
+                  : n.key === "chat"
                   ? "/dashboard/community"
                   : n.key === "profile"
                   ? "/dashboard/profile"
