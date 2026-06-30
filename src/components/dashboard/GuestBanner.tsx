@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "../auth/AuthProvider";
 
 /* Shown only to guest sessions: a gentle nudge to create a real account so
-   progress is saved. Links to the upgrade form on /auth. */
+   progress is saved. Hidden on immersive play screens (lesson / game players)
+   so it never overlaps their bottom action button. */
 export default function GuestBanner() {
   const { user } = useAuth();
-  if (!user?.isGuest) return null;
+  const pathname = usePathname() || "";
+  const immersive = /^\/dashboard\/(lesson(\/|$)|games\/[^/]+)/.test(pathname);
+  if (immersive || !user?.isGuest) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-20 z-40 flex justify-center px-4 lg:bottom-5">
