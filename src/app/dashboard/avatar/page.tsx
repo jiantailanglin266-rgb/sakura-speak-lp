@@ -4,10 +4,10 @@ import SideNav from "@/components/dashboard/SideNav";
 import TopBar from "@/components/dashboard/TopBar";
 import MobileNav from "@/components/dashboard/MobileNav";
 import Icon from "@/components/ui/Icon";
-import Customizer from "@/components/avatar/Customizer";
+import AvatarPicker from "@/components/avatar/AvatarPicker";
 
 export const metadata: Metadata = {
-  title: "Customize Meemi",
+  title: "Choose your avatar",
 };
 
 export default function AvatarPage() {
@@ -29,15 +29,15 @@ export default function AvatarPage() {
             </Link>
             <div>
               <h1 className="font-display text-2xl font-extrabold text-ink">
-                Customize your Meemi 🌸
+                Choose your avatar 🌸
               </h1>
               <p className="text-sm text-ink-soft">
-                Make it yours — change look, dress up, pick a profile picture.
+                Pick the Meemi look that feels like you.
               </p>
             </div>
           </div>
 
-          <Customizer />
+          <AvatarPicker />
         </main>
 
         <MobileNav />

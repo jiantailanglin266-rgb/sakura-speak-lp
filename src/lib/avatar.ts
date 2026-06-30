@@ -130,3 +130,39 @@ export const profileVariations: { id: string; label: string; mood: AvatarMood; b
   { id: "cool", label: "Cool", mood: "cool", bg: "#efe7ff" },
   { id: "wow", label: "Wow", mood: "surprised", bg: "#fff2cc" },
 ];
+
+// ---------- Selectable avatar presets ----------
+// A small fixed set of ready-made Meemi looks (no dress-up). These parametric
+// looks are placeholders — the client's supplied artwork will be added here as
+// additional selectable avatars later, using the same selection UI.
+export type AvatarPreset = {
+  id: string;
+  label: string;
+  mood: AvatarMood;
+  bg: string;
+  config: AvatarConfig;
+};
+
+export const avatarPresets: AvatarPreset[] = [
+  { id: "classic", label: "Classic", mood: "happy", bg: "#ffe6f0", config: { ...defaultConfig } },
+  {
+    id: "sakura", label: "Sakura", mood: "love", bg: "#ffd6e5",
+    config: { ...defaultConfig, fur: "#ffd0e0", eye: "#ff9ec4", cheek: "#ff9e8a", top: "#f7a8c4", bottom: "#ffd6e5" },
+  },
+  {
+    id: "mint", label: "Mint", mood: "uwu", bg: "#e7f7ee",
+    config: { ...defaultConfig, fur: "#cdeedd", eye: "#4cc08a", top: "#9fe3c5", bottom: "#ffffff" },
+  },
+  {
+    id: "lilac", label: "Lilac", mood: "wink", bg: "#efe7ff",
+    config: { ...defaultConfig, fur: "#ddd1ff", eye: "#b59cff", lashes: true, top: "#c9b6ff", bottom: "#efe7ff" },
+  },
+  {
+    id: "cocoa", label: "Cocoa", mood: "cool", bg: "#f6ecdf",
+    config: { ...defaultConfig, fur: "#c89b6e", eye: "#ffc14d", cheek: "#ffc6a8", top: "#ffd97a", bottom: "#5b6b9a" },
+  },
+  {
+    id: "midnight", label: "Midnight", mood: "surprised", bg: "#e7ecf7",
+    config: { ...defaultConfig, fur: "#6b6b78", eye: "#bfeaff", cheek: null, top: "#3a3a42", bottom: "#8fd6ff" },
+  },
+];
