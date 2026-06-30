@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Meemi from "../Meemi";
 import { TRIAL_DAYS } from "@/lib/billing";
+import { useAuth } from "./AuthProvider";
 
 type Mode = "login" | "signup" | "forgot" | "sent" | "verify";
 
@@ -28,16 +29,18 @@ function AppleIcon() {
 
 export default function AuthScreen() {
   const router = useRouter();
+  const { signIn, signUp, signInAsGuest } = useAuth();
   const [mode, setMode] = useState<Mode>("signup");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   const go = () => router.push("/dashboard");
 
-  const submit = () => {
+  const submit = async () => {
     setError(null);
     if (mode === "forgot") {
       if (!/^\S+@\S+\.\S+$/.test(email)) return setError("Enter a valid email.");
@@ -48,9 +51,33 @@ export default function AuthScreen() {
     if (mode === "signup") {
       if (username.trim().length < 3) return setError("Pick a username (3+ characters).");
       if (!agree) return setError("Please confirm the age & guidelines note.");
-      return setMode("verify");
     }
-    go(); // login
+    setBusy(true);
+    try {
+      if (mode === "signup") {
+        await signUp({ email: email.trim(), username: username.trim(), password });
+      } else {
+        await signIn({ email: email.trim(), password });
+      }
+      go();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const guest = async () => {
+    setError(null);
+    setBusy(true);
+    try {
+      await signInAsGuest();
+      go();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   // ---------- verify / sent screens ----------
@@ -130,10 +157,10 @@ export default function AuthScreen() {
 
       {/* social */}
       <div className="mt-5 space-y-2.5">
-        <button onClick={go} className={btnSocial}>
+        <button onClick={guest} disabled={busy} className={btnSocial}>
           <GoogleIcon /> Continue with Google
         </button>
-        <button onClick={go} className={btnSocial}>
+        <button onClick={guest} disabled={busy} className={btnSocial}>
           <AppleIcon /> Continue with Apple
         </button>
       </div>
@@ -165,11 +192,13 @@ export default function AuthScreen() {
 
       {error && <p className="mt-3 text-sm font-semibold text-[#d6557a]">{error}</p>}
 
-      <button onClick={submit} className={btnPrimary}>
-        {isSignup ? "Create account" : "Log in"}
+      <button onClick={submit} disabled={busy} className={btnPrimary}>
+        {busy ? "Please wait…" : isSignup ? "Create account" : "Log in"}
       </button>
 
-      <button onClick={go} className={btnLink}>Continue as guest →</button>
+      <button onClick={guest} disabled={busy} className={btnLink}>
+        Continue as guest →
+      </button>
 
       <p className="mt-4 text-[0.7rem] leading-relaxed text-ink-mute">
         Email verification required · up to 2 devices · by continuing you agree to our Terms & Privacy.

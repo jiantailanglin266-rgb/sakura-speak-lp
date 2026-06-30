@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Baloo_2, Quicksand, Zen_Maru_Gothic } from "next/font/google";
 import { site } from "@/lib/site";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import { AuthProvider } from "@/components/auth/AuthProvider";
 import "./globals.css";
 
 const baloo = Baloo_2({
@@ -69,7 +70,9 @@ export default function RootLayout({
       className={`${baloo.variable} ${quicksand.variable} ${zenMaru.variable}`}
     >
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Meemi from "../Meemi";
 import Icon from "../ui/Icon";
 import { navItems } from "@/lib/dashboard";
+import LogoutButton from "./LogoutButton";
 
 export default function SideNav() {
   return (
@@ -66,6 +67,8 @@ export default function SideNav() {
           Upgrade
         </Link>
       </div>
+
+      <LogoutButton className="mt-2" />
     </aside>
   );
 }
