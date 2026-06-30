@@ -79,9 +79,9 @@ export const articles: Article[] = [
     date: "Jun 21, 2026",
     emoji: "🎬",
     accent: "lilac",
-    excerpt: "Join a watch-along voice room and learn vocabulary from popular anime scenes.",
+    excerpt: "Join a watch-along event and learn vocabulary from popular anime scenes.",
     body: [
-      "This Saturday at 21:00, hop into the Anime Night voice room. We'll go through memorable lines and the everyday Japanese hiding inside them.",
+      "This Saturday at 21:00, join the Anime Night watch-along. We'll go through memorable lines and the everyday Japanese hiding inside them.",
       "RSVP from the Community → Events tab and add it to your calendar so you don't miss it. See you there! 🌸",
     ],
   },

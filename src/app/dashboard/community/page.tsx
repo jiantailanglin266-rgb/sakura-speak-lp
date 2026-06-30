@@ -32,7 +32,7 @@ export default function CommunityPage() {
                 Community 💬
               </h1>
               <p className="text-sm text-ink-soft">
-                Chat, speak live, and join events with learners and native speakers.
+                Chat with learners and join events with native speakers.
               </p>
             </div>
           </div>

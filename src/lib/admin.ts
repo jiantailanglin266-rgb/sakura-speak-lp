@@ -24,7 +24,7 @@ export const roles: Record<RoleId, { label: string; desc: string; perms: Section
   },
   host: {
     label: "Event Host",
-    desc: "Create and run events & voice rooms.",
+    desc: "Create and run community events.",
     perms: ["overview", "events"],
   },
   editor: {
@@ -119,7 +119,7 @@ export type Report = {
 
 export const reportsSeed: Report[] = [
   { id: "r1", kind: "message", target: "@spam_bot_22", reporter: "@aiko_learns", reason: "Spam / links", context: "“Free coins!! visit my-site .com 🔥🔥”", where: "Beginner's Lounge" },
-  { id: "r2", kind: "user", target: "@rude_guy", reporter: "@marco_jp", reason: "Harassment", context: "Repeated rude comments in voice room", where: "Café Japanese" },
+  { id: "r2", kind: "user", target: "@rude_guy", reporter: "@marco_jp", reason: "Harassment", context: "Repeated rude comments in chatroom", where: "Beginner's Lounge" },
   { id: "r3", kind: "message", target: "@lena_k", reporter: "@hana_sensei", reason: "Off-topic", context: "“buy followers here”", where: "JLPT Study" },
   { id: "r4", kind: "user", target: "@troll_99", reporter: "@yuki_native", reason: "Abuse", context: "Toxic behavior, multiple warnings", where: "Multiple rooms" },
 ];

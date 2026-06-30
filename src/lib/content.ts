@@ -39,9 +39,9 @@ export const features: Feature[] = [
   },
   {
     icon: "chat",
-    title: "Text & voice chatrooms",
+    title: "Community chatrooms",
     jp: "コミュニティ",
-    desc: "Practice for real. Join rooms, attend voice events with native speakers, and grow alongside fellow learners.",
+    desc: "Practice for real. Join topic rooms, attend events with native speakers, and grow alongside fellow learners.",
     accent: "lilac",
   },
   {

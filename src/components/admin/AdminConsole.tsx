@@ -181,7 +181,7 @@ function EventsManager({ onToast }: { onToast: (m: string) => void }) {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h2 className="font-display text-xl font-extrabold text-ink">Events</h2>
-          <p className="text-sm text-ink-soft">Schedule and run events & voice rooms.</p>
+          <p className="text-sm text-ink-soft">Schedule and run community events.</p>
         </div>
         <button onClick={() => onToast("New event form (demo)")} className="rounded-full bg-gradient-to-r from-pink-deep to-pink px-4 py-2.5 text-sm font-extrabold text-white shadow-soft">
           + New event

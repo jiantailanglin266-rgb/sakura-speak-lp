@@ -138,7 +138,7 @@ export const portals: Portal[] = [
 export const recentAchievements = [
   { name: "Class A Complete", tier: "Gold", icon: "🎓" },
   { name: "7 Day Streak", tier: "Silver", icon: "🔥" },
-  { name: "First Voice Room", tier: "Bronze", icon: "🎙️" },
+  { name: "First Message", tier: "Bronze", icon: "💬" },
   { name: "100 Words", tier: "Sakura", icon: "🌸" },
 ];
 

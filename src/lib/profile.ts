@@ -34,7 +34,7 @@ export const achievementCatalog: (Achievement & { desc: string })[] = [
   { name: "7 Day Streak", tier: "Silver", icon: "🔥", desc: "Practice 7 days in a row" },
   { name: "30 Day Streak", tier: "Gold", icon: "🔥", desc: "Practice 30 days in a row" },
   { name: "100 Words", tier: "Sakura", icon: "🌸", desc: "Learn 100 words" },
-  { name: "First Voice Room", tier: "Bronze", icon: "🎙️", desc: "Join a voice room" },
+  { name: "First Message", tier: "Bronze", icon: "💬", desc: "Post in a chatroom" },
   { name: "Game Master", tier: "Silver", icon: "🎮", desc: "Play 25 mini-games" },
   { name: "Event Host", tier: "Platinum", icon: "👑", desc: "Host a community event" },
 ];
@@ -45,7 +45,7 @@ export const myUnlocked = new Set([
   "Class A Complete",
   "7 Day Streak",
   "100 Words",
-  "First Voice Room",
+  "First Message",
   "Game Master",
 ]);
 
@@ -69,7 +69,7 @@ export const me: Profile = {
     { icon: "game", text: "Played Word Blitz — best combo 9", time: "5h ago" },
     { icon: "fire", text: "Reached a 12-day streak", time: "1d ago" },
     { icon: "trophy", text: "Unlocked “Game Master”", time: "2d ago" },
-    { icon: "mic", text: "Joined Café Japanese voice room", time: "4d ago" },
+    { icon: "chat", text: "Said hi in Beginner's Lounge", time: "4d ago" },
   ],
 };
 

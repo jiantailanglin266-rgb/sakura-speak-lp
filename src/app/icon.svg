@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sakura Speak">
+  <rect width="64" height="64" rx="16" fill="#fff1f6"/>
+  <g transform="translate(32 33)" fill="#f48fb6">
+    <g id="petal">
+      <path d="M0 -8 C7 -14 8 -23 2 -27 C1 -25.5 -1 -25.5 -2 -27 C-8 -23 -7 -14 0 -8 Z"/>
+    </g>
+    <use href="#petal" transform="rotate(72)"/>
+    <use href="#petal" transform="rotate(144)"/>
+    <use href="#petal" transform="rotate(216)"/>
+    <use href="#petal" transform="rotate(288)"/>
+  </g>
+  <circle cx="32" cy="33" r="4.5" fill="#fcd34d"/>
+</svg>
