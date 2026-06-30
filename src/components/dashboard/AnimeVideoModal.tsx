@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Icon from "../ui/Icon";
 import { speak } from "@/lib/speak";
-import { youtubeEnabled } from "@/lib/youtube";
 import { saveWord, isSaved } from "@/lib/anime-saved";
 import { samplePhrases } from "@/data/mockAnimeVideos";
 import type { AnimeVideo } from "@/types/animeLearning";
@@ -58,6 +57,13 @@ export default function AnimeVideoModal({
 
   const [savedAll, setSavedAll] = useState(false);
 
+  // Mock cards have placeholder ids → can't embed; link out to a real YouTube
+  // search for official content instead. Real API videos embed inline.
+  const isMock = video.id.startsWith("MOCK_");
+  const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(
+    `${video.title} 公式 official`
+  )}`;
+
   // lock scroll + close on Esc
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -94,21 +100,38 @@ export default function AnimeVideoModal({
           ✕
         </button>
 
-        {/* player */}
-        <div className="aspect-video w-full overflow-hidden rounded-t-[1.75rem] bg-black">
-          <iframe
-            className="h-full w-full"
-            src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
-            title={video.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
+        {/* player — inline embed for real videos; sample cards link out to YouTube */}
+        {isMock ? (
+          <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-t-[1.75rem] bg-gradient-to-br from-[#c9b6ff] via-pink-soft/60 to-blue-soft/60 px-6 text-center">
+            <Icon name="film" className="h-9 w-9 text-white/90" />
+            <p className="text-sm font-semibold text-ink">
+              Sample card — open the real official video on YouTube
+            </p>
+            <a
+              href={searchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-extrabold text-pink-deep shadow-pop transition-transform hover:-translate-y-0.5"
+            >
+              <Icon name="play" className="h-4 w-4 fill-current" /> Open on YouTube ↗
+            </a>
+          </div>
+        ) : (
+          <div className="aspect-video w-full overflow-hidden rounded-t-[1.75rem] bg-black">
+            <iframe
+              className="h-full w-full"
+              src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
 
         <div className="p-5 sm:p-6">
-          {!youtubeEnabled && (
+          {isMock && (
             <p className="mb-3 rounded-xl bg-[#fffaf3] px-3 py-2 text-xs text-[#7a6243] ring-1 ring-[#f6e3c7]">
-              Demo content — connect the YouTube API key to stream live official videos.
+              Demo content — “Open on YouTube” jumps to real official videos. Add a YouTube API key to stream live videos inline.
             </p>
           )}
 
