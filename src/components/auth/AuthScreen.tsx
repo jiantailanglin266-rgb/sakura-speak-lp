@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Meemi from "../Meemi";
@@ -29,7 +29,7 @@ function AppleIcon() {
 
 export default function AuthScreen() {
   const router = useRouter();
-  const { signIn, signUp, signInAsGuest } = useAuth();
+  const { signIn, signUp, signInAsGuest, upgradeGuest, refresh } = useAuth();
   const [mode, setMode] = useState<Mode>("signup");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +37,17 @@ export default function AuthScreen() {
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [upgrade, setUpgrade] = useState(false);
 
+  // Guest → full account: /auth?upgrade=1 shows the "save your account" form.
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("upgrade") === "1") {
+      setUpgrade(true);
+      setMode("signup");
+    }
+  }, []);
+
+  const showFields = mode === "signup" || upgrade; // username + agree
   const go = () => router.push("/dashboard");
 
   const submit = async () => {
@@ -48,20 +58,39 @@ export default function AuthScreen() {
     }
     if (!/^\S+@\S+\.\S+$/.test(email)) return setError("Enter a valid email.");
     if (password.length < 8) return setError("Password must be at least 8 characters.");
-    if (mode === "signup") {
+    if (showFields) {
       if (username.trim().length < 3) return setError("Pick a username (3+ characters).");
       if (!agree) return setError("Please confirm the age & guidelines note.");
     }
     setBusy(true);
     try {
-      if (mode === "signup") {
-        await signUp({ email: email.trim(), username: username.trim(), password });
-      } else {
-        await signIn({ email: email.trim(), password });
+      const creds = { email: email.trim(), username: username.trim(), password };
+      if (upgrade) {
+        const r = await upgradeGuest(creds);
+        return r.needsConfirmation ? setMode("verify") : go();
       }
+      if (mode === "signup") {
+        const r = await signUp(creds);
+        return r.needsConfirmation ? setMode("verify") : go();
+      }
+      await signIn({ email: creds.email, password });
       go();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  // On the "verify your email" screen: re-check the session after the user
+  // confirms via the emailed link.
+  const verifyContinue = async () => {
+    setError(null);
+    setBusy(true);
+    try {
+      const u = await refresh();
+      if (u) go();
+      else setError("Not confirmed yet — please click the link in your email.");
     } finally {
       setBusy(false);
     }
@@ -94,8 +123,8 @@ export default function AuthScreen() {
           <span className="font-bold text-pink-ink">{email}</span>.
         </p>
         {isVerify ? (
-          <button onClick={go} className={btnPrimary}>
-            I've verified — continue
+          <button onClick={verifyContinue} disabled={busy} className={btnPrimary}>
+            {busy ? "Checking…" : "I've verified — continue"}
           </button>
         ) : (
           <button onClick={() => setMode("login")} className={btnPrimary}>
@@ -134,42 +163,52 @@ export default function AuthScreen() {
   return (
     <Shell>
       {/* tabs */}
-      <div className="mx-auto mb-6 flex w-fit rounded-full bg-cream p-1 ring-1 ring-pink-soft/50">
-        {(["login", "signup"] as const).map((m) => (
-          <button
-            key={m}
-            onClick={() => { setMode(m); setError(null); }}
-            className={`rounded-full px-5 py-2 text-sm font-bold transition-all ${
-              mode === m ? "bg-gradient-to-r from-pink-deep to-pink text-white shadow-soft" : "text-ink-soft"
-            }`}
-          >
-            {m === "login" ? "Log in" : "Sign up"}
-          </button>
-        ))}
-      </div>
+      {!upgrade && (
+        <div className="mx-auto mb-6 flex w-fit rounded-full bg-cream p-1 ring-1 ring-pink-soft/50">
+          {(["login", "signup"] as const).map((m) => (
+            <button
+              key={m}
+              onClick={() => { setMode(m); setError(null); }}
+              className={`rounded-full px-5 py-2 text-sm font-bold transition-all ${
+                mode === m ? "bg-gradient-to-r from-pink-deep to-pink text-white shadow-soft" : "text-ink-soft"
+              }`}
+            >
+              {m === "login" ? "Log in" : "Sign up"}
+            </button>
+          ))}
+        </div>
+      )}
 
       <h1 className="font-display text-2xl font-extrabold text-ink">
-        {isSignup ? "Create your account" : "Welcome back"}
+        {upgrade ? "Save your account 🌸" : isSignup ? "Create your account" : "Welcome back"}
       </h1>
       <p className="mt-1 text-sm text-ink-soft">
-        {isSignup ? `Start your ${TRIAL_DAYS}-day free trial 🌸` : "Log in to keep learning."}
+        {upgrade
+          ? "Create a free account to keep your progress."
+          : isSignup
+          ? `Start your ${TRIAL_DAYS}-day free trial 🌸`
+          : "Log in to keep learning."}
       </p>
 
       {/* social */}
-      <div className="mt-5 space-y-2.5">
-        <button onClick={guest} disabled={busy} className={btnSocial}>
-          <GoogleIcon /> Continue with Google
-        </button>
-        <button onClick={guest} disabled={busy} className={btnSocial}>
-          <AppleIcon /> Continue with Apple
-        </button>
-      </div>
+      {!upgrade && (
+        <>
+          <div className="mt-5 space-y-2.5">
+            <button onClick={guest} disabled={busy} className={btnSocial}>
+              <GoogleIcon /> Continue with Google
+            </button>
+            <button onClick={guest} disabled={busy} className={btnSocial}>
+              <AppleIcon /> Continue with Apple
+            </button>
+          </div>
 
-      <div className="my-5 flex items-center gap-3 text-xs font-semibold text-ink-mute">
-        <span className="h-px flex-1 bg-pink-soft/60" /> or <span className="h-px flex-1 bg-pink-soft/60" />
-      </div>
+          <div className="my-5 flex items-center gap-3 text-xs font-semibold text-ink-mute">
+            <span className="h-px flex-1 bg-pink-soft/60" /> or <span className="h-px flex-1 bg-pink-soft/60" />
+          </div>
+        </>
+      )}
 
-      {isSignup && (
+      {showFields && (
         <Field label="Username" value={username} onChange={setUsername} placeholder="meemi_fan" hint="Must be unique. You can change it later." />
       )}
       <Field label="Email" type="email" value={email} onChange={setEmail} placeholder="you@example.com" />
@@ -181,7 +220,7 @@ export default function AuthScreen() {
         </button>
       )}
 
-      {isSignup && (
+      {showFields && (
         <label className="mt-4 flex items-start gap-2.5 text-left text-xs text-ink-soft">
           <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#ec6fa0]" />
           <span>
@@ -193,12 +232,14 @@ export default function AuthScreen() {
       {error && <p className="mt-3 text-sm font-semibold text-[#d6557a]">{error}</p>}
 
       <button onClick={submit} disabled={busy} className={btnPrimary}>
-        {busy ? "Please wait…" : isSignup ? "Create account" : "Log in"}
+        {busy ? "Please wait…" : upgrade ? "Save account" : isSignup ? "Create account" : "Log in"}
       </button>
 
-      <button onClick={guest} disabled={busy} className={btnLink}>
-        Continue as guest →
-      </button>
+      {!upgrade && (
+        <button onClick={guest} disabled={busy} className={btnLink}>
+          Continue as guest →
+        </button>
+      )}
 
       <p className="mt-4 text-[0.7rem] leading-relaxed text-ink-mute">
         Email verification required · up to 2 devices · by continuing you agree to our Terms & Privacy.

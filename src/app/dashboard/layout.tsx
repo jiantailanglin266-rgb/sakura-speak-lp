@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RequireAuth from "@/components/auth/RequireAuth";
+import GuestBanner from "@/components/dashboard/GuestBanner";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -13,5 +14,10 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <RequireAuth>{children}</RequireAuth>;
+  return (
+    <RequireAuth>
+      {children}
+      <GuestBanner />
+    </RequireAuth>
+  );
 }

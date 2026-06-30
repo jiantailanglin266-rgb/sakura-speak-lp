@@ -19,10 +19,13 @@ export type AuthUser = {
   role: Role;
   status: MemberStatus;
   createdAt: string;
+  isGuest: boolean;
 };
 
 export type SignUpInput = { email: string; username: string; password: string };
 export type SignInInput = { email: string; password: string };
+// needsConfirmation = account created but no active session yet (email must be confirmed).
+export type SignUpResult = { user: AuthUser; needsConfirmation: boolean };
 
 /* ============================================================= MOCK ===== */
 const USERS_KEY = "sakura-mock-users";
@@ -52,7 +55,13 @@ function writeUsers(u: MockUser[]) {
   localStorage.setItem(USERS_KEY, JSON.stringify(u));
 }
 
-function mkUser(email: string, username: string, password: string, role: Role): MockUser {
+function mkUser(
+  email: string,
+  username: string,
+  password: string,
+  role: Role,
+  isGuest = false
+): MockUser {
   return {
     id: `u_${Math.random().toString(36).slice(2, 10)}`,
     email,
@@ -60,6 +69,7 @@ function mkUser(email: string, username: string, password: string, role: Role): 
     role,
     status: "active",
     createdAt: new Date().toISOString(),
+    isGuest,
     password,
   };
 }
@@ -73,7 +83,7 @@ const mock = {
     const u = readUsers().find((x) => x.id === id);
     return u ? strip(u) : null;
   },
-  async signUp({ email, username, password }: SignUpInput): Promise<AuthUser> {
+  async signUp({ email, username, password }: SignUpInput): Promise<SignUpResult> {
     const users = readUsers();
     if (users.some((u) => u.email.toLowerCase() === email.toLowerCase()))
       throw new Error("That email is already registered.");
@@ -83,7 +93,7 @@ const mock = {
     users.push(u);
     writeUsers(users);
     localStorage.setItem(SESSION_KEY, u.id);
-    return strip(u);
+    return { user: strip(u), needsConfirmation: false };
   },
   async signIn({ email, password }: SignInInput): Promise<AuthUser> {
     const u = readUsers().find((x) => x.email.toLowerCase() === email.toLowerCase());
@@ -93,12 +103,25 @@ const mock = {
     return strip(u);
   },
   async signInAsGuest(): Promise<AuthUser> {
-    const u = mkUser(`guest_${Date.now()}@sakura.dev`, "Guest", "", "member");
+    const u = mkUser(`guest_${Date.now()}@sakura.dev`, "Guest", "", "member", true);
     const users = readUsers();
     users.push(u);
     writeUsers(users);
     localStorage.setItem(SESSION_KEY, u.id);
     return strip(u);
+  },
+  async upgradeGuest({ email, username, password }: SignUpInput): Promise<SignUpResult> {
+    const id = localStorage.getItem(SESSION_KEY);
+    const users = readUsers();
+    const i = users.findIndex((u) => u.id === id);
+    if (i < 0) throw new Error("No active session to upgrade.");
+    if (users.some((u) => u.id !== id && u.email.toLowerCase() === email.toLowerCase()))
+      throw new Error("That email is already registered.");
+    if (users.some((u) => u.id !== id && u.username.toLowerCase() === username.toLowerCase()))
+      throw new Error("That username is taken.");
+    users[i] = { ...users[i], email, username, password, isGuest: false };
+    writeUsers(users);
+    return { user: strip(users[i]), needsConfirmation: false };
   },
   async signOut(): Promise<void> {
     localStorage.removeItem(SESSION_KEY);
@@ -117,7 +140,7 @@ const mock = {
 };
 
 /* ========================================================= SUPABASE ===== */
-async function profileToUser(authId: string, email: string): Promise<AuthUser> {
+async function profileToUser(authId: string, email: string, isGuest = false): Promise<AuthUser> {
   // profiles row carries username/role/status (created by a signup trigger).
   const { data } = await supabase!
     .from("profiles")
@@ -131,6 +154,7 @@ async function profileToUser(authId: string, email: string): Promise<AuthUser> {
     role: (data?.role as Role) ?? "member",
     status: (data?.status as MemberStatus) ?? "active",
     createdAt: data?.created_at ?? new Date().toISOString(),
+    isGuest,
   };
 }
 
@@ -139,18 +163,30 @@ const real = {
     const { data } = await supabase!.auth.getSession();
     const s = data.session;
     if (!s?.user) return null;
-    return profileToUser(s.user.id, s.user.email ?? "");
+    const isGuest = Boolean((s.user as { is_anonymous?: boolean }).is_anonymous);
+    return profileToUser(s.user.id, s.user.email ?? "", isGuest);
   },
-  async signUp({ email, username, password }: SignUpInput): Promise<AuthUser> {
+  async signUp({ email, username, password }: SignUpInput): Promise<SignUpResult> {
     const { data, error } = await supabase!.auth.signUp({
       email,
       password,
       options: { data: { username } },
     });
     if (error) throw new Error(error.message);
-    const u = data.user;
-    if (!u) throw new Error("Check your email to confirm your account.");
-    return profileToUser(u.id, email);
+    const needsConfirmation = !data.session; // email confirmation required
+    const user: AuthUser =
+      data.user && data.session
+        ? await profileToUser(data.user.id, email)
+        : {
+            id: data.user?.id ?? "pending",
+            email,
+            username,
+            role: "member",
+            status: "active",
+            createdAt: new Date().toISOString(),
+            isGuest: false,
+          };
+    return { user, needsConfirmation };
   },
   async signIn({ email, password }: SignInInput): Promise<AuthUser> {
     const { data, error } = await supabase!.auth.signInWithPassword({ email, password });
@@ -160,7 +196,31 @@ const real = {
   async signInAsGuest(): Promise<AuthUser> {
     const { data, error } = await supabase!.auth.signInAnonymously();
     if (error) throw new Error(error.message);
-    return profileToUser(data.user!.id, "guest");
+    return profileToUser(data.user!.id, "guest", true);
+  },
+  async upgradeGuest({ email, username, password }: SignUpInput): Promise<SignUpResult> {
+    // Convert an anonymous user to a permanent account.
+    const { data, error } = await supabase!.auth.updateUser({
+      email,
+      password,
+      data: { username },
+    });
+    if (error) throw new Error(error.message);
+    const u = data.user;
+    await supabase!.from("profiles").update({ email, username }).eq("id", u.id);
+    return {
+      user: {
+        id: u.id,
+        email,
+        username,
+        role: "member",
+        status: "active",
+        createdAt: u.created_at ?? new Date().toISOString(),
+        isGuest: false,
+      },
+      // email change is verified via Supabase's email; session stays active.
+      needsConfirmation: false,
+    };
   },
   async signOut(): Promise<void> {
     await supabase!.auth.signOut();
@@ -179,6 +239,7 @@ const real = {
       role: r.role,
       status: r.status,
       createdAt: r.created_at,
+      isGuest: false,
     }));
   },
   async updateMember(id: string, patch: Partial<Pick<AuthUser, "role" | "status">>): Promise<void> {

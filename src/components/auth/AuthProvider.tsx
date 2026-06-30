@@ -1,16 +1,23 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { authApi, type AuthUser, type SignInInput, type SignUpInput } from "@/lib/auth";
+import {
+  authApi,
+  type AuthUser,
+  type SignInInput,
+  type SignUpInput,
+  type SignUpResult,
+} from "@/lib/auth";
 
 type AuthContextValue = {
   user: AuthUser | null;
   loading: boolean;
-  signUp: (i: SignUpInput) => Promise<AuthUser>;
+  signUp: (i: SignUpInput) => Promise<SignUpResult>;
   signIn: (i: SignInInput) => Promise<AuthUser>;
   signInAsGuest: () => Promise<AuthUser>;
+  upgradeGuest: (i: SignUpInput) => Promise<SignUpResult>;
   signOut: () => Promise<void>;
-  refresh: () => Promise<void>;
+  refresh: () => Promise<AuthUser | null>;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -21,9 +28,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refresh = useCallback(async () => {
     try {
-      setUser(await authApi.getSession());
+      const u = await authApi.getSession();
+      setUser(u);
+      return u;
     } catch {
       setUser(null);
+      return null;
     }
   }, []);
 
@@ -43,9 +53,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signUp = useCallback(async (i: SignUpInput) => {
-    const u = await authApi.signUp(i);
-    setUser(u);
-    return u;
+    const res = await authApi.signUp(i);
+    if (!res.needsConfirmation) setUser(res.user); // no session yet if confirming
+    return res;
   }, []);
 
   const signIn = useCallback(async (i: SignInInput) => {
@@ -60,6 +70,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return u;
   }, []);
 
+  const upgradeGuest = useCallback(async (i: SignUpInput) => {
+    const res = await authApi.upgradeGuest(i);
+    setUser(res.user); // session stays active through the upgrade
+    return res;
+  }, []);
+
   const signOut = useCallback(async () => {
     await authApi.signOut();
     setUser(null);
@@ -67,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, signUp, signIn, signInAsGuest, signOut, refresh }}
+      value={{ user, loading, signUp, signIn, signInAsGuest, upgradeGuest, signOut, refresh }}
     >
       {children}
     </AuthContext.Provider>
