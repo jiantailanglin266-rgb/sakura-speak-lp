@@ -3,6 +3,7 @@ import Meemi from "../Meemi";
 import Icon from "../ui/Icon";
 import { navItems } from "@/lib/dashboard";
 import LogoutButton from "./LogoutButton";
+import PlanStatusCard from "./PlanStatusCard";
 
 export default function SideNav() {
   return (
@@ -55,18 +56,7 @@ export default function SideNav() {
         ))}
       </nav>
 
-      <div className="mt-4 rounded-2xl bg-gradient-to-br from-blue-soft/70 to-pink-soft/70 p-4">
-        <p className="text-xs font-bold text-pink-ink">Trial · 2 days left</p>
-        <p className="mt-1 text-xs text-ink-soft">
-          Unlock unlimited learning.
-        </p>
-        <Link
-          href="/subscribe"
-          className="mt-3 block rounded-full bg-white py-2 text-center text-xs font-bold text-pink-deep shadow-soft hover:bg-cream"
-        >
-          Upgrade
-        </Link>
-      </div>
+      <PlanStatusCard />
 
       <LogoutButton className="mt-2" />
     </aside>

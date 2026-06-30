@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Meemi from "../Meemi";
 import { useAuth } from "../auth/AuthProvider";
 import { buildPaymentLink } from "@/lib/stripe";
+import { setSubscription } from "@/lib/entitlement";
 import {
   plans,
   currencies,
@@ -41,6 +42,21 @@ export default function Subscribe() {
     const p = new URLSearchParams(window.location.search);
     if (p.get("checkout") === "success") setStep("success");
   }, []);
+
+  // Mock checkout completion: grant entitlement locally (Supabase mode grants via
+  // the Stripe webhook instead — see lib/entitlement.ts).
+  const completeMock = async () => {
+    if (user) {
+      await setSubscription(user.id, {
+        plan: planId,
+        status: isLifetime ? "active" : "trial",
+        trialEnds: isLifetime
+          ? undefined
+          : new Date(Date.now() + TRIAL_DAYS * 86400000).toISOString(),
+      });
+    }
+    setStep("success");
+  };
 
   const applyCoupon = () => {
     const c = coupons.find((x) => x.code === couponInput.trim().toUpperCase());
@@ -219,7 +235,7 @@ export default function Subscribe() {
               </div>
               <CardField label="Name on card" placeholder="Hina Tanaka" />
             </div>
-            <button onClick={() => setStep("success")} className={btnPrimary}>
+            <button onClick={completeMock} className={btnPrimary}>
               {isLifetime ? `Pay ${fmtPrice(discountedUsd, cur)}` : `Start ${TRIAL_DAYS}-day free trial`}
             </button>
           </>

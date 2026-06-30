@@ -5,6 +5,7 @@ import TopBar from "@/components/dashboard/TopBar";
 import MobileNav from "@/components/dashboard/MobileNav";
 import Icon from "@/components/ui/Icon";
 import Reveal from "@/components/ui/Reveal";
+import PremiumGate from "@/components/billing/PremiumGate";
 import { games } from "@/lib/games";
 
 export const metadata: Metadata = {
@@ -46,6 +47,10 @@ export default function GamesPage() {
             </div>
           </div>
 
+          <PremiumGate
+            title="Mini-games are Premium 🎮"
+            blurb="Word Blitz, Memory Match, Listen It & Sentence Scramble unlock with any plan — start your free trial."
+          >
           <div className="grid gap-4 sm:grid-cols-2">
             {games.map((g, i) => {
               const inner = (
@@ -88,6 +93,7 @@ export default function GamesPage() {
               );
             })}
           </div>
+          </PremiumGate>
         </main>
 
         <MobileNav />

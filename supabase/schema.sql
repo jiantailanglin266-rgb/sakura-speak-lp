@@ -21,6 +21,12 @@ create table if not exists public.profiles (
   created_at timestamptz   not null default now()
 );
 
+-- subscription state — written by your Stripe webhook in production
+-- (status: 'none' | 'trial' | 'active'). The browser never self-grants premium.
+alter table public.profiles add column if not exists plan text;
+alter table public.profiles add column if not exists subscription_status text not null default 'none';
+alter table public.profiles add column if not exists trial_ends timestamptz;
+
 alter table public.profiles enable row level security;
 
 -- helper: is the current user an admin? (security definer avoids RLS recursion)

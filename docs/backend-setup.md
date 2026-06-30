@@ -58,7 +58,9 @@ The subscribe screen uses **Stripe Payment Links** so no server is needed.
 **Reconciliation (marking a member as subscribed)** is the remaining
 "つなぎ込み": add a Stripe **webhook** (e.g. a Supabase Edge Function) that, on
 `checkout.session.completed`, looks up `client_reference_id` and updates the
-member's subscription state. Promo codes are entered on Stripe's own page.
+member's `profiles.plan` / `subscription_status` / `trial_ends`. The app's
+premium gating (`PremiumGate`, `useEntitlement`) reads those columns. Promo codes
+are entered on Stripe's own page.
 
 ## Notes
 
