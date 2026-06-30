@@ -844,6 +844,313 @@ export const classBLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- B-36 Feeling sick ---------------- */
+  {
+    id: "b-36",
+    cls: "B",
+    number: 36,
+    title: "Feeling sick",
+    jpTitle: "体調が悪い",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Feeling sick",
+        objectives: ["Say you're unwell", "Say what hurts (〜がいたい)", "Ask if someone is okay"],
+      },
+      { type: "teach", jp: "びょうき", romaji: "byōki", en: "illness / sick" },
+      { type: "teach", jp: "ねつ", romaji: "netsu", en: "fever", note: "ねつがあります = I have a fever." },
+      { type: "teach", label: "Grammar", jp: "あたまがいたいです", romaji: "atama ga itai desu", en: "My head hurts.", note: "[body part] が いたい = ~ hurts. あたま = head." },
+      { type: "teach", jp: "かぜ", romaji: "kaze", en: "a cold" },
+      {
+        type: "choice",
+        prompt: "Which means “fever”?",
+        options: [{ label: "ねつ", correct: true }, { label: "かぜ" }, { label: "びょうき" }],
+      },
+      { type: "teach", jp: "びょういん", romaji: "byōin", en: "hospital / clinic" },
+      { type: "teach", label: "Phrase", jp: "だいじょうぶですか", romaji: "daijōbu desu ka", en: "Are you okay?" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "My stomach hurts.",
+        tiles: ["おなか", "が", "いたい", "です"],
+        answer: ["おなか", "が", "いたい", "です"],
+      },
+      {
+        type: "listen",
+        audio: "あたまがいたいです",
+        prompt: "What did you hear?",
+        options: [{ label: "あたまがいたいです (My head hurts.)", correct: true }, { label: "ねつがあります" }, { label: "だいじょうぶですか" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "びょうき", en: "illness" },
+          { jp: "ねつ", en: "fever" },
+          { jp: "かぜ", en: "a cold" },
+          { jp: "びょういん", en: "hospital" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask “Are you okay?”",
+        options: [{ label: "だいじょうぶですか", correct: true }, { label: "あたまがいたいです" }, { label: "ねつがあります" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-37 Hobbies & free time ---------------- */
+  {
+    id: "b-37",
+    cls: "B",
+    number: 37,
+    title: "Hobbies & free time",
+    jpTitle: "趣味と休日",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Hobbies & free time",
+        objectives: ["Ask & say your hobby", "Name common hobbies", "Talk about free time"],
+      },
+      { type: "teach", jp: "しゅみ", romaji: "shumi", en: "hobby" },
+      { type: "teach", label: "Phrase", jp: "しゅみはなんですか", romaji: "shumi wa nan desu ka", en: "What's your hobby?" },
+      { type: "teach", jp: "どくしょ", romaji: "dokusho", en: "reading" },
+      { type: "teach", jp: "りょこう", romaji: "ryokō", en: "travel" },
+      { type: "teach", jp: "スポーツ", romaji: "supōtsu", en: "sports" },
+      {
+        type: "choice",
+        prompt: "Ask “What's your hobby?”",
+        options: [{ label: "しゅみはなんですか", correct: true }, { label: "どくしょです" }, { label: "スポーツがすきです" }],
+      },
+      { type: "teach", label: "Phrase", jp: "しゅみはどくしょです", romaji: "shumi wa dokusho desu", en: "My hobby is reading." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "My hobby is travel.",
+        tiles: ["しゅみ", "は", "りょこう", "です"],
+        answer: ["しゅみ", "は", "りょこう", "です"],
+      },
+      {
+        type: "listen",
+        audio: "しゅみはなんですか",
+        prompt: "What did you hear?",
+        options: [{ label: "しゅみはなんですか (What's your hobby?)", correct: true }, { label: "しゅみはどくしょです" }, { label: "スポーツがすきです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "しゅみ", en: "hobby" },
+          { jp: "どくしょ", en: "reading" },
+          { jp: "りょこう", en: "travel" },
+          { jp: "スポーツ", en: "sports" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“My hobby is reading” = しゅみは ___ です",
+        options: [{ label: "どくしょ", correct: true }, { label: "りょこう" }, { label: "スポーツ" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-38 Weather & seasons ---------------- */
+  {
+    id: "b-38",
+    cls: "B",
+    number: 38,
+    title: "Weather & seasons",
+    jpTitle: "天気と季節",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Weather & seasons",
+        objectives: ["Name the four seasons", "Describe a season", "Say it rains / snows"],
+      },
+      { type: "teach", jp: "きせつ", romaji: "kisetsu", en: "season" },
+      { type: "teach", label: "Seasons", jp: "はる、なつ", romaji: "haru, natsu", en: "spring, summer" },
+      { type: "teach", label: "Seasons", jp: "あき、ふゆ", romaji: "aki, fuyu", en: "autumn, winter" },
+      { type: "teach", jp: "てんきよほう", romaji: "tenki yohō", en: "weather forecast" },
+      {
+        type: "choice",
+        prompt: "Which means “summer”?",
+        options: [{ label: "なつ", correct: true }, { label: "はる" }, { label: "ふゆ" }, { label: "あき" }],
+      },
+      { type: "teach", label: "Grammar", jp: "あめがふります", romaji: "ame ga furimasu", en: "it rains", note: "ふります = falls (used for rain/snow)." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Winter is cold.",
+        tiles: ["ふゆ", "は", "さむい", "です"],
+        answer: ["ふゆ", "は", "さむい", "です"],
+      },
+      {
+        type: "listen",
+        audio: "あしたはあめがふります",
+        prompt: "What did you hear?",
+        options: [{ label: "あしたはあめがふります (It will rain tomorrow.)", correct: true }, { label: "なつはあついです" }, { label: "てんきよほう" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the seasons",
+        pairs: [
+          { jp: "きせつ", en: "season" },
+          { jp: "はる", en: "spring" },
+          { jp: "あき", en: "autumn" },
+          { jp: "ふゆ", en: "winter" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“Summer is hot” = なつは ___ です",
+        options: [{ label: "あつい", correct: true }, { label: "さむい" }, { label: "あき" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-39 Describing people ---------------- */
+  {
+    id: "b-39",
+    cls: "B",
+    number: 39,
+    title: "Describing people",
+    jpTitle: "人を説明する",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Describing people",
+        objectives: ["Describe appearance", "Describe personality", "Ask “what kind of person?”"],
+      },
+      { type: "teach", label: "Grammar", jp: "せがたかい", romaji: "se ga takai", en: "tall (person)", note: "せ = height; せがひくい = short." },
+      { type: "teach", jp: "やさしい", romaji: "yasashii", en: "kind / gentle" },
+      { type: "teach", jp: "おもしろい", romaji: "omoshiroi", en: "interesting / funny" },
+      { type: "teach", label: "Grammar", jp: "かみがながい", romaji: "kami ga nagai", en: "has long hair", note: "かみ = hair; ながい = long, みじかい = short." },
+      {
+        type: "choice",
+        prompt: "Which means “kind”?",
+        options: [{ label: "やさしい", correct: true }, { label: "おもしろい" }, { label: "せがたかい" }],
+      },
+      { type: "teach", jp: "げんき", romaji: "genki", en: "energetic / well", note: "na-adjective: げんきなひと = an energetic person." },
+      { type: "teach", label: "Phrase", jp: "どんなひと", romaji: "donna hito", en: "what kind of person", note: "どんな = what kind of." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "(She) is a kind person.",
+        tiles: ["やさしい", "ひと", "です"],
+        answer: ["やさしい", "ひと", "です"],
+      },
+      {
+        type: "listen",
+        audio: "やさしいひとです",
+        prompt: "What did you hear?",
+        options: [{ label: "やさしいひとです (a kind person)", correct: true }, { label: "おもしろいひとです" }, { label: "せがたかいです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "やさしい", en: "kind" },
+          { jp: "おもしろい", en: "interesting" },
+          { jp: "げんき", en: "energetic" },
+          { jp: "どんな", en: "what kind" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask “What kind of person?”",
+        options: [{ label: "どんなひとですか", correct: true }, { label: "やさしいひとです" }, { label: "せがたかいです" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-40 Review: everyday talk ---------------- */
+  {
+    id: "b-40",
+    cls: "B",
+    number: 40,
+    title: "Review: everyday talk",
+    jpTitle: "復習：日常会話",
+    xp: 20,
+    coins: 20,
+    steps: [
+      {
+        type: "intro",
+        title: "Review: everyday talk",
+        objectives: ["Review Class B essentials", "Mix travel, food & plans", "Handle real situations"],
+      },
+      {
+        type: "choice",
+        prompt: "Ask the time",
+        options: [{ label: "いまなんじですか", correct: true }, { label: "これはいくらですか" }, { label: "おすすめはなんですか" }],
+      },
+      {
+        type: "choice",
+        prompt: "At a restaurant, ask for the menu",
+        options: [{ label: "メニューをください", correct: true }, { label: "おかいけいおねがいします" }, { label: "いらっしゃいませ" }],
+      },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I get on the train.",
+        tiles: ["でんしゃ", "に", "のります"],
+        answer: ["でんしゃ", "に", "のります"],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "えき", en: "station" },
+          { jp: "おいしい", en: "delicious" },
+          { jp: "ぎんこう", en: "bank" },
+          { jp: "ねつ", en: "fever" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Invite: “Won't you go together?”",
+        options: [{ label: "いっしょにいきませんか", correct: true }, { label: "いきましょう" }, { label: "ざんねんですが" }],
+      },
+      {
+        type: "listen",
+        audio: "きってをください",
+        prompt: "What did you hear?",
+        options: [{ label: "きってをください (Stamps, please.)", correct: true }, { label: "おかねをおろします" }, { label: "きてみてもいいですか" }],
+      },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Summer is hot.",
+        tiles: ["なつ", "は", "あつい", "です"],
+        answer: ["なつ", "は", "あつい", "です"],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "しゅみ", en: "hobby" },
+          { jp: "やさしい", en: "kind" },
+          { jp: "きせつ", en: "season" },
+          { jp: "もしもし", en: "Hello (phone)" },
+        ],
+      },
+      { type: "teach", label: "Phrase", jp: "おつかれさまです", romaji: "otsukaresama desu", en: "Good work / thanks for your effort", note: "A very common workplace & social phrase." },
+      {
+        type: "choice",
+        prompt: "Say “good work” to a colleague",
+        options: [{ label: "おつかれさまです", correct: true }, { label: "いらっしゃいませ" }, { label: "だいじょうぶですか" }],
+      },
+    ],
+  },
 ];
+
 
 
