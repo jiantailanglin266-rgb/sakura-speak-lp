@@ -142,8 +142,9 @@ export const syllabus: SyllabusEntry[] = [
 import { classALessons } from "./lessons-classA";
 import { classBLessons } from "./lessons-classB";
 import { classCLessons } from "./lessons-classC";
+import { classDLessons } from "./lessons-classD";
 
-const authored: Lesson[] = [...classALessons, ...classBLessons, ...classCLessons];
+const authored: Lesson[] = [...classALessons, ...classBLessons, ...classCLessons, ...classDLessons];
 
 export const lessonsById: Record<string, Lesson> = Object.fromEntries(
   authored.map((l) => [l.id, l])
