@@ -564,5 +564,286 @@ export const classBLessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- B-31 Inviting someone ---------------- */
+  {
+    id: "b-31",
+    cls: "B",
+    number: 31,
+    title: "Inviting someone",
+    jpTitle: "さそう",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Inviting someone",
+        objectives: ["Invite with “how about…?”", "Accept an invitation", "Decline politely"],
+      },
+      { type: "teach", label: "Phrase", jp: "いっしょにどうですか", romaji: "issho ni dō desu ka", en: "How about (it) together?", note: "どうですか = how about?" },
+      { type: "teach", label: "Phrase", jp: "いいですね", romaji: "ii desu ne", en: "Sounds good! (accept)" },
+      { type: "teach", label: "Phrase", jp: "ざんねんですが", romaji: "zannen desu ga", en: "Sorry, but… (decline)" },
+      { type: "teach", label: "Phrase", jp: "またこんど", romaji: "mata kondo", en: "maybe next time" },
+      {
+        type: "choice",
+        prompt: "Accept an invitation:",
+        options: [{ label: "いいですね", correct: true }, { label: "ざんねんですが" }, { label: "またこんど" }],
+      },
+      { type: "teach", jp: "ひま", romaji: "hima", en: "free / not busy", note: "いそがしい = busy." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Shall we eat together?",
+        tiles: ["いっしょに", "ごはん", "たべませんか"],
+        answer: ["いっしょに", "ごはん", "たべませんか"],
+      },
+      {
+        type: "listen",
+        audio: "いっしょにえいがにいきませんか",
+        prompt: "What did you hear?",
+        options: [{ label: "いっしょにえいがにいきませんか (Want to see a movie together?)", correct: true }, { label: "いいですね" }, { label: "ざんねんですが" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "いいですね", en: "Sounds good" },
+          { jp: "ざんねんですが", en: "Sorry, but…" },
+          { jp: "ひま", en: "free" },
+          { jp: "いそがしい", en: "busy" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Politely decline:",
+        options: [{ label: "ざんねんですが", correct: true }, { label: "いいですね" }, { label: "いっしょにどうですか" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-32 On the phone ---------------- */
+  {
+    id: "b-32",
+    cls: "B",
+    number: 32,
+    title: "On the phone",
+    jpTitle: "電話で",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "On the phone",
+        objectives: ["Answer the phone", "Ask for someone", "Leave a simple message"],
+      },
+      { type: "teach", jp: "でんわ", romaji: "denwa", en: "phone / call" },
+      { type: "teach", label: "Phrase", jp: "もしもし", romaji: "moshi moshi", en: "Hello (on the phone)" },
+      { type: "teach", label: "Phrase", jp: "たなかさんおねがいします", romaji: "tanaka-san onegaishimasu", en: "May I speak to Mr. Tanaka?" },
+      { type: "teach", label: "Phrase", jp: "いまいません", romaji: "ima imasen", en: "(He/she) isn't here now", note: "いません = isn't (for people/animals)." },
+      {
+        type: "choice",
+        prompt: "Answer the phone:",
+        options: [{ label: "もしもし", correct: true }, { label: "いらっしゃいませ" }, { label: "またこんど" }],
+      },
+      { type: "teach", jp: "るすばんでんわ", romaji: "rusuban denwa", en: "voicemail / answering machine" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I'll call again.",
+        tiles: ["また", "でんわ", "します"],
+        answer: ["また", "でんわ", "します"],
+      },
+      {
+        type: "listen",
+        audio: "たなかさんおねがいします",
+        prompt: "What did you hear?",
+        options: [{ label: "たなかさんおねがいします (May I speak to Tanaka?)", correct: true }, { label: "またでんわします" }, { label: "いまいません" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "でんわ", en: "phone" },
+          { jp: "もしもし", en: "Hello (phone)" },
+          { jp: "いません", en: "isn't here" },
+          { jp: "るすばんでんわ", en: "voicemail" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Ask to speak to Mr. Tanaka:",
+        options: [{ label: "たなかさんおねがいします", correct: true }, { label: "もしもし" }, { label: "るすばんでんわ" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-33 Shopping for clothes ---------------- */
+  {
+    id: "b-33",
+    cls: "B",
+    number: 33,
+    title: "Shopping for clothes",
+    jpTitle: "服を買う",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Shopping for clothes",
+        objectives: ["Ask to try clothes on", "Ask for another size/color", "Decide with 〜にします"],
+      },
+      { type: "teach", jp: "ふく", romaji: "fuku", en: "clothes" },
+      { type: "teach", jp: "サイズ", romaji: "saizu", en: "size" },
+      { type: "teach", label: "Grammar", jp: "きてみてもいいですか", romaji: "kite mite mo ii desu ka", en: "May I try it on?", note: "〜てもいいですか = “may I ~?”." },
+      { type: "teach", label: "Phrase", jp: "ほかのいろ", romaji: "hoka no iro", en: "another color", note: "ほか = other." },
+      {
+        type: "choice",
+        prompt: "Which means “size”?",
+        options: [{ label: "サイズ", correct: true }, { label: "ふく" }, { label: "いろ" }],
+      },
+      { type: "teach", label: "Grammar", jp: "これにします", romaji: "kore ni shimasu", en: "I'll take this one.", note: "〜にします = “decide on ~”." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "May I try it on?",
+        tiles: ["きて", "みても", "いいですか"],
+        answer: ["きて", "みても", "いいですか"],
+      },
+      {
+        type: "listen",
+        audio: "きてみてもいいですか",
+        prompt: "What did you hear?",
+        options: [{ label: "きてみてもいいですか (May I try it on?)", correct: true }, { label: "これにします" }, { label: "ほかのいろ" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "ふく", en: "clothes" },
+          { jp: "サイズ", en: "size" },
+          { jp: "ほか", en: "other" },
+          { jp: "これにします", en: "I'll take this" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Decide: “I'll take this one.”",
+        options: [{ label: "これにします", correct: true }, { label: "きてみてもいいですか" }, { label: "ほかのいろ" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-34 At the post office ---------------- */
+  {
+    id: "b-34",
+    cls: "B",
+    number: 34,
+    title: "At the post office",
+    jpTitle: "郵便局で",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "At the post office",
+        objectives: ["Know post-office words", "Buy stamps", "Say you want to send something"],
+      },
+      { type: "teach", jp: "ゆうびんきょく", romaji: "yūbinkyoku", en: "post office" },
+      { type: "teach", jp: "きって", romaji: "kitte", en: "stamp" },
+      { type: "teach", jp: "てがみ", romaji: "tegami", en: "letter", note: "はがき = postcard." },
+      { type: "teach", jp: "こづつみ", romaji: "kozutsumi", en: "parcel / package" },
+      {
+        type: "choice",
+        prompt: "Which means “stamp”?",
+        options: [{ label: "きって", correct: true }, { label: "てがみ" }, { label: "こづつみ" }],
+      },
+      { type: "teach", label: "Grammar", jp: "てがみをおくりたいです", romaji: "tegami o okuritai desu", en: "I'd like to send a letter.", note: "〜たいです = “want to ~”. おくります = send." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I'd like to send a letter.",
+        tiles: ["てがみ", "を", "おくりたいです"],
+        answer: ["てがみ", "を", "おくりたいです"],
+      },
+      {
+        type: "listen",
+        audio: "きってをください",
+        prompt: "What did you hear?",
+        options: [{ label: "きってをください (Stamps, please.)", correct: true }, { label: "こづつみをおくります" }, { label: "てがみをおくりたいです" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "ゆうびんきょく", en: "post office" },
+          { jp: "きって", en: "stamp" },
+          { jp: "てがみ", en: "letter" },
+          { jp: "こづつみ", en: "parcel" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“I want to send” = おくり ___ です",
+        options: [{ label: "たい", correct: true }, { label: "ました" }, { label: "ません" }],
+      },
+    ],
+  },
+
+  /* ---------------- B-35 At the bank ---------------- */
+  {
+    id: "b-35",
+    cls: "B",
+    number: 35,
+    title: "At the bank",
+    jpTitle: "銀行で",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "At the bank",
+        objectives: ["Know bank words", "Withdraw and deposit", "Exchange money"],
+      },
+      { type: "teach", jp: "ぎんこう", romaji: "ginkō", en: "bank" },
+      { type: "teach", jp: "こうざ", romaji: "kōza", en: "account" },
+      { type: "teach", jp: "おろします", romaji: "oroshimasu", en: "withdraw", note: "あずけます = deposit." },
+      { type: "teach", jp: "りょうがえ", romaji: "ryōgae", en: "money exchange" },
+      {
+        type: "choice",
+        prompt: "Which means “bank”?",
+        options: [{ label: "ぎんこう", correct: true }, { label: "こうざ" }, { label: "りょうがえ" }],
+      },
+      { type: "teach", label: "Grammar", jp: "おかねをおろします", romaji: "okane o oroshimasu", en: "withdraw money", note: "おかね = money." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I withdraw money.",
+        tiles: ["おかね", "を", "おろします"],
+        answer: ["おかね", "を", "おろします"],
+      },
+      {
+        type: "listen",
+        audio: "おかねをおろします",
+        prompt: "What did you hear?",
+        options: [{ label: "おかねをおろします (I withdraw money.)", correct: true }, { label: "おかねをあずけます" }, { label: "りょうがえします" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "ぎんこう", en: "bank" },
+          { jp: "こうざ", en: "account" },
+          { jp: "おろします", en: "withdraw" },
+          { jp: "りょうがえ", en: "money exchange" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "“deposit money” = おかねを ___",
+        options: [{ label: "あずけます", correct: true }, { label: "おろします" }, { label: "りょうがえ" }],
+      },
+    ],
+  },
 ];
+
 
