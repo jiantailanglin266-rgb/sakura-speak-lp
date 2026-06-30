@@ -625,4 +625,262 @@ export const classALessons: Lesson[] = [
       },
     ],
   },
+
+  /* ---------------- A-11 Food & drink basics ---------------- */
+  {
+    id: "a-11",
+    cls: "A",
+    number: 11,
+    title: "Food & drink basics",
+    jpTitle: "食べ物・飲み物",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Food & drink basics",
+        objectives: ["Name everyday food & drink", "Use eat (たべます) and drink (のみます)", "Say what you eat and drink"],
+      },
+      { type: "teach", jp: "たべもの", romaji: "tabemono", en: "food" },
+      { type: "teach", jp: "のみもの", romaji: "nomimono", en: "drink" },
+      { type: "teach", jp: "ごはん", romaji: "gohan", en: "rice / meal" },
+      { type: "teach", jp: "みず", romaji: "mizu", en: "water" },
+      { type: "teach", jp: "おちゃ", romaji: "ocha", en: "tea" },
+      {
+        type: "choice",
+        prompt: "Which means “water”?",
+        options: [{ label: "みず", correct: true }, { label: "おちゃ" }, { label: "ごはん" }],
+      },
+      { type: "teach", label: "Grammar", jp: "たべます", romaji: "tabemasu", en: "eat (polite)", note: "ごはんを たべます = (I) eat rice. を marks the object." },
+      { type: "teach", label: "Grammar", jp: "のみます", romaji: "nomimasu", en: "drink (polite)" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I drink tea.",
+        tiles: ["おちゃ", "を", "のみます"],
+        answer: ["おちゃ", "を", "のみます"],
+      },
+      {
+        type: "listen",
+        audio: "みずをのみます",
+        prompt: "What did you hear?",
+        options: [{ label: "みずをのみます (I drink water.)", correct: true }, { label: "おちゃをのみます" }, { label: "ごはんをたべます" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "たべもの", en: "food" },
+          { jp: "のみもの", en: "drink" },
+          { jp: "みず", en: "water" },
+          { jp: "おちゃ", en: "tea" },
+        ],
+      },
+    ],
+  },
+
+  /* ---------------- A-12 Basic adjectives ---------------- */
+  {
+    id: "a-12",
+    cls: "A",
+    number: 12,
+    title: "Basic adjectives",
+    jpTitle: "基本の形容詞",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Basic adjectives",
+        objectives: ["Describe things (big, small…)", "Learn common opposites", "Put an adjective before a noun"],
+      },
+      { type: "teach", jp: "おおきい", romaji: "ōkii", en: "big" },
+      { type: "teach", jp: "ちいさい", romaji: "chiisai", en: "small" },
+      { type: "teach", jp: "あつい", romaji: "atsui", en: "hot" },
+      { type: "teach", jp: "さむい", romaji: "samui", en: "cold (weather)", note: "For cold objects/drinks use つめたい." },
+      {
+        type: "choice",
+        prompt: "Which means “big”?",
+        options: [{ label: "おおきい", correct: true }, { label: "ちいさい" }, { label: "さむい" }, { label: "あつい" }],
+      },
+      { type: "teach", jp: "たかい", romaji: "takai", en: "expensive / tall" },
+      { type: "teach", jp: "やすい", romaji: "yasui", en: "cheap" },
+      { type: "teach", label: "Grammar", jp: "おおきいいぬ", romaji: "ōkii inu", en: "a big dog", note: "i-adjectives go directly before the noun." },
+      {
+        type: "listen",
+        audio: "たかい",
+        prompt: "What did you hear?",
+        options: [{ label: "たかい (expensive)", correct: true }, { label: "やすい (cheap)" }, { label: "ちいさい (small)" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the opposites & words",
+        pairs: [
+          { jp: "おおきい", en: "big" },
+          { jp: "ちいさい", en: "small" },
+          { jp: "あつい", en: "hot" },
+          { jp: "やすい", en: "cheap" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "Which means “expensive”?",
+        options: [{ label: "たかい", correct: true }, { label: "やすい" }, { label: "おおきい" }],
+      },
+    ],
+  },
+
+  /* ---------------- A-13 Where is it? ---------------- */
+  {
+    id: "a-13",
+    cls: "A",
+    number: 13,
+    title: "Where is it?",
+    jpTitle: "場所をたずねる",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Where is it?",
+        objectives: ["Use here / there / over there", "Ask “Where is …?” with どこ", "Say on / under / inside"],
+      },
+      { type: "teach", jp: "ここ", romaji: "koko", en: "here" },
+      { type: "teach", jp: "そこ", romaji: "soko", en: "there (near you)" },
+      { type: "teach", jp: "あそこ", romaji: "asoko", en: "over there" },
+      { type: "teach", label: "Grammar", jp: "どこ", romaji: "doko", en: "where", note: "Question word for places: トイレは どこですか = Where is the toilet?" },
+      {
+        type: "choice",
+        prompt: "Ask “Where is the station?” = えきは ___ ですか",
+        options: [{ label: "どこ", correct: true }, { label: "なに" }, { label: "だれ" }],
+      },
+      { type: "teach", jp: "うえ", romaji: "ue", en: "on / above" },
+      { type: "teach", jp: "した", romaji: "shita", en: "under / below" },
+      { type: "teach", jp: "なか", romaji: "naka", en: "inside" },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "Where is the toilet?",
+        tiles: ["トイレ", "は", "どこ", "ですか"],
+        answer: ["トイレ", "は", "どこ", "ですか"],
+      },
+      {
+        type: "listen",
+        audio: "トイレはどこですか",
+        prompt: "What did you hear?",
+        options: [{ label: "トイレはどこですか (Where is the toilet?)", correct: true }, { label: "えきはどこですか" }, { label: "これはなんですか" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the pairs",
+        pairs: [
+          { jp: "ここ", en: "here" },
+          { jp: "あそこ", en: "over there" },
+          { jp: "うえ", en: "on / above" },
+          { jp: "なか", en: "inside" },
+        ],
+      },
+    ],
+  },
+
+  /* ---------------- A-14 Everyday verbs ---------------- */
+  {
+    id: "a-14",
+    cls: "A",
+    number: 14,
+    title: "Everyday verbs",
+    jpTitle: "毎日の動詞",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Everyday verbs",
+        objectives: ["Learn common polite verbs", "Use を to mark the object", "Make simple action sentences"],
+      },
+      { type: "teach", jp: "いきます", romaji: "ikimasu", en: "go" },
+      { type: "teach", jp: "きます", romaji: "kimasu", en: "come" },
+      { type: "teach", jp: "みます", romaji: "mimasu", en: "see / watch" },
+      { type: "teach", jp: "ききます", romaji: "kikimasu", en: "listen / ask" },
+      { type: "teach", jp: "よみます", romaji: "yomimasu", en: "read" },
+      {
+        type: "choice",
+        prompt: "Which means “go”?",
+        options: [{ label: "いきます", correct: true }, { label: "きます" }, { label: "みます" }, { label: "よみます" }],
+      },
+      { type: "teach", label: "Grammar", jp: "ほんをよみます", romaji: "hon o yomimasu", en: "(I) read a book", note: "object + を + verb." },
+      {
+        type: "arrange",
+        prompt: "Build the sentence",
+        en: "I watch TV.",
+        tiles: ["テレビ", "を", "みます"],
+        answer: ["テレビ", "を", "みます"],
+      },
+      {
+        type: "listen",
+        audio: "おんがくをききます",
+        prompt: "What did you hear?",
+        options: [{ label: "おんがくをききます (I listen to music.)", correct: true }, { label: "テレビをみます" }, { label: "ほんをよみます" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the verbs",
+        pairs: [
+          { jp: "いきます", en: "go" },
+          { jp: "きます", en: "come" },
+          { jp: "みます", en: "watch" },
+          { jp: "よみます", en: "read" },
+        ],
+      },
+    ],
+  },
+
+  /* ---------------- A-15 Counting things ---------------- */
+  {
+    id: "a-15",
+    cls: "A",
+    number: 15,
+    title: "Counting things",
+    jpTitle: "ものの数え方",
+    xp: 15,
+    coins: 15,
+    steps: [
+      {
+        type: "intro",
+        title: "Counting things",
+        objectives: ["Count objects with 〜つ", "Meet common counters", "Ask “how many?”"],
+      },
+      { type: "teach", label: "Counters", jp: "ひとつ、ふたつ、みっつ", romaji: "hitotsu, futatsu, mittsu", en: "one, two, three (things)", note: "General counter 〜つ for objects." },
+      { type: "teach", label: "Counter", jp: "にまい", romaji: "ni-mai", en: "two (flat things)", note: "〜まい counts flat things: paper, plates, shirts." },
+      { type: "teach", label: "Counter", jp: "さんぼん", romaji: "san-bon", en: "three (long things)", note: "〜ほん counts long things: bottles, pens (sound changes: いっぽん, さんぼん)." },
+      { type: "teach", label: "Counter", jp: "いっぴき", romaji: "ippiki", en: "one (small animal)", note: "〜ひき counts small animals: cats, dogs." },
+      {
+        type: "choice",
+        prompt: "The counter for flat things (paper) is…",
+        options: [{ label: "〜まい", correct: true }, { label: "〜ほん" }, { label: "〜ひき" }],
+      },
+      { type: "teach", label: "Phrase", jp: "いくつですか", romaji: "ikutsu desu ka", en: "How many? (general)" },
+      {
+        type: "listen",
+        audio: "ふたつ",
+        prompt: "How many did you hear?",
+        options: [{ label: "2 — two", correct: true }, { label: "1 — one" }, { label: "3 — three" }],
+      },
+      {
+        type: "match",
+        prompt: "Match the counters",
+        pairs: [
+          { jp: "ひとつ", en: "one (thing)" },
+          { jp: "〜まい", en: "flat things" },
+          { jp: "〜ほん", en: "long things" },
+          { jp: "〜ひき", en: "small animals" },
+        ],
+      },
+      {
+        type: "choice",
+        prompt: "The counter for bottles & pens is…",
+        options: [{ label: "〜ほん", correct: true }, { label: "〜まい" }, { label: "〜ひき" }],
+      },
+    ],
+  },
 ];
